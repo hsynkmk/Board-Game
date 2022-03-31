@@ -16,5 +16,35 @@ namespace Board_Game
         {
             InitializeComponent();
         }
+
+        private void difficultyCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //
+            //one selection
+            //
+            int index = difficultyCheckedListBox.SelectedIndex;
+            int count = difficultyCheckedListBox.Items.Count;
+            for(int i = 0; i < count; i++)
+                if(index!=i)
+                    difficultyCheckedListBox.SetItemChecked(i, false);
+
+            if (difficultyCheckedListBox.SelectedIndex == 3)
+            {
+                widthTextbox.Visible = true;
+                heightTextbox.Visible = true;
+            }
+            if (difficultyCheckedListBox.SelectedIndex != 3)
+            {
+                widthTextbox.Visible = false;
+                heightTextbox.Visible = false;
+            }
+
+        }
+
+        private void settingsExitButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new GameForm().Show();
+        }
     }
 }

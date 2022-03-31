@@ -22,5 +22,10 @@ namespace Board_Game
             new SettingsForm().Show();
             this.Hide();
         }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
