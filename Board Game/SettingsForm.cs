@@ -10,17 +10,11 @@ using System.Windows.Forms;
 
 namespace Board_Game
 {
-    public partial class GameForm : Form
+    public partial class SettingsForm : Form
     {
-        public GameForm()
+        public SettingsForm()
         {
             InitializeComponent();
-        }
-
-        private void settingsButton_Click(object sender, EventArgs e)
-        {
-            new SettingsForm().Show();
-            this.Hide();
         }
     }
 }
