@@ -16,5 +16,16 @@ namespace Board_Game
         {
             InitializeComponent();
         }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            new SettingsForm().Show();
+            this.Hide();
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

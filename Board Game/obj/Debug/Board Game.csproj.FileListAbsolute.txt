@@ -9,3 +9,5 @@ C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.cspro
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.exe
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.pdb
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board_Game.LoginForm.resources
+C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board_Game.GameForm.resources
+C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board_Game.SettingsForm.resources
