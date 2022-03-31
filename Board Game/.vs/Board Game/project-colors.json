@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "45108602-b8a4-46a4-a7ad-437d90e8ae4d": {
+      "ProjectGuid": "45108602-b8a4-46a4-a7ad-437d90e8ae4d",
+      "DisplayName": "Board Game",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}
