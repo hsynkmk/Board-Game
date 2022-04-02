@@ -46,5 +46,11 @@ namespace Board_Game
             else
                 passwordTextbox.PasswordChar = '*';
         }
+
+        private void registerLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            new RegisterForm().Show();
+            this.Hide();
+        }
     }
 }
