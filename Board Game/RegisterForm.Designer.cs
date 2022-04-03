@@ -48,13 +48,14 @@ namespace Board_Game
             this.rsaveButton = new System.Windows.Forms.Button();
             this.rexitButton = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.registerLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(26, 57);
+            this.usernameLabel.Location = new System.Drawing.Point(25, 60);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(70, 16);
             this.usernameLabel.TabIndex = 0;
@@ -63,7 +64,7 @@ namespace Board_Game
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(29, 100);
+            this.passwordLabel.Location = new System.Drawing.Point(25, 100);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(67, 16);
             this.passwordLabel.TabIndex = 1;
@@ -72,7 +73,7 @@ namespace Board_Game
             // nameSurnameLabel
             // 
             this.nameSurnameLabel.AutoSize = true;
-            this.nameSurnameLabel.Location = new System.Drawing.Point(32, 151);
+            this.nameSurnameLabel.Location = new System.Drawing.Point(25, 140);
             this.nameSurnameLabel.Name = "nameSurnameLabel";
             this.nameSurnameLabel.Size = new System.Drawing.Size(102, 16);
             this.nameSurnameLabel.TabIndex = 2;
@@ -81,7 +82,7 @@ namespace Board_Game
             // phoneNumberLabel
             // 
             this.phoneNumberLabel.AutoSize = true;
-            this.phoneNumberLabel.Location = new System.Drawing.Point(35, 195);
+            this.phoneNumberLabel.Location = new System.Drawing.Point(25, 180);
             this.phoneNumberLabel.Name = "phoneNumberLabel";
             this.phoneNumberLabel.Size = new System.Drawing.Size(97, 16);
             this.phoneNumberLabel.TabIndex = 3;
@@ -90,7 +91,7 @@ namespace Board_Game
             // addressLabel
             // 
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(29, 233);
+            this.addressLabel.Location = new System.Drawing.Point(25, 220);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(58, 16);
             this.addressLabel.TabIndex = 4;
@@ -99,7 +100,7 @@ namespace Board_Game
             // cityLabel
             // 
             this.cityLabel.AutoSize = true;
-            this.cityLabel.Location = new System.Drawing.Point(32, 283);
+            this.cityLabel.Location = new System.Drawing.Point(25, 260);
             this.cityLabel.Name = "cityLabel";
             this.cityLabel.Size = new System.Drawing.Size(29, 16);
             this.cityLabel.TabIndex = 5;
@@ -108,7 +109,7 @@ namespace Board_Game
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(35, 325);
+            this.countryLabel.Location = new System.Drawing.Point(25, 300);
             this.countryLabel.Name = "countryLabel";
             this.countryLabel.Size = new System.Drawing.Size(52, 16);
             this.countryLabel.TabIndex = 6;
@@ -117,7 +118,7 @@ namespace Board_Game
             // emailLabel
             // 
             this.emailLabel.AutoSize = true;
-            this.emailLabel.Location = new System.Drawing.Point(38, 369);
+            this.emailLabel.Location = new System.Drawing.Point(25, 340);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Size = new System.Drawing.Size(45, 16);
             this.emailLabel.TabIndex = 7;
@@ -125,14 +126,14 @@ namespace Board_Game
             // 
             // usernameTextbox
             // 
-            this.usernameTextbox.Location = new System.Drawing.Point(172, 52);
+            this.usernameTextbox.Location = new System.Drawing.Point(152, 60);
             this.usernameTextbox.Name = "usernameTextbox";
             this.usernameTextbox.Size = new System.Drawing.Size(100, 22);
             this.usernameTextbox.TabIndex = 8;
             // 
             // passwordTextbox
             // 
-            this.passwordTextbox.Location = new System.Drawing.Point(172, 100);
+            this.passwordTextbox.Location = new System.Drawing.Point(152, 100);
             this.passwordTextbox.Name = "passwordTextbox";
             this.passwordTextbox.PasswordChar = '*';
             this.passwordTextbox.Size = new System.Drawing.Size(100, 22);
@@ -140,59 +141,59 @@ namespace Board_Game
             // 
             // nameSurnameTextbox
             // 
-            this.nameSurnameTextbox.Location = new System.Drawing.Point(172, 146);
+            this.nameSurnameTextbox.Location = new System.Drawing.Point(152, 140);
             this.nameSurnameTextbox.Name = "nameSurnameTextbox";
             this.nameSurnameTextbox.Size = new System.Drawing.Size(100, 22);
             this.nameSurnameTextbox.TabIndex = 10;
             // 
             // phoneNumberTextbox
             // 
-            this.phoneNumberTextbox.Location = new System.Drawing.Point(172, 195);
+            this.phoneNumberTextbox.Location = new System.Drawing.Point(152, 180);
             this.phoneNumberTextbox.Name = "phoneNumberTextbox";
             this.phoneNumberTextbox.Size = new System.Drawing.Size(100, 22);
             this.phoneNumberTextbox.TabIndex = 11;
             // 
             // addressTextbox
             // 
-            this.addressTextbox.Location = new System.Drawing.Point(172, 245);
+            this.addressTextbox.Location = new System.Drawing.Point(152, 220);
             this.addressTextbox.Name = "addressTextbox";
             this.addressTextbox.Size = new System.Drawing.Size(100, 22);
             this.addressTextbox.TabIndex = 12;
             // 
             // cityTextbox
             // 
-            this.cityTextbox.Location = new System.Drawing.Point(172, 283);
+            this.cityTextbox.Location = new System.Drawing.Point(152, 260);
             this.cityTextbox.Name = "cityTextbox";
             this.cityTextbox.Size = new System.Drawing.Size(100, 22);
             this.cityTextbox.TabIndex = 13;
             // 
             // countryTextbox
             // 
-            this.countryTextbox.Location = new System.Drawing.Point(172, 325);
+            this.countryTextbox.Location = new System.Drawing.Point(152, 300);
             this.countryTextbox.Name = "countryTextbox";
             this.countryTextbox.Size = new System.Drawing.Size(100, 22);
             this.countryTextbox.TabIndex = 14;
             // 
             // emailTextbox
             // 
-            this.emailTextbox.Location = new System.Drawing.Point(172, 369);
+            this.emailTextbox.Location = new System.Drawing.Point(152, 340);
             this.emailTextbox.Name = "emailTextbox";
             this.emailTextbox.Size = new System.Drawing.Size(100, 22);
             this.emailTextbox.TabIndex = 15;
             // 
             // rsaveButton
             // 
-            this.rsaveButton.Location = new System.Drawing.Point(320, 477);
+            this.rsaveButton.Location = new System.Drawing.Point(28, 414);
             this.rsaveButton.Name = "rsaveButton";
             this.rsaveButton.Size = new System.Drawing.Size(75, 23);
             this.rsaveButton.TabIndex = 16;
-            this.rsaveButton.Text = "Save";
+            this.rsaveButton.Text = "Register";
             this.rsaveButton.UseVisualStyleBackColor = true;
             this.rsaveButton.Click += new System.EventHandler(this.rsaveButton_Click);
             // 
             // rexitButton
             // 
-            this.rexitButton.Location = new System.Drawing.Point(546, 477);
+            this.rexitButton.Location = new System.Drawing.Point(161, 414);
             this.rexitButton.Name = "rexitButton";
             this.rexitButton.Size = new System.Drawing.Size(75, 23);
             this.rexitButton.TabIndex = 17;
@@ -210,12 +211,24 @@ namespace Board_Game
             this.dataGridView1.Size = new System.Drawing.Size(653, 181);
             this.dataGridView1.TabIndex = 18;
             // 
+            // registerLabel
+            // 
+            this.registerLabel.AutoSize = true;
+            this.registerLabel.Font = new System.Drawing.Font("Century", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.registerLabel.Location = new System.Drawing.Point(88, 9);
+            this.registerLabel.Name = "registerLabel";
+            this.registerLabel.Size = new System.Drawing.Size(131, 33);
+            this.registerLabel.TabIndex = 19;
+            this.registerLabel.Text = "Register";
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(946, 539);
             this.ControlBox = false;
+            this.Controls.Add(this.registerLabel);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.rexitButton);
             this.Controls.Add(this.rsaveButton);
@@ -266,5 +279,6 @@ namespace Board_Game
         private System.Windows.Forms.Button rsaveButton;
         private System.Windows.Forms.Button rexitButton;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label registerLabel;
     }
 }
