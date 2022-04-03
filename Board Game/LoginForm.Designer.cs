@@ -36,6 +36,7 @@
             this.passwordLabel = new System.Windows.Forms.Label();
             this.showPasswordCheckBox = new System.Windows.Forms.CheckBox();
             this.incorrectLogin = new System.Windows.Forms.TextBox();
+            this.registerLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // usernameTextbox
@@ -81,7 +82,7 @@
             this.usernameLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.usernameLabel.Location = new System.Drawing.Point(309, 86);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(67, 16);
+            this.usernameLabel.Size = new System.Drawing.Size(71, 17);
             this.usernameLabel.TabIndex = 4;
             this.usernameLabel.Text = "username";
             // 
@@ -91,7 +92,7 @@
             this.passwordLabel.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.passwordLabel.Location = new System.Drawing.Point(309, 148);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(66, 16);
+            this.passwordLabel.Size = new System.Drawing.Size(68, 17);
             this.passwordLabel.TabIndex = 5;
             this.passwordLabel.Text = "password";
             // 
@@ -100,7 +101,7 @@
             this.showPasswordCheckBox.AutoSize = true;
             this.showPasswordCheckBox.Location = new System.Drawing.Point(547, 174);
             this.showPasswordCheckBox.Name = "showPasswordCheckBox";
-            this.showPasswordCheckBox.Size = new System.Drawing.Size(125, 20);
+            this.showPasswordCheckBox.Size = new System.Drawing.Size(129, 21);
             this.showPasswordCheckBox.TabIndex = 6;
             this.showPasswordCheckBox.Text = "Show Password";
             this.showPasswordCheckBox.UseVisualStyleBackColor = true;
@@ -115,6 +116,17 @@
             this.incorrectLogin.Size = new System.Drawing.Size(239, 15);
             this.incorrectLogin.TabIndex = 7;
             // 
+            // registerLinkLabel
+            // 
+            this.registerLinkLabel.AutoSize = true;
+            this.registerLinkLabel.Location = new System.Drawing.Point(464, 309);
+            this.registerLinkLabel.Name = "registerLinkLabel";
+            this.registerLinkLabel.Size = new System.Drawing.Size(61, 17);
+            this.registerLinkLabel.TabIndex = 8;
+            this.registerLinkLabel.TabStop = true;
+            this.registerLinkLabel.Text = "Register";
+            this.registerLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.registerLinkLabel_LinkClicked);
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.loginButton;
@@ -122,6 +134,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.registerLinkLabel);
             this.Controls.Add(this.incorrectLogin);
             this.Controls.Add(this.showPasswordCheckBox);
             this.Controls.Add(this.passwordLabel);
@@ -149,6 +162,7 @@
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.CheckBox showPasswordCheckBox;
         private System.Windows.Forms.TextBox incorrectLogin;
+        private System.Windows.Forms.LinkLabel registerLinkLabel;
     }
 }
 

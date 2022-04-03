@@ -2,7 +2,6 @@ C:\Users\husey\Desktop\Projects\Board Game\Board Game\bin\Debug\Board Game.exe.c
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\bin\Debug\Board Game.exe
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\bin\Debug\Board Game.pdb
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.csproj.AssemblyReference.cache
-C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.csproj.SuggestedBindingRedirects.cache
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board_Game.Properties.Resources.resources
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.csproj.GenerateResource.cache
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.csproj.CoreCompileInputs.cache
@@ -11,3 +10,5 @@ C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.pdb
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board_Game.LoginForm.resources
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board_Game.GameForm.resources
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board_Game.SettingsForm.resources
+C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board_Game.RegisterForm.resources
+C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.csproj.SuggestedBindingRedirects.cache
