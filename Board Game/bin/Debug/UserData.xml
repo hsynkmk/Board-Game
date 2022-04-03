@@ -39,5 +39,9 @@
     <city></city>
     <country></country>
     <email></email>
+    <difficulty>0100</difficulty>
+    <customDifficulty>00</customDifficulty>
+    <shape>100</shape>
+    <color>100</color>
   </user>
 </Users>
