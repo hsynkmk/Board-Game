@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace Board_Game
 {
@@ -30,21 +31,27 @@ namespace Board_Game
         private void loginButton_Click(object sender, EventArgs e)
         {
             XDocument doc = XDocument.Load(@"UserData.xml");
+            SHA1 sha = new SHA1CryptoServiceProvider();
 
+            string hashedData = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(passwordTextbox.Text)));
+
+            bool isValid = false;
             foreach (XElement elem in doc.Descendants("user"))
             {
-                if(elem.Element("username")?.Value==usernameTextbox.Text && elem.Element("password")?.Value == passwordTextbox.Text)
+                if(elem.Element("username")?.Value==usernameTextbox.Text && elem.Element("password")?.Value == hashedData)
                 {
                     new GameForm().Show();
                     this.Hide();
+                    isValid = true;
+                    break;
                 }
-                else
-                {
-                    incorrectLogin.Text = " Incorrect Username or Password";
-                    usernameTextbox.Clear();
-                    passwordTextbox.Clear();
-                    usernameTextbox.Focus();
-                }
+            }
+
+            if(isValid == false){
+                incorrectLogin.Text = "Incorrect Username or Password";
+                usernameTextbox.Clear();
+                passwordTextbox.Clear();
+                usernameTextbox.Focus();
             }
         }
 

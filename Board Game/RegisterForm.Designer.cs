@@ -134,6 +134,7 @@ namespace Board_Game
             // 
             this.passwordTextbox.Location = new System.Drawing.Point(172, 100);
             this.passwordTextbox.Name = "passwordTextbox";
+            this.passwordTextbox.PasswordChar = '*';
             this.passwordTextbox.Size = new System.Drawing.Size(100, 22);
             this.passwordTextbox.TabIndex = 9;
             // 
