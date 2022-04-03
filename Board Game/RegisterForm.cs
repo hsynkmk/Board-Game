@@ -67,7 +67,8 @@ namespace Board_Game
 
         private void rexitButton_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Hide();
+            new LoginForm().Show();
         }
     }
 }
