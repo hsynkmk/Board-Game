@@ -32,11 +32,13 @@
             this.difficultyLabel = new System.Windows.Forms.Label();
             this.difficultyCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.shapeLabel = new System.Windows.Forms.Label();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.shapeCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.widthTextbox = new System.Windows.Forms.TextBox();
             this.heightTextbox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
             this.settingsExitButton = new System.Windows.Forms.Button();
+            this.colorCheckedListBox = new System.Windows.Forms.CheckedListBox();
+            this.colorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // settingsLabel
@@ -84,18 +86,18 @@
             this.shapeLabel.TabIndex = 3;
             this.shapeLabel.Text = "Shape";
             // 
-            // checkedListBox1
+            // shapeCheckedListBox
             // 
-            this.checkedListBox1.CheckOnClick = true;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
+            this.shapeCheckedListBox.CheckOnClick = true;
+            this.shapeCheckedListBox.FormattingEnabled = true;
+            this.shapeCheckedListBox.Items.AddRange(new object[] {
             "Square",
             "Triangle",
             "Round"});
-            this.checkedListBox1.Location = new System.Drawing.Point(370, 133);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(150, 89);
-            this.checkedListBox1.TabIndex = 4;
+            this.shapeCheckedListBox.Location = new System.Drawing.Point(370, 133);
+            this.shapeCheckedListBox.Name = "shapeCheckedListBox";
+            this.shapeCheckedListBox.Size = new System.Drawing.Size(150, 89);
+            this.shapeCheckedListBox.TabIndex = 4;
             // 
             // widthTextbox
             // 
@@ -121,6 +123,7 @@
             this.saveButton.TabIndex = 7;
             this.saveButton.Text = "Save";
             this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // settingsExitButton
             // 
@@ -132,17 +135,42 @@
             this.settingsExitButton.UseVisualStyleBackColor = true;
             this.settingsExitButton.Click += new System.EventHandler(this.settingsExitButton_Click);
             // 
+            // colorCheckedListBox
+            // 
+            this.colorCheckedListBox.CheckOnClick = true;
+            this.colorCheckedListBox.FormattingEnabled = true;
+            this.colorCheckedListBox.Items.AddRange(new object[] {
+            "Blue",
+            "Red",
+            "Brown"});
+            this.colorCheckedListBox.Location = new System.Drawing.Point(574, 133);
+            this.colorCheckedListBox.Name = "colorCheckedListBox";
+            this.colorCheckedListBox.Size = new System.Drawing.Size(150, 89);
+            this.colorCheckedListBox.TabIndex = 9;
+            // 
+            // colorLabel
+            // 
+            this.colorLabel.AutoSize = true;
+            this.colorLabel.Font = new System.Drawing.Font("Consolas", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.colorLabel.Location = new System.Drawing.Point(605, 69);
+            this.colorLabel.Name = "colorLabel";
+            this.colorLabel.Size = new System.Drawing.Size(77, 27);
+            this.colorLabel.TabIndex = 10;
+            this.colorLabel.Text = "Color";
+            // 
             // SettingsForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.colorLabel);
+            this.Controls.Add(this.colorCheckedListBox);
             this.Controls.Add(this.settingsExitButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.heightTextbox);
             this.Controls.Add(this.widthTextbox);
-            this.Controls.Add(this.checkedListBox1);
+            this.Controls.Add(this.shapeCheckedListBox);
             this.Controls.Add(this.shapeLabel);
             this.Controls.Add(this.difficultyCheckedListBox);
             this.Controls.Add(this.difficultyLabel);
@@ -162,10 +190,12 @@
         private System.Windows.Forms.Label difficultyLabel;
         private System.Windows.Forms.CheckedListBox difficultyCheckedListBox;
         private System.Windows.Forms.Label shapeLabel;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox shapeCheckedListBox;
         private System.Windows.Forms.TextBox widthTextbox;
         private System.Windows.Forms.TextBox heightTextbox;
         private System.Windows.Forms.Button saveButton;
         private System.Windows.Forms.Button settingsExitButton;
+        private System.Windows.Forms.CheckedListBox colorCheckedListBox;
+        private System.Windows.Forms.Label colorLabel;
     }
 }

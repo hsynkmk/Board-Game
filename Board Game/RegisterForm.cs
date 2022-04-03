@@ -15,6 +15,8 @@ using System.Security.Cryptography;
 
 namespace Board_Game
 {
+
+
     public partial class RegisterForm : Form
     {  
         public RegisterForm()
@@ -24,7 +26,7 @@ namespace Board_Game
 
         void load()
         {
-            XmlDataDocument xdoc=new XmlDataDocument();
+            //XmlDataDocument xdoc=new XmlDataDocument();
             DataSet ds = new DataSet();
             XmlReader xmlFile;
             string absolutePath = Path.GetFullPath("UserData.xml");
@@ -40,8 +42,9 @@ namespace Board_Game
 
             string hashedData = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(passwordTextbox.Text)));
 
+            int width=0, height=0;
 
-            Console.ReadLine();
+            //Console.ReadLine();
             XDocument x=XDocument.Load(@"UserData.xml");
             x.Element("Users").Add(new XElement("user", 
                                    new XElement("username", usernameTextbox.Text),
@@ -51,7 +54,12 @@ namespace Board_Game
                                    new XElement("address", addressTextbox.Text),
                                    new XElement("city", cityTextbox.Text),
                                    new XElement("country", countryTextbox.Text),
-                                   new XElement("email", emailTextbox.Text)
+                                   new XElement("email", emailTextbox.Text),
+                                   new XElement("difficulty", "1000"),
+                                   new XElement("customDifficultyWidth", width),
+                                   new XElement("customDifficultyHeight", height),
+                                   new XElement("shape", "100"),
+                                   new XElement("color", "100")
                                    ));
             x.Save(@"UserData.xml");
             load();
