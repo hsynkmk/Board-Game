@@ -56,7 +56,8 @@ namespace Board_Game
                                    new XElement("country", countryTextbox.Text),
                                    new XElement("email", emailTextbox.Text),
                                    new XElement("difficulty", "1000"),
-                                   new XElement("customDifficulty", width, height),
+                                   new XElement("customDifficultyWidth", width),
+                                   new XElement("customDifficultyHeight", height),
                                    new XElement("shape", "100"),
                                    new XElement("color", "100")
                                    ));

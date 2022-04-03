@@ -2,45 +2,46 @@
 <Users>
   <user>
     <username>hsynkmk</username>
-    <password>1234</password>
-    <namesurname>hüso kaymak</namesurname>
-    <phonenumber>23455</phonenumber>
-    <address>esk tepe</address>
-    <city>eskişehir</city>
-    <country>türkiye</country>
-    <email>fghn@gmail</email>
+    <password>BQgZvoDUTtia7kLd4ZojW3ySfv4=</password>
+    <namesurname>Hüseyin kaymak</namesurname>
+    <phonenumber>456</phonenumber>
+    <address>afasfsafafafafafafaf</address>
+    <city>afafafafafa</city>
+    <country>dvfvfvfvf</country>
+    <email>vfvfvfvf@fgf.com</email>
+    <difficulty>0010</difficulty>
+    <customDifficultyWidth>0</customDifficultyWidth>
+    <customDifficultyHeight>0</customDifficultyHeight>
+    <shape>111</shape>
+    <color>010</color>
   </user>
   <user>
-    <username>ali</username>
-    <password>ali123</password>
-    <namesurname>hüso kaymak</namesurname>
-    <phonenumber>23455</phonenumber>
-    <address>esk tepe</address>
-    <city>eskişehir</city>
-    <country>türkiye</country>
-    <email>fghn@gmail</email>
-  </user>
-  <user>
-    <username>abcd</username>
-    <password>PaVBVZkYqAjCQCu6UBL2xgsnZhw=</password>
+    <username>admin</username>
+    <password>0DPiKuNIrrVmD8IUCuw1hQxNqZc=</password>
     <namesurname></namesurname>
     <phonenumber></phonenumber>
     <address></address>
     <city></city>
     <country></country>
     <email></email>
+    <difficulty>1000</difficulty>
+    <customDifficultyWidth>0</customDifficultyWidth>
+    <customDifficultyHeight>0</customDifficultyHeight>
+    <shape>100</shape>
+    <color>100</color>
   </user>
   <user>
-    <username>alik</username>
-    <password>DHPE2fUXbxKmZ+t5bF2fbTBptMk=</password>
+    <username>user</username>
+    <password>Et6pb+wgWTVmq3VpLJlJWWgzrck=</password>
     <namesurname></namesurname>
     <phonenumber></phonenumber>
     <address></address>
     <city></city>
     <country></country>
     <email></email>
-    <difficulty>0100</difficulty>
-    <customDifficulty>00</customDifficulty>
+    <difficulty>1000</difficulty>
+    <customDifficultyWidth>0</customDifficultyWidth>
+    <customDifficultyHeight>0</customDifficultyHeight>
     <shape>100</shape>
     <color>100</color>
   </user>

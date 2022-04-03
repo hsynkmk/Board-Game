@@ -12,14 +12,18 @@ namespace Board_Game
 {
     public partial class GameForm : Form
     {
-        public GameForm()
+        string gusername;
+        string gpassword;
+        public GameForm(string username, string password)
         {
             InitializeComponent();
+            gusername = username;
+            gpassword = password;
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-            new SettingsForm().Show();
+            new SettingsForm(gusername, gpassword).Show();
             this.Hide();
         }
 

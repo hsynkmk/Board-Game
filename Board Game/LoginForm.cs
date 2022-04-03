@@ -40,7 +40,7 @@ namespace Board_Game
             {
                 if(elem.Element("username")?.Value==usernameTextbox.Text && elem.Element("password")?.Value == hashedData)
                 {
-                    new GameForm().Show();
+                    new GameForm(usernameTextbox.Text, hashedData).Show();
                     this.Hide();
                     isValid = true;
                     break;
