@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Users>
+  <user>
+    <username>hsynkmk</username>
+    <password>1234</password>
+    <namesurname>hüso kaymak</namesurname>
+    <phonenumber>23455</phonenumber>
+    <address>esk tepe</address>
+    <city>eskişehir</city>
+    <country>türkiye</country>
+    <email>fghn@gmail</email>
+  </user>
+  <user>
+    <username>ali</username>
+    <password>ali123</password>
+    <namesurname>hüso kaymak</namesurname>
+    <phonenumber>23455</phonenumber>
+    <address>esk tepe</address>
+    <city>eskişehir</city>
+    <country>türkiye</country>
+    <email>fghn@gmail</email>
+  </user>
+</Users>

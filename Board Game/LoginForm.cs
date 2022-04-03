@@ -8,6 +8,10 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Xml;
+using System.Xml.Linq;
+using System.IO;
+
 namespace Board_Game
 {
     public partial class LoginForm : Form
@@ -25,17 +29,22 @@ namespace Board_Game
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            if ((usernameTextbox.Text == "admin" && passwordTextbox.Text == "admin") || (usernameTextbox.Text == "user" && passwordTextbox.Text == "user"))
+            XDocument doc = XDocument.Load(@"UserData.xml");
+
+            foreach (XElement elem in doc.Descendants("user"))
             {
-                new GameForm().Show();
-                this.Hide();
-            }
-            else
-            {
-                incorrectLogin.Text = " Incorrect Username or Password";
-                usernameTextbox.Clear();
-                passwordTextbox.Clear();
-                usernameTextbox.Focus();
+                if(elem.Element("username")?.Value==usernameTextbox.Text && elem.Element("password")?.Value == passwordTextbox.Text)
+                {
+                    new GameForm().Show();
+                    this.Hide();
+                }
+                else
+                {
+                    incorrectLogin.Text = " Incorrect Username or Password";
+                    usernameTextbox.Clear();
+                    passwordTextbox.Clear();
+                    usernameTextbox.Focus();
+                }
             }
         }
 
