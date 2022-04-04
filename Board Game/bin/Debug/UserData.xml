@@ -10,10 +10,10 @@
     <country>dvfvfvfvf</country>
     <email>vfvfvfvf@fgf.com</email>
     <difficulty>0010</difficulty>
-    <customDifficultyWidth>0</customDifficultyWidth>
-    <customDifficultyHeight>0</customDifficultyHeight>
+    <customDifficultyWidth></customDifficultyWidth>
+    <customDifficultyHeight></customDifficultyHeight>
     <shape>111</shape>
-    <color>010</color>
+    <color>111</color>
   </user>
   <user>
     <username>admin</username>
@@ -25,10 +25,10 @@
     <country></country>
     <email></email>
     <difficulty>1000</difficulty>
-    <customDifficultyWidth>0</customDifficultyWidth>
-    <customDifficultyHeight>0</customDifficultyHeight>
-    <shape>100</shape>
-    <color>100</color>
+    <customDifficultyWidth></customDifficultyWidth>
+    <customDifficultyHeight></customDifficultyHeight>
+    <shape>110</shape>
+    <color>001</color>
   </user>
   <user>
     <username>user</username>
@@ -39,10 +39,10 @@
     <city></city>
     <country></country>
     <email></email>
-    <difficulty>1000</difficulty>
-    <customDifficultyWidth>0</customDifficultyWidth>
-    <customDifficultyHeight>0</customDifficultyHeight>
-    <shape>100</shape>
-    <color>100</color>
+    <difficulty>0100</difficulty>
+    <customDifficultyWidth></customDifficultyWidth>
+    <customDifficultyHeight></customDifficultyHeight>
+    <shape>111</shape>
+    <color>001</color>
   </user>
 </Users>
