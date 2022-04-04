@@ -20,7 +20,9 @@ namespace Board_Game
         public LoginForm()
         {
             InitializeComponent();
+            usernameTextbox.Text = Properties.Settings.Default.username;
             usernameTextbox.Focus();
+
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -43,6 +45,8 @@ namespace Board_Game
                     new GameForm(usernameTextbox.Text, hashedData).Show();
                     this.Hide();
                     isValid = true;
+                    Properties.Settings.Default.username = usernameTextbox.Text;
+                    Properties.Settings.Default.Save();
                     break;
                 }
             }
@@ -67,6 +71,11 @@ namespace Board_Game
         {
             new RegisterForm().Show();
             this.Hide();
+        }
+
+        private void usernameTextbox_TextChanged(object sender, EventArgs e)
+        {
+            usernameTextbox.Text = string.Concat(usernameTextbox.Text.Where(char.IsLetter));
         }
     }
 }

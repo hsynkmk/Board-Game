@@ -150,15 +150,13 @@ namespace Board_Game
                     //node.SetElementValue("color", a);
                     elem.Element("color").Value = a;
 
-                    a = "";
-
-
 
                     elem.Element("customDifficultyWidth").Value = widthTextbox.Text;
                     elem.Element("customDifficultyHeight").Value = heightTextbox.Text;
 
 
                     doc.Save(@"UserData.xml");
+                    MessageBox.Show("Saved");
                 }
             }
         }

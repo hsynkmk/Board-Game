@@ -121,12 +121,13 @@
             // 
             // saveButton
             // 
+            this.saveButton.BackColor = System.Drawing.Color.Transparent;
             this.saveButton.Location = new System.Drawing.Point(280, 337);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 7;
             this.saveButton.Text = "Save";
-            this.saveButton.UseVisualStyleBackColor = true;
+            this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
             // settingsExitButton
