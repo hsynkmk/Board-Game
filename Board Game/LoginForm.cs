@@ -22,7 +22,6 @@ namespace Board_Game
             InitializeComponent();
             usernameTextbox.Text = Properties.Settings.Default.username;
             usernameTextbox.Focus();
-
         }
 
         private void exitButton_Click(object sender, EventArgs e)
@@ -32,26 +31,16 @@ namespace Board_Game
 
         private void loginButton_Click(object sender, EventArgs e)
         {
-            XDocument doc = XDocument.Load(@"UserData.xml");
-            SHA1 sha = new SHA1CryptoServiceProvider();
 
-            string hashedData = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(passwordTextbox.Text)));
-
-            bool isValid = false;
-            foreach (XElement elem in doc.Descendants("user"))
+            if(UserClass.xmlConnection(usernameTextbox.Text, passwordTextbox.Text))
             {
-                if(elem.Element("username")?.Value==usernameTextbox.Text && elem.Element("password")?.Value == hashedData)
-                {
-                    new GameForm(usernameTextbox.Text, hashedData).Show();
-                    this.Hide();
-                    isValid = true;
-                    Properties.Settings.Default.username = usernameTextbox.Text;
-                    Properties.Settings.Default.Save();
-                    break;
-                }
+                new GameForm().Show();
+                this.Hide();
+                Properties.Settings.Default.username = usernameTextbox.Text;
+                Properties.Settings.Default.Save();
             }
 
-            if(isValid == false){
+            else {
                 incorrectLogin.Text = "Incorrect Username or Password";
                 usernameTextbox.Clear();
                 passwordTextbox.Clear();

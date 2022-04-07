@@ -1,5 +1,35 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Users>
+  <Admin>
+    <username>admin</username>
+    <password>0DPiKuNIrrVmD8IUCuw1hQxNqZc=</password>
+    <namesurname></namesurname>
+    <phonenumber></phonenumber>
+    <address></address>
+    <city></city>
+    <country></country>
+    <email></email>
+    <difficulty>1000</difficulty>
+    <customDifficultyWidth></customDifficultyWidth>
+    <customDifficultyHeight></customDifficultyHeight>
+    <shape>110</shape>
+    <color>001</color>
+  </Admin>
+  <user>
+    <username>user</username>
+    <password>Et6pb+wgWTVmq3VpLJlJWWgzrck=</password>
+    <namesurname></namesurname>
+    <phonenumber></phonenumber>
+    <address></address>
+    <city></city>
+    <country></country>
+    <email></email>
+    <difficulty>0001</difficulty>
+    <customDifficultyWidth>34</customDifficultyWidth>
+    <customDifficultyHeight>21</customDifficultyHeight>
+    <shape>110</shape>
+    <color>011</color>
+  </user>
   <user>
     <username>hsynkmk</username>
     <password>BQgZvoDUTtia7kLd4ZojW3ySfv4=</password>
@@ -14,35 +44,5 @@
     <customDifficultyHeight></customDifficultyHeight>
     <shape>111</shape>
     <color>111</color>
-  </user>
-  <user>
-    <username>admin</username>
-    <password>0DPiKuNIrrVmD8IUCuw1hQxNqZc=</password>
-    <namesurname></namesurname>
-    <phonenumber></phonenumber>
-    <address></address>
-    <city></city>
-    <country></country>
-    <email></email>
-    <difficulty>1000</difficulty>
-    <customDifficultyWidth></customDifficultyWidth>
-    <customDifficultyHeight></customDifficultyHeight>
-    <shape>110</shape>
-    <color>001</color>
-  </user>
-  <user>
-    <username>user</username>
-    <password>Et6pb+wgWTVmq3VpLJlJWWgzrck=</password>
-    <namesurname></namesurname>
-    <phonenumber></phonenumber>
-    <address></address>
-    <city></city>
-    <country></country>
-    <email></email>
-    <difficulty>0100</difficulty>
-    <customDifficultyWidth></customDifficultyWidth>
-    <customDifficultyHeight></customDifficultyHeight>
-    <shape>111</shape>
-    <color>001</color>
   </user>
 </Users>

@@ -17,50 +17,30 @@ namespace Board_Game
 {
     public partial class SettingsForm : Form
     {
-        string susername;
-        string spassword;
-        public SettingsForm(string username, string password)
+
+        private void setSettings(string category, CheckedListBox clb)
         {
-            susername = username;
-            spassword = password;
+            string a = UserClass.xelem.Element(category).Value;
+            int count = clb.Items.Count;
+            int index;
+
+            for (int i = 0; i < count; i++)
+            {
+                index = (int)Char.GetNumericValue(a[i]);
+                if (index == 1)
+                    clb.SetItemChecked(i, true);
+            }
+        } 
+        public SettingsForm()
+        {
+
             InitializeComponent();
 
-            XDocument doc = XDocument.Load(@"UserData.xml");
-            foreach (XElement elem in doc.Descendants("user"))
-            {
-                if (elem.Element("username")?.Value == username && elem.Element("password")?.Value == password)
-                {
-                    string a = elem.Element("difficulty").Value;
-                    int count = difficultyCheckedListBox.Items.Count;
-                    int index;
-
-                    for (int i = 0; i < count; i++)
-                    {
-                        index = (int)Char.GetNumericValue(a[i]);
-                        if(index == 1)
-                            difficultyCheckedListBox.SetItemChecked(i, true);
-                    }
-                    a = elem.Element("shape").Value;
-                    count = shapeCheckedListBox.Items.Count;
-
-                    for (int i = 0; i < count; i++)
-                    {
-                        index = (int)Char.GetNumericValue(a[i]);
-                        if (index == 1)
-                            shapeCheckedListBox.SetItemChecked(i, true);
-                    }
-
-                    a = elem.Element("color").Value;
-                    count = colorCheckedListBox.Items.Count;
-
-                    for (int i = 0; i < count; i++)
-                    {
-                        index = (int)Char.GetNumericValue(a[i]);
-                        if (index == 1)
-                            colorCheckedListBox.SetItemChecked(i, true);
-                    }
-                }
-            }
+            setSettings("difficulty", difficultyCheckedListBox);
+            setSettings("shape", shapeCheckedListBox);
+            setSettings("color", colorCheckedListBox);
+            widthTextbox.Text = UserClass.xelem.Element("customDifficultyWidth").Value;
+            heightTextbox.Text = UserClass.xelem.Element("customDifficultyHeight").Value;
         }
 
         private void difficultyCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -90,75 +70,46 @@ namespace Board_Game
         private void settingsExitButton_Click(object sender, EventArgs e)
         {
             this.Hide();
-            new GameForm(susername, spassword).Show();
+            new GameForm().Show();
+        }
+
+
+        private void saveSettings(string category, CheckedListBox clb)
+        {
+
+            string data = "";
+
+            int count = clb.Items.Count;
+            for (int i = 0; i < count; i++)
+            {
+                if (clb.GetItemChecked(i) == true)
+                    data += "1";
+                else
+                    data += "0";
+            }
+
+            UserClass.xmlsave(category, data);
+
         }
 
         private void saveButton_Click(object sender, EventArgs e)
-        {
-            XDocument doc = XDocument.Load(@"UserData.xml");
+        {   
+
+
+            saveSettings("difficulty", difficultyCheckedListBox);
+            saveSettings("shape", shapeCheckedListBox);
+            saveSettings("color", colorCheckedListBox);
+            UserClass.xmlsave("customDifficultyWidth", widthTextbox.Text);
+            UserClass.xmlsave("customDifficultyHeight", heightTextbox.Text);
+
 
             //XElement node = doc.Element("Users").Elements("user").FirstOrDefault(a => a.Element("username").Value == "username1234");
-
-            foreach (XElement elem in doc.Descendants("user"))
-            {
-
-                if (elem.Element("username")?.Value == susername && elem.Element("password")?.Value == spassword)
-                {
-                    string a = "";
-                    
-                    
-                    
-                    int count = difficultyCheckedListBox.Items.Count;
-                    for (int i = 0; i < count; i++)
-                    {
-                        if (difficultyCheckedListBox.GetItemChecked(i) == true)
-                            a += "1";
-                        else
-                            a += "0";
-                    }
-                    //node.SetElementValue("difficulty", a);
-                    elem.Element("difficulty").Value = a;
+            //node.SetElementValue("difficulty", a);
+            //node.SetElementValue("shape", a);
+            //node.SetElementValue("color", a);
 
 
-                    a = "";
-
-
-                    count = shapeCheckedListBox.Items.Count;
-                    for (int i = 0; i < count; i++)
-                    {
-                        if (shapeCheckedListBox.GetItemChecked(i) == true)
-                            a += "1";
-                        else
-                            a += "0";
-                    }
-                    //node.SetElementValue("shape", a);
-                    elem.Element("shape").Value = a;
-
-
-
-
-                    a = "";
-
-                    count = colorCheckedListBox.Items.Count;
-                    for (int i = 0; i < count; i++)
-                    {
-                        if (colorCheckedListBox.GetItemChecked(i) == true)
-                            a += "1";
-                        else
-                            a += "0";
-                    }
-                    //node.SetElementValue("color", a);
-                    elem.Element("color").Value = a;
-
-
-                    elem.Element("customDifficultyWidth").Value = widthTextbox.Text;
-                    elem.Element("customDifficultyHeight").Value = heightTextbox.Text;
-
-
-                    doc.Save(@"UserData.xml");
-                    MessageBox.Show("Saved");
-                }
-            }
+            MessageBox.Show("Saved");
         }
     }
 }
