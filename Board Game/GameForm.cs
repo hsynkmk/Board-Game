@@ -12,24 +12,27 @@ namespace Board_Game
 {
     public partial class GameForm : Form
     {
-        string gusername;
-        string gpassword;
-        public GameForm(string username, string password)
+        public GameForm()
         {
             InitializeComponent();
-            gusername = username;
-            gpassword = password;
+            if (UserClass.xelem.Name == "Admin")
+                manageButton.Visible = true;
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
         {
-            new SettingsForm(gusername, gpassword).Show();
+            new SettingsForm().Show();
             this.Hide();
         }
 
         private void exitButton_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void manageButton_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

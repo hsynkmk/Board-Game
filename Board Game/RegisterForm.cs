@@ -44,9 +44,8 @@ namespace Board_Game
 
             int width=0, height=0;
 
-            //Console.ReadLine();
-            XDocument x=XDocument.Load(@"UserData.xml");
-            x.Element("Users").Add(new XElement("user", 
+            XDocument doc=XDocument.Load(@"UserData.xml");
+            doc.Element("Users").Add(new XElement("user", 
                                    new XElement("username", usernameTextbox.Text),
                                    new XElement("password", hashedData),
                                    new XElement("namesurname", nameSurnameTextbox.Text),
@@ -61,7 +60,7 @@ namespace Board_Game
                                    new XElement("shape", "100"),
                                    new XElement("color", "100")
                                    ));
-            x.Save(@"UserData.xml");
+            doc.Save(@"UserData.xml");
             load();
         }
 
