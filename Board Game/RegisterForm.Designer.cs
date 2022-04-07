@@ -47,9 +47,7 @@ namespace Board_Game
             this.emailTextbox = new System.Windows.Forms.TextBox();
             this.rsaveButton = new System.Windows.Forms.Button();
             this.rexitButton = new System.Windows.Forms.Button();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.registerLabel = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // usernameLabel
@@ -201,16 +199,6 @@ namespace Board_Game
             this.rexitButton.UseVisualStyleBackColor = true;
             this.rexitButton.Click += new System.EventHandler(this.rexitButton_Click);
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(294, 93);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(653, 181);
-            this.dataGridView1.TabIndex = 18;
-            // 
             // registerLabel
             // 
             this.registerLabel.AutoSize = true;
@@ -229,7 +217,6 @@ namespace Board_Game
             this.ClientSize = new System.Drawing.Size(946, 539);
             this.ControlBox = false;
             this.Controls.Add(this.registerLabel);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.rexitButton);
             this.Controls.Add(this.rsaveButton);
             this.Controls.Add(this.emailTextbox);
@@ -252,7 +239,6 @@ namespace Board_Game
             this.Name = "RegisterForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "RegisterForm";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -278,7 +264,6 @@ namespace Board_Game
         private System.Windows.Forms.TextBox emailTextbox;
         private System.Windows.Forms.Button rsaveButton;
         private System.Windows.Forms.Button rexitButton;
-        private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label registerLabel;
     }
 }

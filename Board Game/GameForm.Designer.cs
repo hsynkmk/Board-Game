@@ -66,6 +66,7 @@
             this.profileButton.Text = "Profile";
             this.profileButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.profileButton.UseVisualStyleBackColor = true;
+            this.profileButton.Click += new System.EventHandler(this.profileButton_Click);
             // 
             // manageButton
             // 

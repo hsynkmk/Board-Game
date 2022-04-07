@@ -24,17 +24,7 @@ namespace Board_Game
             InitializeComponent();
         }
 
-        void load()
-        {
-            //XmlDataDocument xdoc=new XmlDataDocument();
-            DataSet ds = new DataSet();
-            XmlReader xmlFile;
-            string absolutePath = Path.GetFullPath("UserData.xml");
-            xmlFile = XmlReader.Create(absolutePath, new XmlReaderSettings());
-            ds.ReadXml(xmlFile);
-            dataGridView1.DataSource = ds.Tables[0];
-            xmlFile.Close();
-        }
+
 
         private void rsaveButton_Click(object sender, EventArgs e)
         {
@@ -44,7 +34,7 @@ namespace Board_Game
 
             int width=0, height=0;
 
-            XDocument doc=XDocument.Load(@"UserData.xml");
+            XDocument doc=XDocument.Load(@"../../UserData.xml");
             doc.Element("Users").Add(new XElement("user", 
                                    new XElement("username", usernameTextbox.Text),
                                    new XElement("password", hashedData),
@@ -60,8 +50,7 @@ namespace Board_Game
                                    new XElement("shape", "100"),
                                    new XElement("color", "100")
                                    ));
-            doc.Save(@"UserData.xml");
-            load();
+            doc.Save(@"../../UserData.xml");
         }
 
         private void rexitButton_Click(object sender, EventArgs e)

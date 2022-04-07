@@ -8,10 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Xml;
-using System.Xml.Linq;
-using System.IO;
-using System.Security.Cryptography;
 
 namespace Board_Game
 {
