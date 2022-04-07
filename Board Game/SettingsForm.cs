@@ -8,10 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using System.Xml;
-using System.Xml.Linq;
-using System.IO;
-using System.Security.Cryptography;
+
 
 namespace Board_Game
 {
@@ -20,7 +17,7 @@ namespace Board_Game
 
         private void setSettings(string category, CheckedListBox clb)
         {
-            string a = UserClass.xelem.Element(category).Value;
+            string a = UserClass.Xelem.Element(category).Value;
             int count = clb.Items.Count;
             int index;
 
@@ -39,8 +36,8 @@ namespace Board_Game
             setSettings("difficulty", difficultyCheckedListBox);
             setSettings("shape", shapeCheckedListBox);
             setSettings("color", colorCheckedListBox);
-            widthTextbox.Text = UserClass.xelem.Element("customDifficultyWidth").Value;
-            heightTextbox.Text = UserClass.xelem.Element("customDifficultyHeight").Value;
+            widthTextbox.Text = UserClass.Xelem.Element("customDifficultyWidth").Value;
+            heightTextbox.Text = UserClass.Xelem.Element("customDifficultyHeight").Value;
         }
 
         private void difficultyCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -89,7 +86,6 @@ namespace Board_Game
             }
 
             UserClass.xmlsave(category, data);
-
         }
 
         private void saveButton_Click(object sender, EventArgs e)

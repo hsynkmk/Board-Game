@@ -15,7 +15,7 @@ namespace Board_Game
         public GameForm()
         {
             InitializeComponent();
-            if (UserClass.xelem.Name == "Admin")
+            if (UserClass.Xelem.Name == "Admin")
                 manageButton.Visible = true;
         }
 
@@ -32,7 +32,12 @@ namespace Board_Game
 
         private void manageButton_Click(object sender, EventArgs e)
         {
+            new AdminForm().Show();
+        }
 
+        private void profileButton_Click(object sender, EventArgs e)
+        {
+            new UserForm().Show();
         }
     }
 }

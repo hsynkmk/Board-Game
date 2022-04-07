@@ -24,11 +24,11 @@
     <city></city>
     <country></country>
     <email></email>
-    <difficulty>0001</difficulty>
+    <difficulty>1000</difficulty>
     <customDifficultyWidth>34</customDifficultyWidth>
     <customDifficultyHeight>21</customDifficultyHeight>
-    <shape>110</shape>
-    <color>011</color>
+    <shape>100</shape>
+    <color>100</color>
   </user>
   <user>
     <username>hsynkmk</username>

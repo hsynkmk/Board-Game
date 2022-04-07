@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using System.Xml;
 using System.Xml.Linq;
 using System.IO;
@@ -14,8 +15,10 @@ namespace Board_Game
     {
         public static string Username { get; set; }
         public static string Password { get; set; }
-        public static XElement xelem { get; set; }
-        private static XDocument doc = XDocument.Load(@"UserData.xml");
+        public static string unHashedPassword { get; set; }
+        public static XElement Xelem { get; set; }
+
+        private static readonly XDocument doc = XDocument.Load(@"../../UserData.xml");
 
 
         public static bool xmlConnection(string username, string password)
@@ -29,9 +32,10 @@ namespace Board_Game
             {
                 if (elem.Element("username")?.Value == username && elem.Element("password")?.Value == hashedData)
                 {
-                    xelem = elem;
+                    Xelem = elem;
                     Username = username;
                     Password = hashedData;
+                    unHashedPassword = password;
                     return true;
                 }
             }
@@ -40,7 +44,7 @@ namespace Board_Game
             {
                 if (elem.Element("username")?.Value == username && elem.Element("password")?.Value == hashedData)
                 {
-                    xelem = elem;
+                    Xelem = elem;
                     Username = username;
                     Password = hashedData;
                     return true;
@@ -50,11 +54,8 @@ namespace Board_Game
         }
         public static void xmlsave(string category, string data)
         {
-            UserClass.xelem.Element(category).Value = data;
-            doc.Save(@"UserData.xml");
+            Xelem.Element(category).Value = data;
+            doc.Save(@"../../UserData.xml");
         }
-
     }
-
-        
 }
