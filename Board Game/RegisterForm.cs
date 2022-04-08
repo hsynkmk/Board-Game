@@ -32,8 +32,6 @@ namespace Board_Game
 
             string hashedData = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(passwordTextbox.Text)));
 
-            int width=0, height=0;
-
             XDocument doc=XDocument.Load(@"../../UserData.xml");
             doc.Element("Users").Add(new XElement("user", 
                                    new XElement("username", usernameTextbox.Text),
@@ -45,8 +43,8 @@ namespace Board_Game
                                    new XElement("country", countryTextbox.Text),
                                    new XElement("email", emailTextbox.Text),
                                    new XElement("difficulty", "1000"),
-                                   new XElement("customDifficultyWidth", width),
-                                   new XElement("customDifficultyHeight", height),
+                                   new XElement("customDifficultyWidth", 0),
+                                   new XElement("customDifficultyHeight", 0),
                                    new XElement("shape", "100"),
                                    new XElement("color", "100")
                                    ));
