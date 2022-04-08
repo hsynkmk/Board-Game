@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 using System.Xml;
 using System.Xml.Linq;
+using System.IO;
+using System.Security.Cryptography;
 
 namespace Board_Game
 {
@@ -20,27 +22,7 @@ namespace Board_Game
             InitializeComponent();
         }
 
-        private void listUsersButton_Click(object sender, EventArgs e)
-        {
-            //UserClass.Xelem
 
-            DataSet dataSet = new DataSet();
-            dataSet.ReadXml(@"../../UserData.xml");
-            adminDataGridView.DataSource = dataSet.Tables["Admin"];
-            userDataGridView.DataSource = dataSet.Tables["user"];
-
-            //XmlDataDocument xdoc=new XmlDataDocument();
-            //DataSet ds = new DataSet();
-            //XmlReader xmlFile;
-
-            //xmlFile = XmlReader.Create(@"../../UserData.xml", new XmlReaderSettings());
-            //ds.ReadXml(xmlFile);
-            //adminDataGridView.DataSource = ds.Tables["Admin"];
-            //userDataGridView.DataSource = ds.Tables["user"];
-            
-            //xmlFile.Close();
-
-        }
 
         private void userDataGridView_RowHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
@@ -64,6 +46,141 @@ namespace Board_Game
             countryTextbox.Text = adminDataGridView.CurrentRow.Cells[6].Value.ToString();
             emailTextbox.Text = adminDataGridView.CurrentRow.Cells[7].Value.ToString();
         }
-        
+
+        private void listUsersButton_Click(object sender, EventArgs e)
+        {
+            DataSet dataSet = new DataSet();
+            dataSet.ReadXml(@"../../UserData.xml");
+            adminDataGridView.DataSource = dataSet.Tables["Admin"];
+            userDataGridView.DataSource = dataSet.Tables["user"];
+
+            listUsersButton.BackColor = Color.Blue;
+            updateUserButton.BackColor = Color.White;
+            addButton.BackColor = Color.White;
+            deleteUserButton.BackColor = Color.White;
+
+        }
+
+        private void updateUserButton_Click(object sender, EventArgs e)
+        {
+            updateUserButton.BackColor = Color.Blue;
+            listUsersButton.BackColor = Color.White;
+            addButton.BackColor = Color.White;
+            deleteUserButton.BackColor = Color.White;
+
+            usernameTextbox.Enabled = false;
+            infoGroupBox.Visible = true;
+        }
+
+
+        private void addButton_Click(object sender, EventArgs e)
+        {
+            usernameTextbox.Enabled = true;
+            infoGroupBox.Visible = true;
+            addButton.BackColor = Color.Blue;
+            listUsersButton.BackColor = Color.White;
+            updateUserButton.BackColor = Color.White;
+            deleteUserButton.BackColor = Color.White;
+        }
+
+        private void deleteUserButton_Click(object sender, EventArgs e)
+        {
+            deleteUserButton.BackColor = Color.Blue;
+            listUsersButton.BackColor = Color.White;
+            updateUserButton.BackColor = Color.White;
+            addButton.BackColor = Color.White;
+        }
+
+        private void submitButton_Click(object sender, EventArgs e)
+        {
+            if (updateUserButton.BackColor == Color.Blue)
+            {
+                SHA1 sha = new SHA1CryptoServiceProvider();
+                string hashedData = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(passwordTextbox.Text)));
+
+                XDocument doc = XDocument.Load(@"../../UserData.xml");
+                foreach (XElement elem in doc.Descendants("Admin"))
+                {
+                    if (elem.Element("username").Value == usernameTextbox.Text)
+                    {
+                        elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
+                        elem.SetElementValue("password", hashedData);
+                        elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
+                        elem.SetElementValue("phonenumber", phoneNumberTextbox.Text);
+                        elem.SetElementValue("address", addressTextbox.Text);
+                        elem.SetElementValue("city", cityTextbox.Text);
+                        elem.SetElementValue("country", countryTextbox.Text);
+                        elem.SetElementValue("email", emailTextbox.Text);
+                        doc.Save(@"../../UserData.xml");
+                    }
+                }
+
+                foreach (XElement elem in doc.Descendants("user"))
+                {
+                    if (elem.Element("username").Value == usernameTextbox.Text)
+                    {
+                        elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
+                        elem.SetElementValue("password", hashedData);
+                        elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
+                        elem.SetElementValue("phonenumber", phoneNumberTextbox.Text);
+                        elem.SetElementValue("address", addressTextbox.Text);
+                        elem.SetElementValue("city", cityTextbox.Text);
+                        elem.SetElementValue("country", countryTextbox.Text);
+                        elem.SetElementValue("email", emailTextbox.Text);
+                        doc.Save(@"../../UserData.xml");
+
+                    }
+                }
+                MessageBox.Show("Saved");
+            }
+            if (addButton.BackColor == Color.Blue)
+            {
+                SHA1 sha = new SHA1CryptoServiceProvider();
+
+                string hashedData = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(passwordTextbox.Text)));
+
+                XDocument doc = XDocument.Load(@"../../UserData.xml");
+                doc.Element("Users").Add(new XElement("user",
+                                       new XElement("username", usernameTextbox.Text),
+                                       new XElement("password", hashedData),
+                                       new XElement("namesurname", nameSurnameTextbox.Text),
+                                       new XElement("phonenumber", phoneNumberTextbox.Text),
+                                       new XElement("address", addressTextbox.Text),
+                                       new XElement("city", cityTextbox.Text),
+                                       new XElement("country", countryTextbox.Text),
+                                       new XElement("email", emailTextbox.Text),
+                                       new XElement("difficulty", "1000"),
+                                       new XElement("customDifficultyWidth", 0),
+                                       new XElement("customDifficultyHeight", 0),
+                                       new XElement("shape", "100"),
+                                       new XElement("color", "100")
+                                       ));
+                doc.Save(@"../../UserData.xml");
+
+            }
+            if (deleteUserButton.BackColor == Color.Blue)
+            {
+                XDocument doc = XDocument.Load(@"../../UserData.xml");
+                foreach (XElement elem in doc.Descendants("Admin"))
+                {
+                    if (elem.Element("username").Value == usernameTextbox.Text)
+                    {
+                        elem.Remove();
+                        doc.Save(@"../../UserData.xml");
+                        break;
+                    }
+                }
+
+                foreach (XElement elem in doc.Descendants("user"))
+                {
+                    if (elem.Element("username").Value == usernameTextbox.Text)
+                    {
+                        elem.Remove();
+                        doc.Save(@"../../UserData.xml");
+                        break;
+                    }
+                }
+            }
+        }
     }
 }

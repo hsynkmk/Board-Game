@@ -52,8 +52,13 @@
             this.addButton = new System.Windows.Forms.Button();
             this.adminLabel = new System.Windows.Forms.Label();
             this.userLabel = new System.Windows.Forms.Label();
+            this.submitButton = new System.Windows.Forms.Button();
+            this.actionsGroupBox = new System.Windows.Forms.GroupBox();
+            this.infoGroupBox = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.adminDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
+            this.actionsGroupBox.SuspendLayout();
+            this.infoGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // adminDataGridView
@@ -73,7 +78,7 @@
             // 
             // listUsersButton
             // 
-            this.listUsersButton.Location = new System.Drawing.Point(765, 347);
+            this.listUsersButton.Location = new System.Drawing.Point(14, 27);
             this.listUsersButton.Name = "listUsersButton";
             this.listUsersButton.Size = new System.Drawing.Size(120, 23);
             this.listUsersButton.TabIndex = 20;
@@ -98,49 +103,49 @@
             // 
             // emailTextbox
             // 
-            this.emailTextbox.Location = new System.Drawing.Point(422, 387);
+            this.emailTextbox.Location = new System.Drawing.Point(399, 83);
             this.emailTextbox.Name = "emailTextbox";
             this.emailTextbox.Size = new System.Drawing.Size(100, 22);
             this.emailTextbox.TabIndex = 37;
             // 
             // countryTextbox
             // 
-            this.countryTextbox.Location = new System.Drawing.Point(422, 347);
+            this.countryTextbox.Location = new System.Drawing.Point(399, 43);
             this.countryTextbox.Name = "countryTextbox";
             this.countryTextbox.Size = new System.Drawing.Size(100, 22);
             this.countryTextbox.TabIndex = 36;
             // 
             // cityTextbox
             // 
-            this.cityTextbox.Location = new System.Drawing.Point(164, 547);
+            this.cityTextbox.Location = new System.Drawing.Point(141, 243);
             this.cityTextbox.Name = "cityTextbox";
             this.cityTextbox.Size = new System.Drawing.Size(100, 22);
             this.cityTextbox.TabIndex = 35;
             // 
             // addressTextbox
             // 
-            this.addressTextbox.Location = new System.Drawing.Point(164, 507);
+            this.addressTextbox.Location = new System.Drawing.Point(141, 203);
             this.addressTextbox.Name = "addressTextbox";
             this.addressTextbox.Size = new System.Drawing.Size(100, 22);
             this.addressTextbox.TabIndex = 34;
             // 
             // phoneNumberTextbox
             // 
-            this.phoneNumberTextbox.Location = new System.Drawing.Point(164, 467);
+            this.phoneNumberTextbox.Location = new System.Drawing.Point(141, 163);
             this.phoneNumberTextbox.Name = "phoneNumberTextbox";
             this.phoneNumberTextbox.Size = new System.Drawing.Size(100, 22);
             this.phoneNumberTextbox.TabIndex = 33;
             // 
             // nameSurnameTextbox
             // 
-            this.nameSurnameTextbox.Location = new System.Drawing.Point(164, 427);
+            this.nameSurnameTextbox.Location = new System.Drawing.Point(141, 123);
             this.nameSurnameTextbox.Name = "nameSurnameTextbox";
             this.nameSurnameTextbox.Size = new System.Drawing.Size(100, 22);
             this.nameSurnameTextbox.TabIndex = 32;
             // 
             // passwordTextbox
             // 
-            this.passwordTextbox.Location = new System.Drawing.Point(164, 387);
+            this.passwordTextbox.Location = new System.Drawing.Point(141, 83);
             this.passwordTextbox.Name = "passwordTextbox";
             this.passwordTextbox.PasswordChar = '*';
             this.passwordTextbox.Size = new System.Drawing.Size(100, 22);
@@ -148,7 +153,7 @@
             // 
             // usernameTextbox
             // 
-            this.usernameTextbox.Location = new System.Drawing.Point(164, 347);
+            this.usernameTextbox.Location = new System.Drawing.Point(141, 43);
             this.usernameTextbox.Name = "usernameTextbox";
             this.usernameTextbox.Size = new System.Drawing.Size(100, 22);
             this.usernameTextbox.TabIndex = 30;
@@ -156,7 +161,7 @@
             // emailLabel
             // 
             this.emailLabel.AutoSize = true;
-            this.emailLabel.Location = new System.Drawing.Point(295, 387);
+            this.emailLabel.Location = new System.Drawing.Point(272, 83);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Size = new System.Drawing.Size(45, 16);
             this.emailLabel.TabIndex = 29;
@@ -165,7 +170,7 @@
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(295, 347);
+            this.countryLabel.Location = new System.Drawing.Point(272, 43);
             this.countryLabel.Name = "countryLabel";
             this.countryLabel.Size = new System.Drawing.Size(52, 16);
             this.countryLabel.TabIndex = 28;
@@ -174,7 +179,7 @@
             // cityLabel
             // 
             this.cityLabel.AutoSize = true;
-            this.cityLabel.Location = new System.Drawing.Point(37, 547);
+            this.cityLabel.Location = new System.Drawing.Point(14, 243);
             this.cityLabel.Name = "cityLabel";
             this.cityLabel.Size = new System.Drawing.Size(29, 16);
             this.cityLabel.TabIndex = 27;
@@ -183,7 +188,7 @@
             // addressLabel
             // 
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(37, 507);
+            this.addressLabel.Location = new System.Drawing.Point(14, 203);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(58, 16);
             this.addressLabel.TabIndex = 26;
@@ -192,7 +197,7 @@
             // phoneNumberLabel
             // 
             this.phoneNumberLabel.AutoSize = true;
-            this.phoneNumberLabel.Location = new System.Drawing.Point(37, 467);
+            this.phoneNumberLabel.Location = new System.Drawing.Point(14, 163);
             this.phoneNumberLabel.Name = "phoneNumberLabel";
             this.phoneNumberLabel.Size = new System.Drawing.Size(97, 16);
             this.phoneNumberLabel.TabIndex = 25;
@@ -201,7 +206,7 @@
             // nameSurnameLabel
             // 
             this.nameSurnameLabel.AutoSize = true;
-            this.nameSurnameLabel.Location = new System.Drawing.Point(37, 427);
+            this.nameSurnameLabel.Location = new System.Drawing.Point(14, 123);
             this.nameSurnameLabel.Name = "nameSurnameLabel";
             this.nameSurnameLabel.Size = new System.Drawing.Size(102, 16);
             this.nameSurnameLabel.TabIndex = 24;
@@ -210,7 +215,7 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(37, 387);
+            this.passwordLabel.Location = new System.Drawing.Point(14, 83);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(67, 16);
             this.passwordLabel.TabIndex = 23;
@@ -219,7 +224,7 @@
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(37, 347);
+            this.usernameLabel.Location = new System.Drawing.Point(14, 43);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(70, 16);
             this.usernameLabel.TabIndex = 22;
@@ -227,30 +232,33 @@
             // 
             // deleteUserButton
             // 
-            this.deleteUserButton.Location = new System.Drawing.Point(765, 387);
+            this.deleteUserButton.Location = new System.Drawing.Point(14, 149);
             this.deleteUserButton.Name = "deleteUserButton";
             this.deleteUserButton.Size = new System.Drawing.Size(120, 23);
             this.deleteUserButton.TabIndex = 40;
             this.deleteUserButton.Text = "Delete";
             this.deleteUserButton.UseVisualStyleBackColor = true;
+            this.deleteUserButton.Click += new System.EventHandler(this.deleteUserButton_Click);
             // 
             // updateUserButton
             // 
-            this.updateUserButton.Location = new System.Drawing.Point(765, 467);
+            this.updateUserButton.Location = new System.Drawing.Point(14, 108);
             this.updateUserButton.Name = "updateUserButton";
             this.updateUserButton.Size = new System.Drawing.Size(120, 23);
             this.updateUserButton.TabIndex = 41;
             this.updateUserButton.Text = "Update";
             this.updateUserButton.UseVisualStyleBackColor = true;
+            this.updateUserButton.Click += new System.EventHandler(this.updateUserButton_Click);
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(765, 427);
+            this.addButton.Location = new System.Drawing.Point(14, 67);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(120, 23);
             this.addButton.TabIndex = 42;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
+            this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
             // adminLabel
             // 
@@ -270,34 +278,66 @@
             this.userLabel.TabIndex = 44;
             this.userLabel.Text = "Users";
             // 
+            // submitButton
+            // 
+            this.submitButton.Location = new System.Drawing.Point(399, 163);
+            this.submitButton.Name = "submitButton";
+            this.submitButton.Size = new System.Drawing.Size(100, 23);
+            this.submitButton.TabIndex = 45;
+            this.submitButton.Text = "Submit";
+            this.submitButton.UseVisualStyleBackColor = true;
+            this.submitButton.Click += new System.EventHandler(this.submitButton_Click);
+            // 
+            // actionsGroupBox
+            // 
+            this.actionsGroupBox.Controls.Add(this.listUsersButton);
+            this.actionsGroupBox.Controls.Add(this.deleteUserButton);
+            this.actionsGroupBox.Controls.Add(this.updateUserButton);
+            this.actionsGroupBox.Controls.Add(this.addButton);
+            this.actionsGroupBox.Location = new System.Drawing.Point(24, 361);
+            this.actionsGroupBox.Name = "actionsGroupBox";
+            this.actionsGroupBox.Size = new System.Drawing.Size(156, 191);
+            this.actionsGroupBox.TabIndex = 46;
+            this.actionsGroupBox.TabStop = false;
+            this.actionsGroupBox.Text = "Actions";
+            // 
+            // infoGroupBox
+            // 
+            this.infoGroupBox.Controls.Add(this.usernameTextbox);
+            this.infoGroupBox.Controls.Add(this.usernameLabel);
+            this.infoGroupBox.Controls.Add(this.submitButton);
+            this.infoGroupBox.Controls.Add(this.passwordLabel);
+            this.infoGroupBox.Controls.Add(this.nameSurnameLabel);
+            this.infoGroupBox.Controls.Add(this.phoneNumberLabel);
+            this.infoGroupBox.Controls.Add(this.emailTextbox);
+            this.infoGroupBox.Controls.Add(this.addressLabel);
+            this.infoGroupBox.Controls.Add(this.countryTextbox);
+            this.infoGroupBox.Controls.Add(this.cityLabel);
+            this.infoGroupBox.Controls.Add(this.cityTextbox);
+            this.infoGroupBox.Controls.Add(this.countryLabel);
+            this.infoGroupBox.Controls.Add(this.addressTextbox);
+            this.infoGroupBox.Controls.Add(this.emailLabel);
+            this.infoGroupBox.Controls.Add(this.phoneNumberTextbox);
+            this.infoGroupBox.Controls.Add(this.passwordTextbox);
+            this.infoGroupBox.Controls.Add(this.nameSurnameTextbox);
+            this.infoGroupBox.Location = new System.Drawing.Point(294, 327);
+            this.infoGroupBox.Name = "infoGroupBox";
+            this.infoGroupBox.Size = new System.Drawing.Size(580, 269);
+            this.infoGroupBox.TabIndex = 47;
+            this.infoGroupBox.TabStop = false;
+            this.infoGroupBox.Text = "Info";
+            this.infoGroupBox.Visible = false;
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.Controls.Add(this.infoGroupBox);
+            this.Controls.Add(this.actionsGroupBox);
             this.Controls.Add(this.userLabel);
             this.Controls.Add(this.adminLabel);
-            this.Controls.Add(this.addButton);
-            this.Controls.Add(this.updateUserButton);
-            this.Controls.Add(this.deleteUserButton);
-            this.Controls.Add(this.emailTextbox);
-            this.Controls.Add(this.countryTextbox);
-            this.Controls.Add(this.cityTextbox);
-            this.Controls.Add(this.addressTextbox);
-            this.Controls.Add(this.phoneNumberTextbox);
-            this.Controls.Add(this.nameSurnameTextbox);
-            this.Controls.Add(this.passwordTextbox);
-            this.Controls.Add(this.usernameTextbox);
-            this.Controls.Add(this.emailLabel);
-            this.Controls.Add(this.countryLabel);
-            this.Controls.Add(this.cityLabel);
-            this.Controls.Add(this.addressLabel);
-            this.Controls.Add(this.phoneNumberLabel);
-            this.Controls.Add(this.nameSurnameLabel);
-            this.Controls.Add(this.passwordLabel);
-            this.Controls.Add(this.usernameLabel);
             this.Controls.Add(this.userDataGridView);
-            this.Controls.Add(this.listUsersButton);
             this.Controls.Add(this.adminDataGridView);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "AdminForm";
@@ -305,6 +345,9 @@
             this.Text = "AdminForm";
             ((System.ComponentModel.ISupportInitialize)(this.adminDataGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).EndInit();
+            this.actionsGroupBox.ResumeLayout(false);
+            this.infoGroupBox.ResumeLayout(false);
+            this.infoGroupBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -336,5 +379,8 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label adminLabel;
         private System.Windows.Forms.Label userLabel;
+        private System.Windows.Forms.Button submitButton;
+        private System.Windows.Forms.GroupBox actionsGroupBox;
+        private System.Windows.Forms.GroupBox infoGroupBox;
     }
 }
