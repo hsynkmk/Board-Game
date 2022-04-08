@@ -37,7 +37,7 @@ namespace Board_Game
             }
 
             else {
-                incorrectLogin.Text = "Incorrect Username or Password";
+                incorrectLoginLabel.Visible = true;
                 usernameTextbox.Clear();
                 passwordTextbox.Clear();
                 usernameTextbox.Focus();

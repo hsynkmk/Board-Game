@@ -36,7 +36,7 @@
             this.widthTextbox = new System.Windows.Forms.TextBox();
             this.heightTextbox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
-            this.settingsExitButton = new System.Windows.Forms.Button();
+            this.backButton = new System.Windows.Forms.Button();
             this.colorCheckedListBox = new System.Windows.Forms.CheckedListBox();
             this.colorLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -122,7 +122,7 @@
             // saveButton
             // 
             this.saveButton.BackColor = System.Drawing.Color.Transparent;
-            this.saveButton.Location = new System.Drawing.Point(280, 337);
+            this.saveButton.Location = new System.Drawing.Point(644, 337);
             this.saveButton.Name = "saveButton";
             this.saveButton.Size = new System.Drawing.Size(75, 23);
             this.saveButton.TabIndex = 7;
@@ -130,15 +130,15 @@
             this.saveButton.UseVisualStyleBackColor = false;
             this.saveButton.Click += new System.EventHandler(this.saveButton_Click);
             // 
-            // settingsExitButton
+            // backButton
             // 
-            this.settingsExitButton.Location = new System.Drawing.Point(394, 337);
-            this.settingsExitButton.Name = "settingsExitButton";
-            this.settingsExitButton.Size = new System.Drawing.Size(75, 23);
-            this.settingsExitButton.TabIndex = 8;
-            this.settingsExitButton.Text = "Exit";
-            this.settingsExitButton.UseVisualStyleBackColor = true;
-            this.settingsExitButton.Click += new System.EventHandler(this.settingsExitButton_Click);
+            this.backButton.Location = new System.Drawing.Point(550, 337);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.TabIndex = 8;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.settingsExitButton_Click);
             // 
             // colorCheckedListBox
             // 
@@ -174,7 +174,7 @@
             this.ControlBox = false;
             this.Controls.Add(this.colorLabel);
             this.Controls.Add(this.colorCheckedListBox);
-            this.Controls.Add(this.settingsExitButton);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.saveButton);
             this.Controls.Add(this.heightTextbox);
             this.Controls.Add(this.widthTextbox);
@@ -202,7 +202,7 @@
         private System.Windows.Forms.TextBox widthTextbox;
         private System.Windows.Forms.TextBox heightTextbox;
         private System.Windows.Forms.Button saveButton;
-        private System.Windows.Forms.Button settingsExitButton;
+        private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.CheckedListBox colorCheckedListBox;
         private System.Windows.Forms.Label colorLabel;
     }

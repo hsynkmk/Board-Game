@@ -54,6 +54,7 @@ namespace Board_Game
             adminDataGridView.DataSource = dataSet.Tables["Admin"];
             userDataGridView.DataSource = dataSet.Tables["user"];
 
+            usernameTextbox.Enabled = false;
             listUsersButton.BackColor = Color.Blue;
             updateUserButton.BackColor = Color.White;
             addButton.BackColor = Color.White;
@@ -63,13 +64,12 @@ namespace Board_Game
 
         private void updateUserButton_Click(object sender, EventArgs e)
         {
+            usernameTextbox.Enabled = false;
+            infoGroupBox.Visible = true;
             updateUserButton.BackColor = Color.Blue;
             listUsersButton.BackColor = Color.White;
             addButton.BackColor = Color.White;
             deleteUserButton.BackColor = Color.White;
-
-            usernameTextbox.Enabled = false;
-            infoGroupBox.Visible = true;
         }
 
 
@@ -85,6 +85,8 @@ namespace Board_Game
 
         private void deleteUserButton_Click(object sender, EventArgs e)
         {
+            usernameTextbox.Enabled = true;
+            infoGroupBox.Visible = true;
             deleteUserButton.BackColor = Color.Blue;
             listUsersButton.BackColor = Color.White;
             updateUserButton.BackColor = Color.White;
@@ -93,94 +95,125 @@ namespace Board_Game
 
         private void submitButton_Click(object sender, EventArgs e)
         {
-            if (updateUserButton.BackColor == Color.Blue)
+            try
             {
-                SHA1 sha = new SHA1CryptoServiceProvider();
-                string hashedData = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(passwordTextbox.Text)));
-
-                XDocument doc = XDocument.Load(@"../../UserData.xml");
-                foreach (XElement elem in doc.Descendants("Admin"))
+                if (updateUserButton.BackColor == Color.Blue)
                 {
-                    if (elem.Element("username").Value == usernameTextbox.Text)
+
+                    string hash;
+                    using (SHA256 sha256Hash = SHA256.Create())
                     {
-                        elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
-                        elem.SetElementValue("password", hashedData);
-                        elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
-                        elem.SetElementValue("phonenumber", phoneNumberTextbox.Text);
-                        elem.SetElementValue("address", addressTextbox.Text);
-                        elem.SetElementValue("city", cityTextbox.Text);
-                        elem.SetElementValue("country", countryTextbox.Text);
-                        elem.SetElementValue("email", emailTextbox.Text);
-                        doc.Save(@"../../UserData.xml");
+                        //From String to byte array
+                        byte[] sourceBytes = Encoding.UTF8.GetBytes(passwordTextbox.Text);
+                        byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
+                        hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
+                    }
+
+                    XDocument doc = XDocument.Load(@"../../UserData.xml");
+                    foreach (XElement elem in doc.Descendants("Admin"))
+                    {
+                        if (elem.Element("username").Value == usernameTextbox.Text)
+                        {
+                            elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
+                            elem.SetElementValue("password", hash);
+                            elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
+                            elem.SetElementValue("phonenumber", phoneNumberTextbox.Text);
+                            elem.SetElementValue("address", addressTextbox.Text);
+                            elem.SetElementValue("city", cityTextbox.Text);
+                            elem.SetElementValue("country", countryTextbox.Text);
+                            elem.SetElementValue("email", emailTextbox.Text);
+                            doc.Save(@"../../UserData.xml");
+                        }
+                    }
+
+                    foreach (XElement elem in doc.Descendants("user"))
+                    {
+                        if (elem.Element("username").Value == usernameTextbox.Text)
+                        {
+                            elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
+                            elem.SetElementValue("password", hash);
+                            elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
+                            elem.SetElementValue("phonenumber", phoneNumberTextbox.Text);
+                            elem.SetElementValue("address", addressTextbox.Text);
+                            elem.SetElementValue("city", cityTextbox.Text);
+                            elem.SetElementValue("country", countryTextbox.Text);
+                            elem.SetElementValue("email", emailTextbox.Text);
+                            doc.Save(@"../../UserData.xml");
+
+                        }
                     }
                 }
-
-                foreach (XElement elem in doc.Descendants("user"))
+                if (addButton.BackColor == Color.Blue)
                 {
-                    if (elem.Element("username").Value == usernameTextbox.Text)
-                    {
-                        elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
-                        elem.SetElementValue("password", hashedData);
-                        elem.SetElementValue("namesurname", nameSurnameTextbox.Text);
-                        elem.SetElementValue("phonenumber", phoneNumberTextbox.Text);
-                        elem.SetElementValue("address", addressTextbox.Text);
-                        elem.SetElementValue("city", cityTextbox.Text);
-                        elem.SetElementValue("country", countryTextbox.Text);
-                        elem.SetElementValue("email", emailTextbox.Text);
-                        doc.Save(@"../../UserData.xml");
 
+                    string hash;
+                    using (SHA256 sha256Hash = SHA256.Create())
+                    {
+                        //From String to byte array
+                        byte[] sourceBytes = Encoding.UTF8.GetBytes(passwordTextbox.Text);
+                        byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
+                        hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
+                    }
+
+                    XDocument doc = XDocument.Load(@"../../UserData.xml");
+                    doc.Element("Users").Add(new XElement("user",
+                                           new XElement("username", usernameTextbox.Text),
+                                           new XElement("password", hash),
+                                           new XElement("namesurname", nameSurnameTextbox.Text),
+                                           new XElement("phonenumber", phoneNumberTextbox.Text),
+                                           new XElement("address", addressTextbox.Text),
+                                           new XElement("city", cityTextbox.Text),
+                                           new XElement("country", countryTextbox.Text),
+                                           new XElement("email", emailTextbox.Text),
+                                           new XElement("difficulty", "1000"),
+                                           new XElement("customDifficultyWidth", 0),
+                                           new XElement("customDifficultyHeight", 0),
+                                           new XElement("shape", "100"),
+                                           new XElement("color", "100")
+                                           ));
+                    doc.Save(@"../../UserData.xml");
+
+                }
+                if (deleteUserButton.BackColor == Color.Blue)
+                {
+                    XDocument doc = XDocument.Load(@"../../UserData.xml");
+                    foreach (XElement elem in doc.Descendants("Admin"))
+                    {
+                        if (elem.Element("username").Value == usernameTextbox.Text)
+                        {
+                            elem.Remove();
+                            doc.Save(@"../../UserData.xml");
+                            break;
+                        }
+                    }
+
+                    foreach (XElement elem in doc.Descendants("user"))
+                    {
+                        if (elem.Element("username").Value == usernameTextbox.Text)
+                        {
+                            elem.Remove();
+                            doc.Save(@"../../UserData.xml");
+                            break;
+                        }
                     }
                 }
-                MessageBox.Show("Saved");
             }
-            if (addButton.BackColor == Color.Blue)
+            catch (Exception ex)
             {
-                SHA1 sha = new SHA1CryptoServiceProvider();
-
-                string hashedData = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(passwordTextbox.Text)));
-
-                XDocument doc = XDocument.Load(@"../../UserData.xml");
-                doc.Element("Users").Add(new XElement("user",
-                                       new XElement("username", usernameTextbox.Text),
-                                       new XElement("password", hashedData),
-                                       new XElement("namesurname", nameSurnameTextbox.Text),
-                                       new XElement("phonenumber", phoneNumberTextbox.Text),
-                                       new XElement("address", addressTextbox.Text),
-                                       new XElement("city", cityTextbox.Text),
-                                       new XElement("country", countryTextbox.Text),
-                                       new XElement("email", emailTextbox.Text),
-                                       new XElement("difficulty", "1000"),
-                                       new XElement("customDifficultyWidth", 0),
-                                       new XElement("customDifficultyHeight", 0),
-                                       new XElement("shape", "100"),
-                                       new XElement("color", "100")
-                                       ));
-                doc.Save(@"../../UserData.xml");
-
+                MessageBox.Show(ex.Message);
             }
-            if (deleteUserButton.BackColor == Color.Blue)
-            {
-                XDocument doc = XDocument.Load(@"../../UserData.xml");
-                foreach (XElement elem in doc.Descendants("Admin"))
-                {
-                    if (elem.Element("username").Value == usernameTextbox.Text)
-                    {
-                        elem.Remove();
-                        doc.Save(@"../../UserData.xml");
-                        break;
-                    }
-                }
-
-                foreach (XElement elem in doc.Descendants("user"))
-                {
-                    if (elem.Element("username").Value == usernameTextbox.Text)
-                    {
-                        elem.Remove();
-                        doc.Save(@"../../UserData.xml");
-                        break;
-                    }
-                }
-            }
+            completedLabel.Visible = true;
         }
-    }
+
+        private void usernameTextbox_TextChanged(object sender, EventArgs e)
+        {
+            usernameTextbox.Text = string.Concat(usernameTextbox.Text.Where(char.IsLetter));
+        }
+
+        private void backButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            new GameForm().Show();
+        }
+    }   
 }

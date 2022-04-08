@@ -36,48 +36,49 @@
             this.usernameLabel = new System.Windows.Forms.Label();
             this.passwordLabel = new System.Windows.Forms.Label();
             this.showPasswordCheckBox = new System.Windows.Forms.CheckBox();
-            this.incorrectLogin = new System.Windows.Forms.TextBox();
             this.registerLinkLabel = new System.Windows.Forms.LinkLabel();
             this.noAccountLabel = new System.Windows.Forms.Label();
             this.gameNameLabel = new System.Windows.Forms.Label();
+            this.incorrectLoginLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // usernameTextbox
             // 
             this.usernameTextbox.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.usernameTextbox.Location = new System.Drawing.Point(375, 168);
+            this.usernameTextbox.Location = new System.Drawing.Point(390, 168);
             this.usernameTextbox.Multiline = true;
             this.usernameTextbox.Name = "usernameTextbox";
-            this.usernameTextbox.Size = new System.Drawing.Size(216, 28);
+            this.usernameTextbox.Size = new System.Drawing.Size(220, 30);
             this.usernameTextbox.TabIndex = 0;
             this.usernameTextbox.TextChanged += new System.EventHandler(this.usernameTextbox_TextChanged);
             // 
             // passwordTextbox
             // 
             this.passwordTextbox.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.passwordTextbox.Location = new System.Drawing.Point(375, 234);
+            this.passwordTextbox.Location = new System.Drawing.Point(390, 234);
             this.passwordTextbox.Multiline = true;
             this.passwordTextbox.Name = "passwordTextbox";
             this.passwordTextbox.PasswordChar = '*';
-            this.passwordTextbox.Size = new System.Drawing.Size(216, 28);
+            this.passwordTextbox.Size = new System.Drawing.Size(220, 30);
             this.passwordTextbox.TabIndex = 1;
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(508, 289);
+            this.loginButton.Location = new System.Drawing.Point(530, 289);
             this.loginButton.Name = "loginButton";
-            this.loginButton.Size = new System.Drawing.Size(83, 28);
+            this.loginButton.Size = new System.Drawing.Size(80, 25);
             this.loginButton.TabIndex = 2;
-            this.loginButton.Text = "login";
+            this.loginButton.Text = "Login";
             this.loginButton.UseVisualStyleBackColor = true;
             this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(781, 411);
+            this.exitButton.Location = new System.Drawing.Point(862, 435);
             this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(75, 23);
+            this.exitButton.Size = new System.Drawing.Size(80, 25);
             this.exitButton.TabIndex = 3;
+            this.exitButton.TabStop = false;
             this.exitButton.Text = "Exit";
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
@@ -86,10 +87,11 @@
             // 
             this.usernameLabel.AutoSize = true;
             this.usernameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.usernameLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.usernameLabel.Location = new System.Drawing.Point(372, 149);
+            this.usernameLabel.Location = new System.Drawing.Point(386, 143);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(67, 16);
+            this.usernameLabel.Size = new System.Drawing.Size(89, 22);
             this.usernameLabel.TabIndex = 4;
             this.usernameLabel.Text = "username";
             // 
@@ -97,10 +99,11 @@
             // 
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.BackColor = System.Drawing.Color.Transparent;
+            this.passwordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.passwordLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.passwordLabel.Location = new System.Drawing.Point(373, 215);
+            this.passwordLabel.Location = new System.Drawing.Point(386, 209);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(66, 16);
+            this.passwordLabel.Size = new System.Drawing.Size(87, 22);
             this.passwordLabel.TabIndex = 5;
             this.passwordLabel.Text = "password";
             // 
@@ -108,39 +111,29 @@
             // 
             this.showPasswordCheckBox.AutoSize = true;
             this.showPasswordCheckBox.BackColor = System.Drawing.Color.Transparent;
+            this.showPasswordCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.showPasswordCheckBox.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.showPasswordCheckBox.Location = new System.Drawing.Point(597, 242);
+            this.showPasswordCheckBox.Location = new System.Drawing.Point(616, 238);
             this.showPasswordCheckBox.Name = "showPasswordCheckBox";
-            this.showPasswordCheckBox.Size = new System.Drawing.Size(125, 20);
+            this.showPasswordCheckBox.Size = new System.Drawing.Size(161, 26);
             this.showPasswordCheckBox.TabIndex = 6;
             this.showPasswordCheckBox.TabStop = false;
             this.showPasswordCheckBox.Text = "Show Password";
             this.showPasswordCheckBox.UseVisualStyleBackColor = false;
             this.showPasswordCheckBox.CheckedChanged += new System.EventHandler(this.showPasswordCheckBox_CheckedChanged);
             // 
-            // incorrectLogin
-            // 
-            this.incorrectLogin.BackColor = System.Drawing.Color.IndianRed;
-            this.incorrectLogin.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.incorrectLogin.Location = new System.Drawing.Point(375, 268);
-            this.incorrectLogin.Name = "incorrectLogin";
-            this.incorrectLogin.ReadOnly = true;
-            this.incorrectLogin.Size = new System.Drawing.Size(216, 15);
-            this.incorrectLogin.TabIndex = 7;
-            this.incorrectLogin.TabStop = false;
-            // 
             // registerLinkLabel
             // 
             this.registerLinkLabel.ActiveLinkColor = System.Drawing.Color.Yellow;
             this.registerLinkLabel.AutoSize = true;
             this.registerLinkLabel.BackColor = System.Drawing.Color.Transparent;
+            this.registerLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.registerLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.registerLinkLabel.LinkColor = System.Drawing.Color.Yellow;
-            this.registerLinkLabel.Location = new System.Drawing.Point(442, 359);
+            this.registerLinkLabel.Location = new System.Drawing.Point(456, 366);
             this.registerLinkLabel.Name = "registerLinkLabel";
-            this.registerLinkLabel.Size = new System.Drawing.Size(58, 16);
+            this.registerLinkLabel.Size = new System.Drawing.Size(77, 22);
             this.registerLinkLabel.TabIndex = 8;
-            this.registerLinkLabel.TabStop = true;
             this.registerLinkLabel.Text = "Register";
             this.registerLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.registerLinkLabel_LinkClicked);
             // 
@@ -149,10 +142,11 @@
             this.noAccountLabel.AccessibleRole = System.Windows.Forms.AccessibleRole.None;
             this.noAccountLabel.AutoSize = true;
             this.noAccountLabel.BackColor = System.Drawing.Color.Transparent;
+            this.noAccountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.noAccountLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
             this.noAccountLabel.Location = new System.Drawing.Point(406, 332);
             this.noAccountLabel.Name = "noAccountLabel";
-            this.noAccountLabel.Size = new System.Drawing.Size(139, 16);
+            this.noAccountLabel.Size = new System.Drawing.Size(189, 22);
             this.noAccountLabel.TabIndex = 9;
             this.noAccountLabel.Text = "Don\'t have an account";
             // 
@@ -161,12 +155,24 @@
             this.gameNameLabel.AutoSize = true;
             this.gameNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.gameNameLabel.Font = new System.Drawing.Font("Segoe Print", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.gameNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.gameNameLabel.Location = new System.Drawing.Point(351, 47);
+            this.gameNameLabel.ForeColor = System.Drawing.Color.Yellow;
+            this.gameNameLabel.Location = new System.Drawing.Point(359, 47);
             this.gameNameLabel.Name = "gameNameLabel";
             this.gameNameLabel.Size = new System.Drawing.Size(282, 71);
             this.gameNameLabel.TabIndex = 10;
             this.gameNameLabel.Text = "Board Game";
+            // 
+            // incorrectLoginLabel
+            // 
+            this.incorrectLoginLabel.AutoSize = true;
+            this.incorrectLoginLabel.BackColor = System.Drawing.Color.Transparent;
+            this.incorrectLoginLabel.ForeColor = System.Drawing.Color.Red;
+            this.incorrectLoginLabel.Location = new System.Drawing.Point(397, 270);
+            this.incorrectLoginLabel.Name = "incorrectLoginLabel";
+            this.incorrectLoginLabel.Size = new System.Drawing.Size(198, 16);
+            this.incorrectLoginLabel.TabIndex = 11;
+            this.incorrectLoginLabel.Text = "Incorrect username or password";
+            this.incorrectLoginLabel.Visible = false;
             // 
             // LoginForm
             // 
@@ -174,12 +180,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(950, 500);
+            this.ClientSize = new System.Drawing.Size(1000, 500);
             this.ControlBox = false;
+            this.Controls.Add(this.incorrectLoginLabel);
             this.Controls.Add(this.gameNameLabel);
             this.Controls.Add(this.noAccountLabel);
             this.Controls.Add(this.registerLinkLabel);
-            this.Controls.Add(this.incorrectLogin);
             this.Controls.Add(this.showPasswordCheckBox);
             this.Controls.Add(this.passwordLabel);
             this.Controls.Add(this.usernameLabel);
@@ -205,10 +211,10 @@
         private System.Windows.Forms.Label usernameLabel;
         private System.Windows.Forms.Label passwordLabel;
         private System.Windows.Forms.CheckBox showPasswordCheckBox;
-        private System.Windows.Forms.TextBox incorrectLogin;
         private System.Windows.Forms.LinkLabel registerLinkLabel;
         private System.Windows.Forms.Label noAccountLabel;
         private System.Windows.Forms.Label gameNameLabel;
+        private System.Windows.Forms.Label incorrectLoginLabel;
     }
 }
 
