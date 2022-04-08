@@ -55,6 +55,8 @@
             this.submitButton = new System.Windows.Forms.Button();
             this.actionsGroupBox = new System.Windows.Forms.GroupBox();
             this.infoGroupBox = new System.Windows.Forms.GroupBox();
+            this.completedLabel = new System.Windows.Forms.Label();
+            this.backButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.adminDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
             this.actionsGroupBox.SuspendLayout();
@@ -66,13 +68,13 @@
             this.adminDataGridView.AllowUserToAddRows = false;
             this.adminDataGridView.AllowUserToDeleteRows = false;
             this.adminDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.adminDataGridView.Location = new System.Drawing.Point(12, 39);
+            this.adminDataGridView.Location = new System.Drawing.Point(5, 40);
             this.adminDataGridView.MultiSelect = false;
             this.adminDataGridView.Name = "adminDataGridView";
             this.adminDataGridView.ReadOnly = true;
             this.adminDataGridView.RowHeadersWidth = 51;
             this.adminDataGridView.RowTemplate.Height = 24;
-            this.adminDataGridView.Size = new System.Drawing.Size(976, 124);
+            this.adminDataGridView.Size = new System.Drawing.Size(990, 125);
             this.adminDataGridView.TabIndex = 19;
             this.adminDataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.adminDataGridView_RowHeaderMouseClick);
             // 
@@ -91,13 +93,13 @@
             this.userDataGridView.AllowUserToAddRows = false;
             this.userDataGridView.AllowUserToDeleteRows = false;
             this.userDataGridView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.userDataGridView.Location = new System.Drawing.Point(12, 188);
+            this.userDataGridView.Location = new System.Drawing.Point(5, 188);
             this.userDataGridView.MultiSelect = false;
             this.userDataGridView.Name = "userDataGridView";
             this.userDataGridView.ReadOnly = true;
             this.userDataGridView.RowHeadersWidth = 51;
             this.userDataGridView.RowTemplate.Height = 24;
-            this.userDataGridView.Size = new System.Drawing.Size(976, 133);
+            this.userDataGridView.Size = new System.Drawing.Size(990, 125);
             this.userDataGridView.TabIndex = 21;
             this.userDataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.userDataGridView_RowHeaderMouseClick);
             // 
@@ -147,7 +149,6 @@
             // 
             this.passwordTextbox.Location = new System.Drawing.Point(141, 83);
             this.passwordTextbox.Name = "passwordTextbox";
-            this.passwordTextbox.PasswordChar = '*';
             this.passwordTextbox.Size = new System.Drawing.Size(100, 22);
             this.passwordTextbox.TabIndex = 31;
             // 
@@ -157,6 +158,7 @@
             this.usernameTextbox.Name = "usernameTextbox";
             this.usernameTextbox.Size = new System.Drawing.Size(100, 22);
             this.usernameTextbox.TabIndex = 30;
+            this.usernameTextbox.TextChanged += new System.EventHandler(this.usernameTextbox_TextChanged);
             // 
             // emailLabel
             // 
@@ -263,7 +265,7 @@
             // adminLabel
             // 
             this.adminLabel.AutoSize = true;
-            this.adminLabel.Location = new System.Drawing.Point(9, 20);
+            this.adminLabel.Location = new System.Drawing.Point(2, 21);
             this.adminLabel.Name = "adminLabel";
             this.adminLabel.Size = new System.Drawing.Size(52, 16);
             this.adminLabel.TabIndex = 43;
@@ -272,7 +274,7 @@
             // userLabel
             // 
             this.userLabel.AutoSize = true;
-            this.userLabel.Location = new System.Drawing.Point(9, 169);
+            this.userLabel.Location = new System.Drawing.Point(2, 169);
             this.userLabel.Name = "userLabel";
             this.userLabel.Size = new System.Drawing.Size(43, 16);
             this.userLabel.TabIndex = 44;
@@ -280,7 +282,7 @@
             // 
             // submitButton
             // 
-            this.submitButton.Location = new System.Drawing.Point(399, 163);
+            this.submitButton.Location = new System.Drawing.Point(399, 142);
             this.submitButton.Name = "submitButton";
             this.submitButton.Size = new System.Drawing.Size(100, 23);
             this.submitButton.TabIndex = 45;
@@ -303,6 +305,7 @@
             // 
             // infoGroupBox
             // 
+            this.infoGroupBox.Controls.Add(this.completedLabel);
             this.infoGroupBox.Controls.Add(this.usernameTextbox);
             this.infoGroupBox.Controls.Add(this.usernameLabel);
             this.infoGroupBox.Controls.Add(this.submitButton);
@@ -328,11 +331,34 @@
             this.infoGroupBox.Text = "Info";
             this.infoGroupBox.Visible = false;
             // 
+            // completedLabel
+            // 
+            this.completedLabel.AutoSize = true;
+            this.completedLabel.ForeColor = System.Drawing.Color.Maroon;
+            this.completedLabel.Location = new System.Drawing.Point(413, 203);
+            this.completedLabel.Name = "completedLabel";
+            this.completedLabel.Size = new System.Drawing.Size(73, 16);
+            this.completedLabel.TabIndex = 46;
+            this.completedLabel.Text = "Completed";
+            this.completedLabel.Visible = false;
+            // 
+            // backButton
+            // 
+            this.backButton.Location = new System.Drawing.Point(894, 548);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(94, 29);
+            this.backButton.TabIndex = 43;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DimGray;
             this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.infoGroupBox);
             this.Controls.Add(this.actionsGroupBox);
             this.Controls.Add(this.userLabel);
@@ -382,5 +408,7 @@
         private System.Windows.Forms.Button submitButton;
         private System.Windows.Forms.GroupBox actionsGroupBox;
         private System.Windows.Forms.GroupBox infoGroupBox;
+        private System.Windows.Forms.Label completedLabel;
+        private System.Windows.Forms.Button backButton;
     }
 }

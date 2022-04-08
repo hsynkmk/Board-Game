@@ -23,18 +23,22 @@ namespace Board_Game
 
         public static bool xmlConnection(string username, string password)
         {
-
-            SHA1 sha = new SHA1CryptoServiceProvider();
-
-            string hashedData = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(password)));
+            string hash;
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                //From String to byte array
+                byte[] sourceBytes = Encoding.UTF8.GetBytes(password);
+                byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
+                hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
+            }
 
             foreach (XElement elem in doc.Descendants("Admin"))
             {
-                if (elem.Element("username")?.Value == username && elem.Element("password")?.Value == hashedData)
+                if (elem.Element("username").Value == username && elem.Element("password").Value == hash)
                 {
                     Xelem = elem;
                     Username = username;
-                    Password = hashedData;
+                    Password = hash;
                     unHashedPassword = password;
                     return true;
                 }
@@ -42,11 +46,11 @@ namespace Board_Game
 
             foreach (XElement elem in doc.Descendants("user"))
             {
-                if (elem.Element("username")?.Value == username && elem.Element("password")?.Value == hashedData)
+                if (elem.Element("username").Value == username && elem.Element("password").Value == hash)
                 {
                     Xelem = elem;
                     Username = username;
-                    Password = hashedData;
+                    Password = hash;
                     return true;
                 }
             }

@@ -28,14 +28,20 @@ namespace Board_Game
 
         private void rsaveButton_Click(object sender, EventArgs e)
         {
-            SHA1 sha = new SHA1CryptoServiceProvider();
+            string hash;
+            using (SHA256 sha256Hash = SHA256.Create())
+            {
+                //From String to byte array
+                byte[] sourceBytes = Encoding.UTF8.GetBytes(passwordTextbox.Text);
+                byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
+                hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
+            }
 
-            string hashedData = Convert.ToBase64String(sha.ComputeHash(Encoding.UTF8.GetBytes(passwordTextbox.Text)));
 
             XDocument doc=XDocument.Load(@"../../UserData.xml");
             doc.Element("Users").Add(new XElement("user", 
                                    new XElement("username", usernameTextbox.Text),
-                                   new XElement("password", hashedData),
+                                   new XElement("password", hash),
                                    new XElement("namesurname", nameSurnameTextbox.Text),
                                    new XElement("phonenumber", phoneNumberTextbox.Text),
                                    new XElement("address", addressTextbox.Text),

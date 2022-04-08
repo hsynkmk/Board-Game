@@ -17,6 +17,8 @@ namespace Board_Game
             InitializeComponent();
             if (UserClass.Xelem.Name == "Admin")
                 manageButton.Visible = true;
+            else
+                manageButton.Visible = false;
         }
 
         private void settingsButton_Click(object sender, EventArgs e)
@@ -33,11 +35,19 @@ namespace Board_Game
         private void manageButton_Click(object sender, EventArgs e)
         {
             new AdminForm().Show();
+            this.Hide();
         }
 
         private void profileButton_Click(object sender, EventArgs e)
         {
             new UserForm().Show();
+            this.Hide();
+        }
+
+        private void logoutButton_Click(object sender, EventArgs e)
+        {
+            new LoginForm().Show();
+            this.Hide();
         }
     }
 }
