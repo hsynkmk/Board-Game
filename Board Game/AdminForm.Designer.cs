@@ -57,6 +57,7 @@
             this.infoGroupBox = new System.Windows.Forms.GroupBox();
             this.completedLabel = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
+            this.invalidUsernameLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.adminDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
             this.actionsGroupBox.SuspendLayout();
@@ -305,6 +306,7 @@
             // 
             // infoGroupBox
             // 
+            this.infoGroupBox.Controls.Add(this.invalidUsernameLabel);
             this.infoGroupBox.Controls.Add(this.completedLabel);
             this.infoGroupBox.Controls.Add(this.usernameTextbox);
             this.infoGroupBox.Controls.Add(this.usernameLabel);
@@ -351,6 +353,17 @@
             this.backButton.Text = "Back";
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
+            // 
+            // invalidUsernameLabel
+            // 
+            this.invalidUsernameLabel.AutoSize = true;
+            this.invalidUsernameLabel.ForeColor = System.Drawing.Color.Maroon;
+            this.invalidUsernameLabel.Location = new System.Drawing.Point(384, 183);
+            this.invalidUsernameLabel.Name = "invalidUsernameLabel";
+            this.invalidUsernameLabel.Size = new System.Drawing.Size(115, 16);
+            this.invalidUsernameLabel.TabIndex = 47;
+            this.invalidUsernameLabel.Text = "User already exist";
+            this.invalidUsernameLabel.Visible = false;
             // 
             // AdminForm
             // 
@@ -410,5 +423,6 @@
         private System.Windows.Forms.GroupBox infoGroupBox;
         private System.Windows.Forms.Label completedLabel;
         private System.Windows.Forms.Button backButton;
+        private System.Windows.Forms.Label invalidUsernameLabel;
     }
 }
