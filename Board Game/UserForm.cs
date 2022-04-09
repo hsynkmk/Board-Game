@@ -8,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+using System.Security.Cryptography;
+
 namespace Board_Game
 {
     public partial class UserForm : Form
@@ -33,6 +35,16 @@ namespace Board_Game
 
         private void updateButton_Click(object sender, EventArgs e)
         {
+            if(passwordTextbox.Text != UserClass.unHashedPassword)
+            {
+                using (SHA256 sha256Hash = SHA256.Create())
+                {
+                    byte[] sourceBytes = Encoding.UTF8.GetBytes(passwordTextbox.Text);
+                    byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
+                    passwordTextbox.Text = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
+                }
+            }
+
             if (confirmPasswordTextbox.Text == UserClass.unHashedPassword)
             {
                 UserClass.xmlsave("password", passwordTextbox.Text);
@@ -42,6 +54,7 @@ namespace Board_Game
                 UserClass.xmlsave("city", cityTextbox.Text);
                 UserClass.xmlsave("country", countryTextbox.Text);
                 UserClass.xmlsave("email", emailTextbox.Text);
+                MessageBox.Show("Updated");
                 this.Close();
                 new GameForm().Show();
             }
@@ -52,8 +65,22 @@ namespace Board_Game
 
         private void backButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             new GameForm().Show();
+        }
+
+        private void deleteAccountButton_Click(object sender, EventArgs e)
+        {
+            if (confirmPasswordTextbox.Text == UserClass.unHashedPassword)
+            {
+                UserClass.Xelem.Remove();
+                UserClass.doc.Save(@"../../UserData.xml");
+                MessageBox.Show("Your account deleted");
+                this.Close();
+                new LoginForm().Show();
+            }
+            else
+                MessageBox.Show("Wrong password");
         }
     }
 }

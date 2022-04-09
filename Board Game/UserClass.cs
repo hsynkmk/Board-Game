@@ -18,7 +18,7 @@ namespace Board_Game
         public static string unHashedPassword { get; set; }
         public static XElement Xelem { get; set; }
 
-        private static readonly XDocument doc = XDocument.Load(@"../../UserData.xml");
+        public static XDocument doc = XDocument.Load(@"../../UserData.xml");
 
 
         public static bool xmlConnection(string username, string password)
@@ -26,7 +26,6 @@ namespace Board_Game
             string hash;
             using (SHA256 sha256Hash = SHA256.Create())
             {
-                //From String to byte array
                 byte[] sourceBytes = Encoding.UTF8.GetBytes(password);
                 byte[] hashBytes = sha256Hash.ComputeHash(sourceBytes);
                 hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
@@ -51,6 +50,7 @@ namespace Board_Game
                     Xelem = elem;
                     Username = username;
                     Password = hash;
+                    unHashedPassword = password;
                     return true;
                 }
             }

@@ -50,6 +50,7 @@
             this.confirmPasswordLabel = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.usernameHeadLabel = new System.Windows.Forms.Label();
+            this.deleteAccountButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // backButton
@@ -236,12 +237,24 @@
             this.usernameHeadLabel.Size = new System.Drawing.Size(0, 49);
             this.usernameHeadLabel.TabIndex = 39;
             // 
+            // deleteAccountButton
+            // 
+            this.deleteAccountButton.BackColor = System.Drawing.Color.IndianRed;
+            this.deleteAccountButton.Location = new System.Drawing.Point(94, 490);
+            this.deleteAccountButton.Name = "deleteAccountButton";
+            this.deleteAccountButton.Size = new System.Drawing.Size(121, 23);
+            this.deleteAccountButton.TabIndex = 40;
+            this.deleteAccountButton.Text = "Delete Account";
+            this.deleteAccountButton.UseVisualStyleBackColor = false;
+            this.deleteAccountButton.Click += new System.EventHandler(this.deleteAccountButton_Click);
+            // 
             // UserForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(330, 525);
+            this.Controls.Add(this.deleteAccountButton);
             this.Controls.Add(this.usernameHeadLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.confirmPasswordTextbox);
@@ -298,5 +311,6 @@
         private System.Windows.Forms.Label confirmPasswordLabel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label usernameHeadLabel;
+        private System.Windows.Forms.Button deleteAccountButton;
     }
 }

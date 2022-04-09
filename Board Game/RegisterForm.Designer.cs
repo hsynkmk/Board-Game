@@ -46,8 +46,9 @@ namespace Board_Game
             this.countryTextbox = new System.Windows.Forms.TextBox();
             this.emailTextbox = new System.Windows.Forms.TextBox();
             this.rsaveButton = new System.Windows.Forms.Button();
-            this.rexitButton = new System.Windows.Forms.Button();
+            this.backButton = new System.Windows.Forms.Button();
             this.registerLabel = new System.Windows.Forms.Label();
+            this.invalidUsernameLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // usernameLabel
@@ -55,18 +56,18 @@ namespace Board_Game
             this.usernameLabel.AutoSize = true;
             this.usernameLabel.Location = new System.Drawing.Point(47, 87);
             this.usernameLabel.Name = "usernameLabel";
-            this.usernameLabel.Size = new System.Drawing.Size(70, 16);
+            this.usernameLabel.Size = new System.Drawing.Size(75, 16);
             this.usernameLabel.TabIndex = 0;
-            this.usernameLabel.Text = "Username";
+            this.usernameLabel.Text = "*Username";
             // 
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
             this.passwordLabel.Location = new System.Drawing.Point(47, 127);
             this.passwordLabel.Name = "passwordLabel";
-            this.passwordLabel.Size = new System.Drawing.Size(67, 16);
+            this.passwordLabel.Size = new System.Drawing.Size(72, 16);
             this.passwordLabel.TabIndex = 1;
-            this.passwordLabel.Text = "Password";
+            this.passwordLabel.Text = "*Password";
             // 
             // nameSurnameLabel
             // 
@@ -128,6 +129,7 @@ namespace Board_Game
             this.usernameTextbox.Name = "usernameTextbox";
             this.usernameTextbox.Size = new System.Drawing.Size(100, 22);
             this.usernameTextbox.TabIndex = 8;
+            this.usernameTextbox.TextChanged += new System.EventHandler(this.usernameTextbox_TextChanged);
             // 
             // passwordTextbox
             // 
@@ -181,7 +183,7 @@ namespace Board_Game
             // 
             // rsaveButton
             // 
-            this.rsaveButton.Location = new System.Drawing.Point(50, 441);
+            this.rsaveButton.Location = new System.Drawing.Point(199, 438);
             this.rsaveButton.Name = "rsaveButton";
             this.rsaveButton.Size = new System.Drawing.Size(75, 23);
             this.rsaveButton.TabIndex = 16;
@@ -189,15 +191,15 @@ namespace Board_Game
             this.rsaveButton.UseVisualStyleBackColor = true;
             this.rsaveButton.Click += new System.EventHandler(this.rsaveButton_Click);
             // 
-            // rexitButton
+            // backButton
             // 
-            this.rexitButton.Location = new System.Drawing.Point(183, 441);
-            this.rexitButton.Name = "rexitButton";
-            this.rexitButton.Size = new System.Drawing.Size(75, 23);
-            this.rexitButton.TabIndex = 17;
-            this.rexitButton.Text = "Exit";
-            this.rexitButton.UseVisualStyleBackColor = true;
-            this.rexitButton.Click += new System.EventHandler(this.rexitButton_Click);
+            this.backButton.Location = new System.Drawing.Point(50, 438);
+            this.backButton.Name = "backButton";
+            this.backButton.Size = new System.Drawing.Size(75, 23);
+            this.backButton.TabIndex = 17;
+            this.backButton.Text = "Back";
+            this.backButton.UseVisualStyleBackColor = true;
+            this.backButton.Click += new System.EventHandler(this.rexitButton_Click);
             // 
             // registerLabel
             // 
@@ -209,6 +211,17 @@ namespace Board_Game
             this.registerLabel.TabIndex = 19;
             this.registerLabel.Text = "Register";
             // 
+            // invalidUsernameLabel
+            // 
+            this.invalidUsernameLabel.AutoSize = true;
+            this.invalidUsernameLabel.ForeColor = System.Drawing.Color.Red;
+            this.invalidUsernameLabel.Location = new System.Drawing.Point(88, 407);
+            this.invalidUsernameLabel.Name = "invalidUsernameLabel";
+            this.invalidUsernameLabel.Size = new System.Drawing.Size(149, 16);
+            this.invalidUsernameLabel.TabIndex = 20;
+            this.invalidUsernameLabel.Text = "Username already exist";
+            this.invalidUsernameLabel.Visible = false;
+            // 
             // RegisterForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -216,8 +229,9 @@ namespace Board_Game
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
             this.ClientSize = new System.Drawing.Size(330, 525);
             this.ControlBox = false;
+            this.Controls.Add(this.invalidUsernameLabel);
             this.Controls.Add(this.registerLabel);
-            this.Controls.Add(this.rexitButton);
+            this.Controls.Add(this.backButton);
             this.Controls.Add(this.rsaveButton);
             this.Controls.Add(this.emailTextbox);
             this.Controls.Add(this.countryTextbox);
@@ -263,7 +277,8 @@ namespace Board_Game
         private System.Windows.Forms.TextBox countryTextbox;
         private System.Windows.Forms.TextBox emailTextbox;
         private System.Windows.Forms.Button rsaveButton;
-        private System.Windows.Forms.Button rexitButton;
+        private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label registerLabel;
+        private System.Windows.Forms.Label invalidUsernameLabel;
     }
 }
