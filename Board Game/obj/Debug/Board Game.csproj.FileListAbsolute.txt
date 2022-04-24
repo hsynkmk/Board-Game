@@ -28,3 +28,4 @@ C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.cspro
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.csproj.CoreCompileInputs.cache
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.exe
 C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board Game.pdb
+C:\Users\husey\Desktop\Projects\Board Game\Board Game\obj\Debug\Board_Game.AboutBox.resources
