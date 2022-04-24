@@ -40,11 +40,13 @@
             this.noAccountLabel = new System.Windows.Forms.Label();
             this.gameNameLabel = new System.Windows.Forms.Label();
             this.incorrectLoginLabel = new System.Windows.Forms.Label();
+            this.aboutUsLinkLabel = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // usernameTextbox
             // 
             this.usernameTextbox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.usernameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.usernameTextbox.Location = new System.Drawing.Point(390, 168);
             this.usernameTextbox.Multiline = true;
             this.usernameTextbox.Name = "usernameTextbox";
@@ -55,6 +57,7 @@
             // passwordTextbox
             // 
             this.passwordTextbox.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.passwordTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.passwordTextbox.Location = new System.Drawing.Point(390, 234);
             this.passwordTextbox.Multiline = true;
             this.passwordTextbox.Name = "passwordTextbox";
@@ -134,6 +137,7 @@
             this.registerLinkLabel.Name = "registerLinkLabel";
             this.registerLinkLabel.Size = new System.Drawing.Size(77, 22);
             this.registerLinkLabel.TabIndex = 8;
+            this.registerLinkLabel.TabStop = true;
             this.registerLinkLabel.Text = "Register";
             this.registerLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.registerLinkLabel_LinkClicked);
             // 
@@ -174,6 +178,22 @@
             this.incorrectLoginLabel.Text = "Incorrect username or password";
             this.incorrectLoginLabel.Visible = false;
             // 
+            // aboutUsLinkLabel
+            // 
+            this.aboutUsLinkLabel.ActiveLinkColor = System.Drawing.Color.Yellow;
+            this.aboutUsLinkLabel.AutoSize = true;
+            this.aboutUsLinkLabel.BackColor = System.Drawing.Color.Transparent;
+            this.aboutUsLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.aboutUsLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
+            this.aboutUsLinkLabel.LinkColor = System.Drawing.Color.Yellow;
+            this.aboutUsLinkLabel.Location = new System.Drawing.Point(865, 469);
+            this.aboutUsLinkLabel.Name = "aboutUsLinkLabel";
+            this.aboutUsLinkLabel.Size = new System.Drawing.Size(84, 22);
+            this.aboutUsLinkLabel.TabIndex = 12;
+            this.aboutUsLinkLabel.TabStop = true;
+            this.aboutUsLinkLabel.Text = "About Us";
+            this.aboutUsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.aboutUsLinkLabel_LinkClicked);
+            // 
             // LoginForm
             // 
             this.AcceptButton = this.loginButton;
@@ -182,6 +202,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(1000, 500);
             this.ControlBox = false;
+            this.Controls.Add(this.aboutUsLinkLabel);
             this.Controls.Add(this.incorrectLoginLabel);
             this.Controls.Add(this.gameNameLabel);
             this.Controls.Add(this.noAccountLabel);
@@ -215,6 +236,7 @@
         private System.Windows.Forms.Label noAccountLabel;
         private System.Windows.Forms.Label gameNameLabel;
         private System.Windows.Forms.Label incorrectLoginLabel;
+        private System.Windows.Forms.LinkLabel aboutUsLinkLabel;
     }
 }
 
