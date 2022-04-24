@@ -16,23 +16,18 @@ namespace Board_Game
         public LoginForm()
         {
             InitializeComponent();
-            usernameTextbox.Text = Properties.Settings.Default.username;
             usernameTextbox.Focus();
+            usernameTextbox.Text = Properties.Settings.Default.username;
         }
 
-        private void exitButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void loginButton_Click(object sender, EventArgs e)
+        private void loginButton_Click(object sender, EventArgs e)                                          //Login
         {
 
             if(UserClass.xmlConnection(usernameTextbox.Text, passwordTextbox.Text))
             {
                 new GameForm().Show();
                 this.Hide();
-                Properties.Settings.Default.username = usernameTextbox.Text;
+                Properties.Settings.Default.username = usernameTextbox.Text;                                //Last succesfull entrance
                 Properties.Settings.Default.Save();
             }
 
@@ -44,7 +39,7 @@ namespace Board_Game
             }
         }
 
-        private void showPasswordCheckBox_CheckedChanged(object sender, EventArgs e)
+        private void showPasswordCheckBox_CheckedChanged(object sender, EventArgs e)                        //Show password
         {
             if (showPasswordCheckBox.Checked)
                 passwordTextbox.PasswordChar = '\0';
@@ -52,15 +47,28 @@ namespace Board_Game
                 passwordTextbox.PasswordChar = '*';
         }
 
-        private void registerLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void registerLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)          //Register link
         {
             new RegisterForm().Show();
             this.Hide();
         }
 
-        private void usernameTextbox_TextChanged(object sender, EventArgs e)
+        private void usernameTextbox_TextChanged(object sender, EventArgs e)                                //Username only alphabetic caracter
         {
             usernameTextbox.Text = string.Concat(usernameTextbox.Text.Where(char.IsLetter));
+        }
+
+        private void exitButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void aboutUsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            this.Enabled = false;
+            AboutBox about = new AboutBox();
+            about.Owner = this;
+            about.Show();
         }
     }
 }
