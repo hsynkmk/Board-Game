@@ -17,8 +17,6 @@ namespace Board_Game
             
         }
 
-
-
         private void backButton_Click(object sender, EventArgs e)
         {   
             this.Owner.Enabled = true;

@@ -32,8 +32,9 @@
             this.logoutButton = new System.Windows.Forms.Button();
             this.profileButton = new System.Windows.Forms.Button();
             this.manageButton = new System.Windows.Forms.Button();
-            this.exitButton = new System.Windows.Forms.Button();
             this.settingsButton = new System.Windows.Forms.Button();
+            this.exitButton = new System.Windows.Forms.Button();
+            this.playButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -49,9 +50,10 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.DarkBlue;
+            this.splitContainer1.Panel1.Controls.Add(this.playButton);
+            this.splitContainer1.Panel1.Controls.Add(this.manageButton);
             this.splitContainer1.Panel1.Controls.Add(this.logoutButton);
             this.splitContainer1.Panel1.Controls.Add(this.profileButton);
-            this.splitContainer1.Panel1.Controls.Add(this.manageButton);
             this.splitContainer1.Panel1.Controls.Add(this.settingsButton);
             // 
             // splitContainer1.Panel2
@@ -94,7 +96,7 @@
             this.manageButton.BackColor = System.Drawing.Color.GhostWhite;
             this.manageButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.manageButton.Location = new System.Drawing.Point(-2, 288);
+            this.manageButton.Location = new System.Drawing.Point(-2, 162);
             this.manageButton.Name = "manageButton";
             this.manageButton.Size = new System.Drawing.Size(263, 47);
             this.manageButton.TabIndex = 2;
@@ -103,19 +105,6 @@
             this.manageButton.UseVisualStyleBackColor = false;
             this.manageButton.Visible = false;
             this.manageButton.Click += new System.EventHandler(this.manageButton_Click);
-            // 
-            // exitButton
-            // 
-            this.exitButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.exitButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.exitButton.Location = new System.Drawing.Point(457, 441);
-            this.exitButton.Name = "exitButton";
-            this.exitButton.Size = new System.Drawing.Size(263, 47);
-            this.exitButton.TabIndex = 1;
-            this.exitButton.Text = "Exit";
-            this.exitButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.exitButton.UseVisualStyleBackColor = true;
-            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
             // settingsButton
             // 
@@ -130,6 +119,32 @@
             this.settingsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.settingsButton.UseVisualStyleBackColor = false;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
+            // exitButton
+            // 
+            this.exitButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.exitButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.exitButton.Location = new System.Drawing.Point(457, 441);
+            this.exitButton.Name = "exitButton";
+            this.exitButton.Size = new System.Drawing.Size(263, 47);
+            this.exitButton.TabIndex = 1;
+            this.exitButton.Text = "Exit";
+            this.exitButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.exitButton.UseVisualStyleBackColor = true;
+            this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // playButton
+            // 
+            this.playButton.BackColor = System.Drawing.Color.GhostWhite;
+            this.playButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.playButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.playButton.Location = new System.Drawing.Point(-2, 288);
+            this.playButton.Name = "playButton";
+            this.playButton.Size = new System.Drawing.Size(263, 47);
+            this.playButton.TabIndex = 5;
+            this.playButton.Text = "Play";
+            this.playButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.playButton.UseVisualStyleBackColor = false;
             // 
             // GameForm
             // 
@@ -158,5 +173,6 @@
         private System.Windows.Forms.Button profileButton;
         private System.Windows.Forms.Button manageButton;
         private System.Windows.Forms.Button logoutButton;
+        private System.Windows.Forms.Button playButton;
     }
 }
