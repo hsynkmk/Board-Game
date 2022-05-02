@@ -49,5 +49,11 @@ namespace Board_Game
             new LoginForm().Show();
             this.Hide();
         }
+
+        private void playButton_Click(object sender, EventArgs e)
+        {
+            new PlayForm().Show();
+            this.Hide();
+        }
     }
 }

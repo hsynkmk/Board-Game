@@ -15,7 +15,7 @@ namespace Board_Game
     {
         public static string Username { get; set; }
         public static string Password { get; set; }
-        public static string unHashedPassword { get; set; }
+        public static string UnHashedPassword { get; set; }
         public static XElement Xelem { get; set; }
 
         public static XDocument doc = XDocument.Load(@"../../UserData.xml");
@@ -38,7 +38,8 @@ namespace Board_Game
                     Xelem = elem;
                     Username = username;
                     Password = hash;
-                    unHashedPassword = password;
+                    UnHashedPassword = password;
+                    //Difficulty = elem.Element("difficulty").Value;
                     return true;
                 }
             }
@@ -50,7 +51,8 @@ namespace Board_Game
                     Xelem = elem;
                     Username = username;
                     Password = hash;
-                    unHashedPassword = password;
+                    UnHashedPassword = password;
+                    //Difficulty = elem.Element("difficulty").Value;
                     return true;
                 }
             }

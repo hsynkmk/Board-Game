@@ -24,7 +24,7 @@ namespace Board_Game
             usernameHeadLabel.Text = UserClass.Xelem.Element("username").Value;
 
             usernameTextbox.Text = UserClass.Xelem.Element("username").Value;
-            passwordTextbox.Text = UserClass.unHashedPassword;
+            passwordTextbox.Text = UserClass.UnHashedPassword;
             nameSurnameTextbox.Text = UserClass.Xelem.Element("namesurname").Value;
             phoneNumberTextbox.Text = UserClass.Xelem.Element("phonenumber").Value;
             addressTextbox.Text = UserClass.Xelem.Element("address").Value;
@@ -35,7 +35,7 @@ namespace Board_Game
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            if(passwordTextbox.Text != UserClass.unHashedPassword)
+            if(passwordTextbox.Text != UserClass.UnHashedPassword)
             {
                 using (SHA256 sha256Hash = SHA256.Create())
                 {
@@ -45,7 +45,7 @@ namespace Board_Game
                 }
             }
 
-            if (confirmPasswordTextbox.Text == UserClass.unHashedPassword)
+            if (confirmPasswordTextbox.Text == UserClass.UnHashedPassword)
             {
                 UserClass.xmlsave("password", passwordTextbox.Text);
                 UserClass.xmlsave("namesurname", nameSurnameTextbox.Text);
@@ -71,7 +71,7 @@ namespace Board_Game
 
         private void deleteAccountButton_Click(object sender, EventArgs e)
         {
-            if (confirmPasswordTextbox.Text == UserClass.unHashedPassword)
+            if (confirmPasswordTextbox.Text == UserClass.UnHashedPassword)
             {
                 UserClass.Xelem.Remove();
                 UserClass.doc.Save(@"../../UserData.xml");
