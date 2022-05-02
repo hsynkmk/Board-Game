@@ -25,8 +25,23 @@
     <country></country>
     <email></email>
     <difficulty>1000</difficulty>
-    <customDifficultyWidth>0</customDifficultyWidth>
-    <customDifficultyHeight>0</customDifficultyHeight>
+    <customDifficultyWidth>10</customDifficultyWidth>
+    <customDifficultyHeight>10</customDifficultyHeight>
+    <shape>100</shape>
+    <color>100</color>
+  </user>
+  <user>
+    <username>a</username>
+    <password>CA978112CA1BBDCAFAC231B39A23DC4DA786EFF8147C4E72B9807785AFEE48BB</password>
+    <namesurname></namesurname>
+    <phonenumber></phonenumber>
+    <address></address>
+    <city></city>
+    <country></country>
+    <email></email>
+    <difficulty>0001</difficulty>
+    <customDifficultyWidth>4</customDifficultyWidth>
+    <customDifficultyHeight>8</customDifficultyHeight>
     <shape>100</shape>
     <color>100</color>
   </user>

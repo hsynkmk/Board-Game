@@ -36,6 +36,13 @@ namespace Board_Game
             setSettings("difficulty", difficultyCheckedListBox);
             setSettings("shape", shapeCheckedListBox);
             setSettings("color", colorCheckedListBox);
+
+            //if (difficultyCheckedListBox.GetSelected(3))
+            //{
+            //    widthTextbox.Visible=true;
+            //    heightTextbox.Visible=true;
+            //}
+
             widthTextbox.Text = UserClass.Xelem.Element("customDifficultyWidth").Value;
             heightTextbox.Text = UserClass.Xelem.Element("customDifficultyHeight").Value;
         }
