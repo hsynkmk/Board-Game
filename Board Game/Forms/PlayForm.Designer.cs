@@ -28,19 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(PlayForm));
             this.SuspendLayout();
             // 
             // PlayForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
             this.Name = "PlayForm";
-            this.Text = "PlayForm";
-            this.TopMost = true;
-            this.Load += new System.EventHandler(this.PlayForm_Load);
             this.ResumeLayout(false);
+
 
         }
 
