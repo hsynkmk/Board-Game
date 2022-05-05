@@ -14,16 +14,21 @@ namespace Board_Game
 
     public partial class PlayForm : Form
     {
+
         private List<List<Button>> buttons = new List<List<Button>>();
         private List<List<int>> ShapeAndColors = new List<List<int>>();
-        private int width, height;
+        
 
+        private int width, height;
+        private int SBx, SBy;
+        private Image SBi;
 
 
         public PlayForm()
         {
             InitializeComponent();
             Play();
+            
         }
 
         private void Play()
@@ -62,35 +67,47 @@ namespace Board_Game
             }
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
 
-            for(int i = 0; i < height; i++)
-            {
-                for(int j = 0; j < width; j++)
-                {
+            //for(int i = 0; i < height; i++)
+            //{
+            //    for(int j = 0; j < width; j++)
+            //    {
                     
 
-                }
-            }
+            //    }
+            //}
 
 
         }
 
-        private void buttons_MouseClick(object sender, MouseEventArgs e)
+        private void Buttons_MouseClick(object sender, MouseEventArgs e)
         {
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < width; j++)
                 {
-                    if (sender == buttons[i][j])
+                    if (sender == buttons[i][j] && ShapeAndColors[i][j] != -1)
                     {
-                        buttons[i][j].BackColor=Color.Black;
+                        EnableEmptyButtons(width, height);
+                        buttons[i][j].BackColor = Color.Aqua;
+                        SBx = j;
+                        SBy = i;
+                        SBi = buttons[i][j].BackgroundImage;
                     }
-
+                    else if(sender == buttons[i][j] && ShapeAndColors[i][j] == -1)
+                    {
+                        buttons[SBy][SBx].BackgroundImage = null;
+                        buttons[i][j].BackgroundImage = SBi;
+                        buttons[i][j].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+                        DisableEmptyButtons(width, height);
+                        buttons[SBy][SBx].Enabled = false;
+                        ShapeAndColors[SBy][SBx] = -1;
+                        buttons[i][j].Enabled = true;
+                        ShapeAndColors[i][j] = Properties.Resources.shapes.IndexOf((Bitmap)SBi);
+                    }
+                    else
+                        buttons[i][j].BackColor = Color.Azure;
                 }
             }
-
-
-
-            
         }
 
 
@@ -111,7 +128,7 @@ namespace Board_Game
                     
                     this.Controls.Add(buttons[i][j]);
                     buttons[i][j].Name = i + " " + j;
-                    this.buttons[i][j].MouseClick += new System.Windows.Forms.MouseEventHandler(this.buttons_MouseClick);///////////////////
+                    this.buttons[i][j].MouseClick += new System.Windows.Forms.MouseEventHandler(this.Buttons_MouseClick);///////////////////
                     buttons[i][j].Location = new Point(locx, locy);
                     buttons[i][j].Size = new Size(50, 50);
                     buttons[i][j].BackColor= Color.Azure;
@@ -150,6 +167,17 @@ namespace Board_Game
                 {
                     if (ShapeAndColors[i][j] == -1)
                         buttons[i][j].Enabled = false;
+                }
+            }
+        }
+        private void EnableEmptyButtons(int width, int height)
+        {
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                {
+                    if (ShapeAndColors[i][j] == -1)
+                        buttons[i][j].Enabled = true;
                 }
             }
         }
