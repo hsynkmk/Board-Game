@@ -74,7 +74,7 @@
             "Custom"});
             this.difficultyCheckedListBox.Location = new System.Drawing.Point(113, 123);
             this.difficultyCheckedListBox.Name = "difficultyCheckedListBox";
-            this.difficultyCheckedListBox.Size = new System.Drawing.Size(155, 85);
+            this.difficultyCheckedListBox.Size = new System.Drawing.Size(155, 68);
             this.difficultyCheckedListBox.TabIndex = 2;
             this.difficultyCheckedListBox.SelectedIndexChanged += new System.EventHandler(this.difficultyCheckedListBox_SelectedIndexChanged);
             // 
@@ -100,12 +100,12 @@
             "Round"});
             this.shapeCheckedListBox.Location = new System.Drawing.Point(356, 123);
             this.shapeCheckedListBox.Name = "shapeCheckedListBox";
-            this.shapeCheckedListBox.Size = new System.Drawing.Size(150, 85);
+            this.shapeCheckedListBox.Size = new System.Drawing.Size(150, 51);
             this.shapeCheckedListBox.TabIndex = 4;
             // 
             // widthTextbox
             // 
-            this.widthTextbox.Location = new System.Drawing.Point(113, 214);
+            this.widthTextbox.Location = new System.Drawing.Point(115, 197);
             this.widthTextbox.Name = "widthTextbox";
             this.widthTextbox.Size = new System.Drawing.Size(39, 22);
             this.widthTextbox.TabIndex = 5;
@@ -113,7 +113,7 @@
             // 
             // heightTextbox
             // 
-            this.heightTextbox.Location = new System.Drawing.Point(177, 214);
+            this.heightTextbox.Location = new System.Drawing.Point(179, 197);
             this.heightTextbox.Name = "heightTextbox";
             this.heightTextbox.Size = new System.Drawing.Size(39, 22);
             this.heightTextbox.TabIndex = 6;
@@ -149,10 +149,10 @@
             this.colorCheckedListBox.Items.AddRange(new object[] {
             "Blue",
             "Red",
-            "Brown"});
+            "Purple"});
             this.colorCheckedListBox.Location = new System.Drawing.Point(550, 123);
             this.colorCheckedListBox.Name = "colorCheckedListBox";
-            this.colorCheckedListBox.Size = new System.Drawing.Size(150, 85);
+            this.colorCheckedListBox.Size = new System.Drawing.Size(150, 51);
             this.colorCheckedListBox.TabIndex = 9;
             // 
             // colorLabel
