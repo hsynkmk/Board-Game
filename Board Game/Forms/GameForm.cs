@@ -55,5 +55,7 @@ namespace Board_Game
             new PlayForm().Show();
             this.Hide();
         }
+
+
     }
 }
