@@ -26,7 +26,7 @@ namespace Board_Game
         private int SBx, SBy;
         private Image SBi;
         private int PointSum;
-        
+
 
 
         public PlayForm()
@@ -117,59 +117,7 @@ namespace Board_Game
             }
         }
 
-        bool IsGetPoint(List<List<int>> ShapeAndColors)
-        {
-            int track;
 
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width - 5; j++)
-                {
-                    track = ShapeAndColors[i][j];
-                    for (int t = j + 1; t < j + 5; t++)
-                    {
-                        if (ShapeAndColors[i][t] != track || track == -1)
-                            break;
-                        if (t == j + 4)
-                        {
-                            for (t = j; t < j + 5; t++)
-                            {
-                                ShapeAndColors[i][t] = -1;
-                                buttons[i][t].BackgroundImage = null;
-                            }
-
-                            return true;
-                        }
-
-                    }
-                }
-            }
-
-            for (int i = 0; i < width; i++)
-            {
-                for (int j = 0; j < height - 5; j++)
-                {
-                    track = ShapeAndColors[j][i];
-                    for (int t = j + 1; t < j + 5; t++)
-                    {
-                        if (ShapeAndColors[t][j] != track || track == -1)
-                            break;
-
-                        if (t == i + 4)
-                        {
-                            for (t = i; t < i + 5; t++)
-                            {
-                                ShapeAndColors[t][i] = -1;
-                                buttons[t][j].BackgroundImage = null;
-                            }
-
-                            return true;
-                        }
-                    }
-                }
-            }
-            return false;
-        }
 
         private void PointThreeShape(int width, int height)
         {
@@ -224,9 +172,71 @@ namespace Board_Game
         }
 
 
+        bool IsGetPoint(List<List<int>> ShapeAndColors)
+        {
+            int track;
+
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j <= width - 5; j++)
+                {
+                    track = ShapeAndColors[i][j];
+                    for (int t = j + 1; t <= j + 4; t++)
+                    {
+                        if (ShapeAndColors[i][t] != track || track == -1)
+                            break;
+                        if (t == j + 4)
+                        {
+                            for (t = j; t <= j + 4; t++)
+                            {
+                                ShapeAndColors[i][t] = -1;
+                                buttons[i][t].BackgroundImage = null;
+                                buttons[i][t].Enabled = false;
+                            }
+                            return true;
+                        }
+
+                    }
+                }
+            }
+
+            for (int j = 0; j < width; j++)
+            {
+                for (int i = 0; i <= height - 5; i++)
+                {
+                    track = ShapeAndColors[i][j];
+                    for (int t = i + 1; t <= i + 4; t++)
+                    {
+                        if (ShapeAndColors[t][j] != track || track == -1)
+                            break;
+                        if (t == i + 4)
+                        {
+                            for (t = i; t <= i + 4; t++)
+                            {
+                                ShapeAndColors[t][j] = -1;
+                                buttons[t][j].BackgroundImage = null;
+                                buttons[t][j].Enabled = false;
+                            }
+                            return true;
+                        }
+                    }
+                }
+            }
+            return false;
+        }
 
 
+        bool IsGameOver()
+        {
 
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < width; j++)
+                    if (ShapeAndColors[i][j] == -1)
+                        return false;
+            }
+            return true;
+        }
 
         private void Buttons_MouseClick(object sender, MouseEventArgs e)
         {
@@ -243,7 +253,7 @@ namespace Board_Game
                         SBi = buttons[i][j].BackgroundImage;
                         //EnableEmptyButtons(width, height);
                         DisableEmptyButtons(width, height);
-                        minDistance(ShapeAndColors, false, SBy, SBx);
+                        ShortestAndAvailable(ShapeAndColors, false, SBy, SBx);
 
                     }
                     else if (sender == buttons[i][j] && ShapeAndColors[i][j] == -1)
@@ -258,7 +268,7 @@ namespace Board_Game
                         buttons[i][j].Enabled = true;
                         ShapeAndColors[i][j] = Properties.Resources.shapes.IndexOf((Bitmap)SBi);
 
-                        minDistance(ShapeAndColors, true, i, j);
+                        ShortestAndAvailable(ShapeAndColors, true, i, j);
                         DisableEmptyButtons(width, height);
 
                         if (IsGetPoint(ShapeAndColors))
@@ -271,11 +281,13 @@ namespace Board_Game
                                 PointSum += 5;
                             else
                                 PointSum += 2;
+                            MessageBox.Show("Point: " + PointSum.ToString());
                         }
 
                         else
                             PointThreeShape(width, height);
-
+                        if (IsGameOver())
+                            MessageBox.Show("game over");
                     }
                     else
                         buttons[i][j].BackColor = Color.Azure;
@@ -299,16 +311,18 @@ namespace Board_Game
             public int row;
             public int col;
             public int dist;
+            
             public QItem(int x, int y, int w)
             {
                 this.row = x;
                 this.col = y;
                 this.dist = w;
+
             }
         }
 
 
-        void minDistance(List<List<int>> grid, bool move, int row, int column)
+        void ShortestAndAvailable(List<List<int>> grid, bool move, int row, int column)
         {
             QItem source = new QItem(0, 0, 0);
 
@@ -328,6 +342,9 @@ namespace Board_Game
                     {
                         visited[i][j] = false;
                     }
+
+                     if(move==true)
+                        visited[row][column] = false;
 
                     // Finding source
 
@@ -349,12 +366,12 @@ namespace Board_Game
                 q.Dequeue();
 
                 // Destination found;
-                //grid[p.row][p.col] == 'd' && move == true)
-                //////////////////if (p.row == row && p.col == column && move == true)
-                //////////////////{
-                //////////////////    MessageBox.Show(p.dist.ToString());
-                //////////////////    //return p.dist;
-                //////////////////}
+                if (p.row == row && p.col == column && move == true)
+                {
+                    MessageBox.Show("Step: " + p.dist.ToString());
+                    return;
+                    //return p.dist;
+                }
 
                 // moving up
                 if (p.row - 1 >= 0 && visited[p.row - 1][p.col] == false)
