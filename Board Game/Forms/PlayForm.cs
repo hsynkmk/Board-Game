@@ -130,14 +130,14 @@ namespace Board_Game
 
                 int rand_x = rd.Next(0, width);
                 int rand_y = rd.Next(0, height);
-                int rand_shape = rd.Next(0, 9);
+                int rand_shape = rd.Next(0, UserClass.ShapeAndColorPref().Count());
 
                 if (ShapeAndColors[rand_x][rand_y] == -1)
                 {
-                    ShapeAndColors[rand_x][rand_y] = rand_shape;
+                    ShapeAndColors[rand_x][rand_y] = UserClass.SClist[rand_shape];
 
                     buttons[rand_x][rand_y].Enabled = true;
-                    buttons[rand_x][rand_y].BackgroundImage = Properties.Resources.shapes[rand_shape];
+                    buttons[rand_x][rand_y].BackgroundImage = Properties.Resources.shapes[UserClass.SClist[rand_shape]];
                     buttons[rand_x][rand_y].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 }
                 else
@@ -251,9 +251,8 @@ namespace Board_Game
                         SBx = j;
                         SBy = i;
                         SBi = buttons[i][j].BackgroundImage;
-                        //EnableEmptyButtons(width, height);
                         DisableEmptyButtons(width, height);
-                        ShortestAndAvailable(ShapeAndColors, false, SBy, SBx);
+                        ShortestAndAvailable(false, SBy, SBx);
 
                     }
                     else if (sender == buttons[i][j] && ShapeAndColors[i][j] == -1)
@@ -268,7 +267,7 @@ namespace Board_Game
                         buttons[i][j].Enabled = true;
                         ShapeAndColors[i][j] = Properties.Resources.shapes.IndexOf((Bitmap)SBi);
 
-                        ShortestAndAvailable(ShapeAndColors, true, i, j);
+                        ShortestAndAvailable(true, i, j);
                         DisableEmptyButtons(width, height);
 
                         if (IsGetPoint(ShapeAndColors))
@@ -311,20 +310,21 @@ namespace Board_Game
             public int row;
             public int col;
             public int dist;
-            
-            public QItem(int x, int y, int w)
+            public string dir;
+            public QItem(int x, int y, int w, string d)
             {
                 this.row = x;
                 this.col = y;
                 this.dist = w;
+                this.dir = d;
 
             }
         }
 
 
-        void ShortestAndAvailable(List<List<int>> grid, bool move, int row, int column)
+        void ShortestAndAvailable(bool move, int row, int column)
         {
-            QItem source = new QItem(0, 0, 0);
+            QItem source = new QItem(0, 0, 0, "");
 
             // To keep track of visited QItems. Marking
             // blocked cells as visited.
@@ -334,7 +334,7 @@ namespace Board_Game
             {
                 for (int j = 0; j < width; j++)
                 {
-                    if (grid[i][j] != -1)
+                    if (ShapeAndColors[i][j] != -1)
                     {
                         visited[i][j] = true;
                     }
@@ -365,8 +365,10 @@ namespace Board_Game
                 QItem p = q.Peek();
                 q.Dequeue();
 
-                // Destination found;
-                if (p.row == row && p.col == column && move == true)
+
+
+                    // Destination found;
+                    if (p.row == row && p.col == column && move == true)
                 {
                     MessageBox.Show("Step: " + p.dist.ToString());
                     return;
@@ -376,7 +378,7 @@ namespace Board_Game
                 // moving up
                 if (p.row - 1 >= 0 && visited[p.row - 1][p.col] == false)
                 {
-                    q.Enqueue(new QItem(p.row - 1, p.col, p.dist + 1));
+                    q.Enqueue(new QItem(p.row - 1, p.col, p.dist + 1, "up"));
                     visited[p.row - 1][p.col] = true;
                     buttons[p.row - 1][p.col].Enabled = true;
                 }
@@ -384,7 +386,7 @@ namespace Board_Game
                 // moving down
                 if (p.row + 1 < height && visited[p.row + 1][p.col] == false)
                 {
-                    q.Enqueue(new QItem(p.row + 1, p.col, p.dist + 1));
+                    q.Enqueue(new QItem(p.row + 1, p.col, p.dist + 1, "down"));
                     visited[p.row + 1][p.col] = true;
                     buttons[p.row + 1][p.col].Enabled = true;
                 }
@@ -392,7 +394,7 @@ namespace Board_Game
                 // moving left
                 if (p.col - 1 >= 0 && visited[p.row][p.col - 1] == false)
                 {
-                    q.Enqueue(new QItem(p.row, p.col - 1, p.dist + 1));
+                    q.Enqueue(new QItem(p.row, p.col - 1, p.dist + 1, "left"));
                     visited[p.row][p.col - 1] = true;
                     buttons[p.row][p.col - 1].Enabled = true;
                 }
@@ -400,7 +402,7 @@ namespace Board_Game
                 // moving right
                 if (p.col + 1 < width && visited[p.row][p.col + 1] == false)
                 {
-                    q.Enqueue(new QItem(p.row, p.col + 1, p.dist + 1));
+                    q.Enqueue(new QItem(p.row, p.col + 1, p.dist + 1, "right"));
                     visited[p.row][p.col + 1] = true;
                     buttons[p.row][p.col + 1].Enabled = true;
                 }
