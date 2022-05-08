@@ -19,7 +19,7 @@ namespace Board_Game
 
         private List<List<Button>> buttons = new List<List<Button>>();
         private List<List<int>> ShapeAndColors = new List<List<int>>();
-        ////////private List<List<int>> ShortestPath = new List<List<int>>();
+
 
 
         private int width, height;
@@ -71,17 +71,6 @@ namespace Board_Game
                 PointThreeShape(width, height);
             }
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-
-            //for(int i = 0; i < height; i++)
-            //{
-            //    for(int j = 0; j < width; j++)
-            //    {
-
-
-            //    }
-            //}
-
-
         }
 
 
@@ -130,21 +119,20 @@ namespace Board_Game
 
                 int rand_x = rd.Next(0, width);
                 int rand_y = rd.Next(0, height);
-                int rand_shape = rd.Next(0, 9);
+                int rand_shape = rd.Next(0, UserClass.ShapeAndColorPref().Count() - 1);
 
                 if (ShapeAndColors[rand_x][rand_y] == -1)
                 {
-                    ShapeAndColors[rand_x][rand_y] = rand_shape;
+                    ShapeAndColors[rand_x][rand_y] = UserClass.SClist[rand_shape];
 
                     buttons[rand_x][rand_y].Enabled = true;
-                    buttons[rand_x][rand_y].BackgroundImage = Properties.Resources.shapes[rand_shape];
+                    buttons[rand_x][rand_y].BackgroundImage = Properties.Resources.shapes[UserClass.SClist[rand_shape]];
                     buttons[rand_x][rand_y].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 }
                 else
                     i--;
 
             }
-
         }
 
         private void DisableEmptyButtons(int width, int height)
@@ -251,9 +239,8 @@ namespace Board_Game
                         SBx = j;
                         SBy = i;
                         SBi = buttons[i][j].BackgroundImage;
-                        //EnableEmptyButtons(width, height);
                         DisableEmptyButtons(width, height);
-                        ShortestAndAvailable(ShapeAndColors, false, SBy, SBx);
+                        ShortestAndAvailable(false, SBy, SBx);
 
                     }
                     else if (sender == buttons[i][j] && ShapeAndColors[i][j] == -1)
@@ -268,7 +255,7 @@ namespace Board_Game
                         buttons[i][j].Enabled = true;
                         ShapeAndColors[i][j] = Properties.Resources.shapes.IndexOf((Bitmap)SBi);
 
-                        ShortestAndAvailable(ShapeAndColors, true, i, j);
+                        ShortestAndAvailable(true, i, j);
                         DisableEmptyButtons(width, height);
 
                         if (IsGetPoint(ShapeAndColors))
@@ -281,13 +268,12 @@ namespace Board_Game
                                 PointSum += 5;
                             else
                                 PointSum += 2;
-                            MessageBox.Show("Point: " + PointSum.ToString());
                         }
 
                         else
                             PointThreeShape(width, height);
                         if (IsGameOver())
-                            MessageBox.Show("game over");
+                            MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString());
                     }
                     else
                         buttons[i][j].BackColor = Color.Azure;
@@ -311,19 +297,25 @@ namespace Board_Game
             public int row;
             public int col;
             public int dist;
-            
             public QItem(int x, int y, int w)
             {
                 this.row = x;
                 this.col = y;
                 this.dist = w;
-
             }
         }
 
 
-        void ShortestAndAvailable(List<List<int>> grid, bool move, int row, int column)
+
+        void ShortestAndAvailable(bool move, int row, int column)
         {
+            int[,] WeightPath = new int[height, width];             //for shortest path
+            for (int i = 0; i < height; i++)
+                for (int j = 0; j < width; j++)
+                    WeightPath[i, j] = int.MaxValue;
+
+
+
             QItem source = new QItem(0, 0, 0);
 
             // To keep track of visited QItems. Marking
@@ -334,7 +326,7 @@ namespace Board_Game
             {
                 for (int j = 0; j < width; j++)
                 {
-                    if (grid[i][j] != -1)
+                    if (ShapeAndColors[i][j] != -1)
                     {
                         visited[i][j] = true;
                     }
@@ -343,7 +335,7 @@ namespace Board_Game
                         visited[i][j] = false;
                     }
 
-                     if(move==true)
+                    if (move == true)
                         visited[row][column] = false;
 
                     // Finding source
@@ -365,10 +357,12 @@ namespace Board_Game
                 QItem p = q.Peek();
                 q.Dequeue();
 
+
+
                 // Destination found;
                 if (p.row == row && p.col == column && move == true)
                 {
-                    MessageBox.Show("Step: " + p.dist.ToString());
+                    //MessageBox.Show("Step: " + p.dist.ToString());
                     return;
                     //return p.dist;
                 }
@@ -379,6 +373,7 @@ namespace Board_Game
                     q.Enqueue(new QItem(p.row - 1, p.col, p.dist + 1));
                     visited[p.row - 1][p.col] = true;
                     buttons[p.row - 1][p.col].Enabled = true;
+                    WeightPath[p.row - 1, p.col] = p.dist + 1;
                 }
 
                 // moving down
@@ -387,6 +382,7 @@ namespace Board_Game
                     q.Enqueue(new QItem(p.row + 1, p.col, p.dist + 1));
                     visited[p.row + 1][p.col] = true;
                     buttons[p.row + 1][p.col].Enabled = true;
+                    WeightPath[p.row + 1, p.col] = p.dist + 1;
                 }
 
                 // moving left
@@ -395,6 +391,7 @@ namespace Board_Game
                     q.Enqueue(new QItem(p.row, p.col - 1, p.dist + 1));
                     visited[p.row][p.col - 1] = true;
                     buttons[p.row][p.col - 1].Enabled = true;
+                    WeightPath[p.row, p.col - 1] = p.dist + 1;
                 }
 
                 // moving right
@@ -403,9 +400,9 @@ namespace Board_Game
                     q.Enqueue(new QItem(p.row, p.col + 1, p.dist + 1));
                     visited[p.row][p.col + 1] = true;
                     buttons[p.row][p.col + 1].Enabled = true;
+                    WeightPath[p.row, p.col + 1] = p.dist + 1;
                 }
             }
-
         }
     }
 

@@ -20,6 +20,8 @@ namespace Board_Game
 
         public static XDocument doc = XDocument.Load(@"../../UserData.xml");
 
+        public static List<int> SClist = new List<int>();
+
 
         public static bool xmlConnection(string username, string password)
         {
@@ -62,6 +64,46 @@ namespace Board_Game
         {
             Xelem.Element(category).Value = data;
             doc.Save(@"../../UserData.xml");
+        }
+
+        public static List<int> ShapeAndColorPref()
+        {
+
+
+            string col = Xelem.Element("color").Value;
+            string sha = Xelem.Element("shape").Value;
+
+
+            if (sha[0] == '1')
+            {
+                if (col[0] == '1')
+                    SClist.Add(0);
+                if (col[1] == '1')
+                    SClist.Add(1);
+                if (col[2] == '1')
+                    SClist.Add(2);
+            }
+            if (sha[1] == '1')
+            {
+                if (col[0] == '1')
+                    SClist.Add(3);
+                if (col[1] == '1')
+                    SClist.Add(4);
+                if (col[2] == '1')
+                    SClist.Add(5);
+            }
+            if (sha[2] == '1')
+            {
+                if (col[0] == '1')
+                    SClist.Add(6);
+                if (col[1] == '1')
+                    SClist.Add(7);
+                if (col[2] == '1')
+                    SClist.Add(8);
+            }
+
+
+            return SClist;
         }
     }
 }

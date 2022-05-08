@@ -39,10 +39,10 @@
     <city></city>
     <country></country>
     <email></email>
-    <difficulty>0100</difficulty>
+    <difficulty>0010</difficulty>
     <customDifficultyWidth>5</customDifficultyWidth>
     <customDifficultyHeight>20</customDifficultyHeight>
-    <shape>100</shape>
-    <color>100</color>
+    <shape>101</shape>
+    <color>011</color>
   </user>
 </Users>

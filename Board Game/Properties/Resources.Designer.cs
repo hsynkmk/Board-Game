@@ -24,7 +24,7 @@ namespace Board_Game.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        public static List<System.Drawing.Bitmap> shapes = new List<System.Drawing.Bitmap>() { blue_circle, blue_square, blue_triangle, red_circle, red_square, red_triangle, purple_circle, purple_square, purple_triangle };
+        public static List<System.Drawing.Bitmap> shapes = new List<System.Drawing.Bitmap>() { blue_square, red_square, purple_square, blue_triangle, red_triangle, purple_triangle, blue_circle, red_circle, purple_circle };
 
         private static global::System.Resources.ResourceManager resourceMan;
         
