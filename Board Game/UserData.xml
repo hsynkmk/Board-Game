@@ -39,7 +39,7 @@
     <city></city>
     <country></country>
     <email></email>
-    <difficulty>1000</difficulty>
+    <difficulty>0100</difficulty>
     <customDifficultyWidth>5</customDifficultyWidth>
     <customDifficultyHeight>20</customDifficultyHeight>
     <shape>100</shape>

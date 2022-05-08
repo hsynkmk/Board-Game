@@ -28,17 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.playButton = new System.Windows.Forms.Button();
             this.manageButton = new System.Windows.Forms.Button();
             this.logoutButton = new System.Windows.Forms.Button();
             this.profileButton = new System.Windows.Forms.Button();
             this.settingsButton = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.gameNameLabel = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
+            this.settingsInfoabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -50,6 +56,7 @@
             // splitContainer1.Panel1
             // 
             this.splitContainer1.Panel1.BackColor = System.Drawing.Color.DarkBlue;
+            this.splitContainer1.Panel1.Controls.Add(this.pictureBox1);
             this.splitContainer1.Panel1.Controls.Add(this.playButton);
             this.splitContainer1.Panel1.Controls.Add(this.manageButton);
             this.splitContainer1.Panel1.Controls.Add(this.logoutButton);
@@ -58,10 +65,24 @@
             // 
             // splitContainer1.Panel2
             // 
+            this.splitContainer1.Panel2.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.splitContainer1.Panel2.Controls.Add(this.settingsInfoabel);
+            this.splitContainer1.Panel2.Controls.Add(this.textBox1);
+            this.splitContainer1.Panel2.Controls.Add(this.gameNameLabel);
             this.splitContainer1.Panel2.Controls.Add(this.exitButton);
             this.splitContainer1.Size = new System.Drawing.Size(1000, 500);
             this.splitContainer1.SplitterDistance = 264;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(3, 32);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(258, 187);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 2;
+            this.pictureBox1.TabStop = false;
             // 
             // playButton
             // 
@@ -82,7 +103,7 @@
             this.manageButton.BackColor = System.Drawing.Color.GhostWhite;
             this.manageButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.manageButton.Location = new System.Drawing.Point(-2, 162);
+            this.manageButton.Location = new System.Drawing.Point(-2, 211);
             this.manageButton.Name = "manageButton";
             this.manageButton.Size = new System.Drawing.Size(263, 47);
             this.manageButton.TabIndex = 2;
@@ -134,8 +155,34 @@
             this.settingsButton.UseVisualStyleBackColor = false;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBox1.Font = new System.Drawing.Font("Comic Sans MS", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.textBox1.Location = new System.Drawing.Point(15, 105);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(717, 52);
+            this.textBox1.TabIndex = 12;
+            this.textBox1.Text = "Put five boxes of the same color and shape side by side (vertical or horizontally" +
+    ")";
+            // 
+            // gameNameLabel
+            // 
+            this.gameNameLabel.AutoSize = true;
+            this.gameNameLabel.BackColor = System.Drawing.Color.Transparent;
+            this.gameNameLabel.Font = new System.Drawing.Font("Segoe Print", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.gameNameLabel.ForeColor = System.Drawing.Color.Yellow;
+            this.gameNameLabel.Location = new System.Drawing.Point(231, 9);
+            this.gameNameLabel.Name = "gameNameLabel";
+            this.gameNameLabel.Size = new System.Drawing.Size(206, 71);
+            this.gameNameLabel.TabIndex = 11;
+            this.gameNameLabel.Text = "Welcome";
+            // 
             // exitButton
             // 
+            this.exitButton.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
             this.exitButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.exitButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.exitButton.Location = new System.Drawing.Point(457, 441);
@@ -146,6 +193,17 @@
             this.exitButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
+            // 
+            // settingsInfoabel
+            // 
+            this.settingsInfoabel.AutoSize = true;
+            this.settingsInfoabel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.settingsInfoabel.ForeColor = System.Drawing.Color.Yellow;
+            this.settingsInfoabel.Location = new System.Drawing.Point(270, 161);
+            this.settingsInfoabel.Name = "settingsInfoabel";
+            this.settingsInfoabel.Size = new System.Drawing.Size(146, 29);
+            this.settingsInfoabel.TabIndex = 13;
+            this.settingsInfoabel.Text = "Your Settings";
             // 
             // GameForm
             // 
@@ -160,8 +218,10 @@
             this.Text = "GameForm";
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -175,5 +235,9 @@
         private System.Windows.Forms.Button manageButton;
         private System.Windows.Forms.Button logoutButton;
         private System.Windows.Forms.Button playButton;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label gameNameLabel;
+        private System.Windows.Forms.Label settingsInfoabel;
     }
 }
