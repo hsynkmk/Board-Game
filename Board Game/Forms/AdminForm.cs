@@ -97,7 +97,7 @@ namespace Board_Game
         {
             bool isValid()
             {
-                foreach (XElement elem in UserClass.doc.Descendants("Admin"))
+                foreach (XElement elem in GlobalFunctions.doc.Descendants("Admin"))
                 {
                     if (elem.Element("username").Value == usernameTextbox.Text)
                     {
@@ -106,7 +106,7 @@ namespace Board_Game
                     }
                 }
 
-                foreach (XElement elem in UserClass.doc.Descendants("user"))
+                foreach (XElement elem in GlobalFunctions.doc.Descendants("user"))
                 {
                     if (elem.Element("username").Value == usernameTextbox.Text)
                     {
@@ -137,7 +137,7 @@ namespace Board_Game
                         hash = adminDataGridView.CurrentRow.Cells[1].Value.ToString();
 
                     
-                    foreach (XElement elem in UserClass.doc.Descendants("Admin"))
+                    foreach (XElement elem in GlobalFunctions.doc.Descendants("Admin"))
                     {
                         if (elem.Element("username").Value == usernameTextbox.Text)
                         {
@@ -149,11 +149,11 @@ namespace Board_Game
                             elem.SetElementValue("city", cityTextbox.Text);
                             elem.SetElementValue("country", countryTextbox.Text);
                             elem.SetElementValue("email", emailTextbox.Text);
-                            UserClass.doc.Save(@"../../UserData.xml");
+                            GlobalFunctions.doc.Save(@"../../UserData.xml");
                         }
                     }
 
-                    foreach (XElement elem in UserClass.doc.Descendants("user"))
+                    foreach (XElement elem in GlobalFunctions.doc.Descendants("user"))
                     {
                         if (elem.Element("username").Value == usernameTextbox.Text)
                         {
@@ -165,7 +165,7 @@ namespace Board_Game
                             elem.SetElementValue("city", cityTextbox.Text);
                             elem.SetElementValue("country", countryTextbox.Text);
                             elem.SetElementValue("email", emailTextbox.Text);
-                            UserClass.doc.Save(@"../../UserData.xml");
+                            GlobalFunctions.doc.Save(@"../../UserData.xml");
 
                         }
                     }
@@ -184,7 +184,7 @@ namespace Board_Game
                             hash = BitConverter.ToString(hashBytes).Replace("-", String.Empty);
                         }
 
-                        UserClass.doc.Element("Users").Add(new XElement("user",
+                        GlobalFunctions.doc.Element("Users").Add(new XElement("user",
                                                new XElement("username", usernameTextbox.Text),
                                                new XElement("password", hash),
                                                new XElement("namesurname", nameSurnameTextbox.Text),
@@ -199,27 +199,27 @@ namespace Board_Game
                                                new XElement("shape", "100"),
                                                new XElement("color", "100")
                                                ));
-                        UserClass.doc.Save(@"../../UserData.xml");
+                        GlobalFunctions.doc.Save(@"../../UserData.xml");
                     }
                 }
                 if (deleteUserButton.BackColor == Color.Blue)
                 {
-                    foreach (XElement elem in UserClass.doc.Descendants("Admin"))
+                    foreach (XElement elem in GlobalFunctions.doc.Descendants("Admin"))
                     {
                         if (elem.Element("username").Value == usernameTextbox.Text)
                         {
                             elem.Remove();
-                            UserClass.doc.Save(@"../../UserData.xml");
+                            GlobalFunctions.doc.Save(@"../../UserData.xml");
                             break;
                         }
                     }
 
-                    foreach (XElement elem in UserClass.doc.Descendants("user"))
+                    foreach (XElement elem in GlobalFunctions.doc.Descendants("user"))
                     {
                         if (elem.Element("username").Value == usernameTextbox.Text)
                         {
                             elem.Remove();
-                            UserClass.doc.Save(@"../../UserData.xml");
+                            GlobalFunctions.doc.Save(@"../../UserData.xml");
                             break;
                         }
                     }

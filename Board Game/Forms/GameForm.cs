@@ -15,7 +15,7 @@ namespace Board_Game
         public GameForm()
         {
             InitializeComponent();
-            if (UserClass.Xelem.Name == "Admin")
+            if (GlobalFunctions.Xelem.Name == "Admin")
                 manageButton.Visible = true;
             else
                 manageButton.Visible = false;
@@ -55,7 +55,5 @@ namespace Board_Game
             new PlayForm().Show();
             this.Hide();
         }
-
-
     }
 }

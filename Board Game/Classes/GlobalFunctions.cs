@@ -11,7 +11,7 @@ using System.Security.Cryptography;
 
 namespace Board_Game
 {
-    public static class UserClass
+    public static class GlobalFunctions
     {
         public static string Username { get; set; }
         public static string Password { get; set; }

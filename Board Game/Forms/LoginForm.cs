@@ -23,7 +23,7 @@ namespace Board_Game
         private void loginButton_Click(object sender, EventArgs e)                                          //Login
         {
 
-            if(UserClass.xmlConnection(usernameTextbox.Text, passwordTextbox.Text))
+            if(GlobalFunctions.xmlConnection(usernameTextbox.Text, passwordTextbox.Text))
             {
                 new GameForm().Show();
                 this.Hide();
