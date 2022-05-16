@@ -55,5 +55,14 @@ namespace Board_Game
             new PlayForm().Show();
             this.Hide();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            this.Enabled = false;
+            HelpForm help = new HelpForm();
+            help.Owner = this;
+            help.Show();
+
+        }
     }
 }

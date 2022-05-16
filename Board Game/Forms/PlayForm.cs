@@ -38,8 +38,9 @@ namespace Board_Game
 
         private void PlayForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            //this.Close();
-            Application.Exit();
+            this.Hide();
+            //Application.Exit();
+            new GameForm().Show();
         }
 
         private void Play()
@@ -136,7 +137,7 @@ namespace Board_Game
                 }
                 else
                     i--;
-
+                IsGetPoint(ShapeAndColors);
             }
         }
 

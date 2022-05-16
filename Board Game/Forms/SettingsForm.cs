@@ -17,6 +17,7 @@ namespace Board_Game
 
         private void setSettings(string category, CheckedListBox clb)
         {
+            GlobalFunctions.SClist.Clear();
             string a = GlobalFunctions.Xelem.Element(category).Value;
             int count = clb.Items.Count;
             int index;
