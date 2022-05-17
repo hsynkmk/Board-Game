@@ -20,6 +20,9 @@ namespace Board_Game
         private List<List<Button>> buttons = new List<List<Button>>();
         private List<List<int>> ShapeAndColors = new List<List<int>>();
 
+        System.Media.SoundPlayer winSound = new System.Media.SoundPlayer(Properties.Resources.WinSound);
+        System.Media.SoundPlayer pointSound = new System.Media.SoundPlayer(Properties.Resources.PointSound);
+        System.Media.SoundPlayer moveSound = new System.Media.SoundPlayer(Properties.Resources.MoveSound);
 
 
         private int Column, Row;
@@ -251,9 +254,11 @@ namespace Board_Game
 
                         ShortestAndAvailable(true, i, j);
                         DisableEmptyButtons(Row, Column);
+                        moveSound.Play();
 
                         if (IsGetPoint(ShapeAndColors))
                         {
+                            pointSound.Play();
                             if (GlobalFunctions.Xelem.Element("difficulty").Value == "1000")
                                 PointSum += 1;
                             else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0100")
@@ -268,6 +273,7 @@ namespace Board_Game
                             PointThreeShape(Row, Column);
                         if (IsGameOver())
                         {
+                            winSound.Play();
                             MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString());
                             this.Close();
                             new GameForm().Show();

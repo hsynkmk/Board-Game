@@ -178,6 +178,9 @@
     <None Include="Resources\red_circle.png" />
     <None Include="Resources\red_square.png" />
     <None Include="Resources\red_triangle.png" />
+    <None Include="Resources\MoveSound.wav" />
+    <None Include="Resources\PointSound.wav" />
+    <None Include="Resources\WinSound.wav" />
     <Content Include="UserData.xml" />
   </ItemGroup>
   <ItemGroup>
