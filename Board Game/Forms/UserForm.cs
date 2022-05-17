@@ -35,7 +35,7 @@ namespace Board_Game
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            if(passwordTextbox.Text != GlobalFunctions.UnHashedPassword)
+            if (passwordTextbox.Text != GlobalFunctions.UnHashedPassword)
             {
                 using (SHA256 sha256Hash = SHA256.Create())
                 {
@@ -71,7 +71,10 @@ namespace Board_Game
 
         private void deleteAccountButton_Click(object sender, EventArgs e)
         {
-            if (confirmPasswordTextbox.Text == GlobalFunctions.UnHashedPassword)
+            if (confirmPasswordTextbox.Text != GlobalFunctions.UnHashedPassword)
+                MessageBox.Show("Wrong password");
+
+            else if (MessageBox.Show("Your account will be deleted permanently.", "DELETE", MessageBoxButtons.OKCancel) == DialogResult.OK && confirmPasswordTextbox.Text == GlobalFunctions.UnHashedPassword)
             {
                 GlobalFunctions.Xelem.Remove();
                 GlobalFunctions.doc.Save(@"../../UserData.xml");
@@ -79,8 +82,6 @@ namespace Board_Game
                 this.Close();
                 new LoginForm().Show();
             }
-            else
-                MessageBox.Show("Wrong password");
         }
     }
 }

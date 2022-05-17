@@ -85,6 +85,7 @@ namespace Board_Game
 
         private void deleteUserButton_Click(object sender, EventArgs e)
         {
+
             usernameTextbox.Enabled = true;
             infoGroupBox.Visible = true;
             deleteUserButton.BackColor = Color.Blue;
@@ -131,12 +132,12 @@ namespace Board_Game
                     }
                     if (passwordTextbox.Text == userDataGridView.CurrentRow.Cells[1].Value.ToString())
                         hash = userDataGridView.CurrentRow.Cells[1].Value.ToString();
-                    
+
 
                     if (passwordTextbox.Text == adminDataGridView.CurrentRow.Cells[1].Value.ToString())
                         hash = adminDataGridView.CurrentRow.Cells[1].Value.ToString();
 
-                    
+
                     foreach (XElement elem in GlobalFunctions.doc.Descendants("Admin"))
                     {
                         if (elem.Element("username").Value == usernameTextbox.Text)
@@ -204,25 +205,29 @@ namespace Board_Game
                 }
                 if (deleteUserButton.BackColor == Color.Blue)
                 {
-                    foreach (XElement elem in GlobalFunctions.doc.Descendants("Admin"))
+                    if (MessageBox.Show($"{usernameTextbox.Text} will be deleted permanently.", "DELETE", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
-                        if (elem.Element("username").Value == usernameTextbox.Text)
+                        foreach (XElement elem in GlobalFunctions.doc.Descendants("Admin"))
                         {
-                            elem.Remove();
-                            GlobalFunctions.doc.Save(@"../../UserData.xml");
-                            break;
+                            if (elem.Element("username").Value == usernameTextbox.Text)
+                            {
+                                elem.Remove();
+                                GlobalFunctions.doc.Save(@"../../UserData.xml");
+                                break;
+                            }
+                        }
+
+                        foreach (XElement elem in GlobalFunctions.doc.Descendants("user"))
+                        {
+                            if (elem.Element("username").Value == usernameTextbox.Text)
+                            {
+                                elem.Remove();
+                                GlobalFunctions.doc.Save(@"../../UserData.xml");
+                                break;
+                            }
                         }
                     }
 
-                    foreach (XElement elem in GlobalFunctions.doc.Descendants("user"))
-                    {
-                        if (elem.Element("username").Value == usernameTextbox.Text)
-                        {
-                            elem.Remove();
-                            GlobalFunctions.doc.Save(@"../../UserData.xml");
-                            break;
-                        }
-                    }
                 }
             }
             catch (Exception ex)
@@ -242,5 +247,5 @@ namespace Board_Game
             this.Close();
             new GameForm().Show();
         }
-    }   
+    }
 }
