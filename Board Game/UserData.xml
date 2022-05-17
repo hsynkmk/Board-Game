@@ -40,9 +40,9 @@
     <country></country>
     <email></email>
     <difficulty>0010</difficulty>
-    <customDifficultyWidth>5</customDifficultyWidth>
-    <customDifficultyHeight>20</customDifficultyHeight>
-    <shape>101</shape>
+    <customDifficultyWidth>6</customDifficultyWidth>
+    <customDifficultyHeight>12</customDifficultyHeight>
+    <shape>111</shape>
     <color>011</color>
   </user>
 </Users>

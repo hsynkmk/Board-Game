@@ -17,7 +17,8 @@ namespace Board_Game
 
         private void setSettings(string category, CheckedListBox clb)
         {
-            string a = UserClass.Xelem.Element(category).Value;
+            GlobalFunctions.SClist.Clear();
+            string a = GlobalFunctions.Xelem.Element(category).Value;
             int count = clb.Items.Count;
             int index;
 
@@ -43,8 +44,8 @@ namespace Board_Game
             //    heightTextbox.Visible=true;
             //}
 
-            widthTextbox.Text = UserClass.Xelem.Element("customDifficultyWidth").Value;
-            heightTextbox.Text = UserClass.Xelem.Element("customDifficultyHeight").Value;
+            widthTextbox.Text = GlobalFunctions.Xelem.Element("customDifficultyWidth").Value;
+            heightTextbox.Text = GlobalFunctions.Xelem.Element("customDifficultyHeight").Value;
         }
 
         private void difficultyCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
@@ -73,7 +74,7 @@ namespace Board_Game
 
         private void settingsExitButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
+            this.Close();
             new GameForm().Show();
         }
 
@@ -83,8 +84,7 @@ namespace Board_Game
 
             string data = "";
 
-            int count = clb.Items.Count;
-            for (int i = 0; i < count; i++)
+            for (int i = 0; i < clb.Items.Count; i++)
             {
                 if (clb.GetItemChecked(i) == true)
                     data += "1";
@@ -92,7 +92,7 @@ namespace Board_Game
                     data += "0";
             }
 
-            UserClass.xmlsave(category, data);
+            GlobalFunctions.xmlsave(category, data);
         }
 
         private void saveButton_Click(object sender, EventArgs e)
@@ -102,8 +102,8 @@ namespace Board_Game
             saveSettings("difficulty", difficultyCheckedListBox);
             saveSettings("shape", shapeCheckedListBox);
             saveSettings("color", colorCheckedListBox);
-            UserClass.xmlsave("customDifficultyWidth", widthTextbox.Text);
-            UserClass.xmlsave("customDifficultyHeight", heightTextbox.Text);
+            GlobalFunctions.xmlsave("customDifficultyWidth", widthTextbox.Text);
+            GlobalFunctions.xmlsave("customDifficultyHeight", heightTextbox.Text);
 
 
             //XElement node = doc.Element("Users").Elements("user").FirstOrDefault(a => a.Element("username").Value == "username1234");

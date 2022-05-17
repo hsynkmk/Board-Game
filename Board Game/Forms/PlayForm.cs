@@ -20,10 +20,13 @@ namespace Board_Game
         private List<List<Button>> buttons = new List<List<Button>>();
         private List<List<int>> ShapeAndColors = new List<List<int>>();
 
+        System.Media.SoundPlayer winSound = new System.Media.SoundPlayer(Properties.Resources.WinSound);
+        System.Media.SoundPlayer pointSound = new System.Media.SoundPlayer(Properties.Resources.PointSound);
+        System.Media.SoundPlayer moveSound = new System.Media.SoundPlayer(Properties.Resources.MoveSound);
 
 
-        private int width, height;
-        private int SBx, SBy;
+        private int Column, Row;
+        private int SBcol, SBrow;
         private Image SBi;
         private int PointSum;
 
@@ -33,42 +36,49 @@ namespace Board_Game
         {
             InitializeComponent();
             Play();
+        }
 
+
+        private void PlayForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            this.Hide();
+            //Application.Exit();
+            new GameForm().Show();
         }
 
         private void Play()
         {
-            if (UserClass.Xelem.Element("difficulty").Value == "1000")
+            if (GlobalFunctions.Xelem.Element("difficulty").Value == "1000")
             {
                 this.ClientSize = new System.Drawing.Size(750, 750);
-                width = height = 15;
+                Column = Row = 15;
                 BoardMaker(15, 15);
                 PointThreeShape(15, 15);
             }
 
-            else if (UserClass.Xelem.Element("difficulty").Value == "0100")
+            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0100")
             {
                 this.ClientSize = new System.Drawing.Size(450, 450);
-                width = height = 9;
+                Column = Row = 9;
                 BoardMaker(9, 9);
                 PointThreeShape(9, 9);
             }
 
-            else if (UserClass.Xelem.Element("difficulty").Value == "0010")
+            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0010")
             {
                 this.ClientSize = new System.Drawing.Size(300, 300);
-                width = height = 6;
+                Column = Row = 6;
                 BoardMaker(6, 6);
                 PointThreeShape(6, 6);
             }
 
-            else
+            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0001")
             {
-                width = int.Parse(UserClass.Xelem.Element("customDifficultyWidth").Value) * 50;
-                height = int.Parse(UserClass.Xelem.Element("customDifficultyHeight").Value) * 50;
-                this.ClientSize = new System.Drawing.Size(width, height);
-                BoardMaker(width, height);
-                PointThreeShape(width, height);
+                Column = int.Parse(GlobalFunctions.Xelem.Element("customDifficultyWidth").Value);
+                Row = int.Parse(GlobalFunctions.Xelem.Element("customDifficultyHeight").Value);
+                this.ClientSize = new System.Drawing.Size(Column * 50, Row * 50);
+                BoardMaker(Row, Column);
+                PointThreeShape(Row, Column);
             }
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
         }
@@ -76,16 +86,16 @@ namespace Board_Game
 
 
 
-        private void BoardMaker(int width, int height)
+        private void BoardMaker(int row, int col)
         {
             int locx = 0;
             int locy = 0;
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < row; i++)
             {
                 buttons.Add(new List<Button>());
                 ShapeAndColors.Add(new List<int>());
 
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < col; j++)
                 {
                     Button newButton = new Button();
                     buttons[i].Add(newButton);
@@ -98,7 +108,6 @@ namespace Board_Game
                     buttons[i][j].Size = new Size(50, 50);
                     buttons[i][j].BackColor = Color.Azure;
 
-
                     locx += 50;
                 }
                 locx = 0;
@@ -108,53 +117,41 @@ namespace Board_Game
 
 
 
-        private void PointThreeShape(int width, int height)
+        private void PointThreeShape(int row, int col)
         {
-            DisableEmptyButtons(width, height);
+            DisableEmptyButtons(row, col);
 
             Random rd = new Random();
 
             for (int i = 0; i < 3; i++)
             {
 
-                int rand_x = rd.Next(0, width);
-                int rand_y = rd.Next(0, height);
-                int rand_shape = rd.Next(0, UserClass.ShapeAndColorPref().Count() - 1);
+                int rand_c = rd.Next(0, col);
+                int rand_r = rd.Next(0, row);
+                int rand_shape = rd.Next(0, GlobalFunctions.ShapeAndColorPref().Count() - 1);
 
-                if (ShapeAndColors[rand_x][rand_y] == -1)
+                if (ShapeAndColors[rand_r][rand_c] == -1)
                 {
-                    ShapeAndColors[rand_x][rand_y] = UserClass.SClist[rand_shape];
+                    ShapeAndColors[rand_r][rand_c] = GlobalFunctions.SClist[rand_shape];
 
-                    buttons[rand_x][rand_y].Enabled = true;
-                    buttons[rand_x][rand_y].BackgroundImage = Properties.Resources.shapes[UserClass.SClist[rand_shape]];
-                    buttons[rand_x][rand_y].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+                    buttons[rand_r][rand_c].Enabled = true;
+                    buttons[rand_r][rand_c].BackgroundImage = Properties.Resources.shapes[GlobalFunctions.SClist[rand_shape]];
+                    buttons[rand_r][rand_c].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 }
                 else
                     i--;
-
+                IsGetPoint(ShapeAndColors);
             }
         }
 
-        private void DisableEmptyButtons(int width, int height)
+        private void DisableEmptyButtons(int row, int col)
         {
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < row; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < col; j++)
                 {
                     if (ShapeAndColors[i][j] == -1)
                         buttons[i][j].Enabled = false;
-                }
-            }
-        }
-
-        private void EnableEmptyButtons(int width, int height)
-        {
-            for (int i = 0; i < height; i++)
-            {
-                for (int j = 0; j < width; j++)
-                {
-                    if (ShapeAndColors[i][j] == -1)
-                        buttons[i][j].Enabled = true;
                 }
             }
         }
@@ -164,9 +161,9 @@ namespace Board_Game
         {
             int track;
 
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < Row; i++)
             {
-                for (int j = 0; j <= width - 5; j++)
+                for (int j = 0; j <= Column - 5; j++)
                 {
                     track = ShapeAndColors[i][j];
                     for (int t = j + 1; t <= j + 4; t++)
@@ -188,9 +185,9 @@ namespace Board_Game
                 }
             }
 
-            for (int j = 0; j < width; j++)
+            for (int j = 0; j < Column; j++)
             {
-                for (int i = 0; i <= height - 5; i++)
+                for (int i = 0; i <= Row - 5; i++)
                 {
                     track = ShapeAndColors[i][j];
                     for (int t = i + 1; t <= i + 4; t++)
@@ -217,9 +214,9 @@ namespace Board_Game
         bool IsGameOver()
         {
 
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < Row; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < Column; j++)
                     if (ShapeAndColors[i][j] == -1)
                         return false;
             }
@@ -228,65 +225,66 @@ namespace Board_Game
 
         private void Buttons_MouseClick(object sender, MouseEventArgs e)
         {
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < Row; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < Column; j++)
                 {
                     if (sender == buttons[i][j] && ShapeAndColors[i][j] != -1)
                     {
 
                         buttons[i][j].BackColor = Color.Aqua;
-                        SBx = j;
-                        SBy = i;
+                        SBcol = j;
+                        SBrow = i;
                         SBi = buttons[i][j].BackgroundImage;
-                        DisableEmptyButtons(width, height);
-                        ShortestAndAvailable(false, SBy, SBx);
+                        DisableEmptyButtons(Row, Column);
+                        ShortestAndAvailable(false, SBrow, SBcol);
 
                     }
                     else if (sender == buttons[i][j] && ShapeAndColors[i][j] == -1)
                     {
-                        buttons[SBy][SBx].BackColor = Color.Azure;
-                        buttons[SBy][SBx].BackgroundImage = null;
+                        buttons[SBrow][SBcol].BackColor = Color.Azure;
+                        buttons[SBrow][SBcol].BackgroundImage = null;
                         buttons[i][j].BackgroundImage = SBi;
                         buttons[i][j].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 
-                        buttons[SBy][SBx].Enabled = false;
-                        ShapeAndColors[SBy][SBx] = -1;
+                        buttons[SBrow][SBcol].Enabled = false;
+                        ShapeAndColors[SBrow][SBcol] = -1;
                         buttons[i][j].Enabled = true;
                         ShapeAndColors[i][j] = Properties.Resources.shapes.IndexOf((Bitmap)SBi);
 
                         ShortestAndAvailable(true, i, j);
-                        DisableEmptyButtons(width, height);
+                        DisableEmptyButtons(Row, Column);
+                        moveSound.Play();
 
                         if (IsGetPoint(ShapeAndColors))
                         {
-                            if (UserClass.Xelem.Element("difficulty").Value == "1000")
+                            pointSound.Play();
+                            if (GlobalFunctions.Xelem.Element("difficulty").Value == "1000")
                                 PointSum += 1;
-                            else if (UserClass.Xelem.Element("difficulty").Value == "0100")
+                            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0100")
                                 PointSum += 3;
-                            else if (UserClass.Xelem.Element("difficulty").Value == "0010")
+                            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0010")
                                 PointSum += 5;
                             else
                                 PointSum += 2;
                         }
 
                         else
-                            PointThreeShape(width, height);
+                            PointThreeShape(Row, Column);
                         if (IsGameOver())
+                        {
+                            winSound.Play();
                             MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString());
+                            this.Close();
+                            new GameForm().Show();
+                        }
+
                     }
                     else
                         buttons[i][j].BackColor = Color.Azure;
                 }
             }
         }
-
-
-
-
-
-
-
 
 
 
@@ -309,9 +307,10 @@ namespace Board_Game
 
         void ShortestAndAvailable(bool move, int row, int column)
         {
-            int[,] WeightPath = new int[height, width];             //for shortest path
-            for (int i = 0; i < height; i++)
-                for (int j = 0; j < width; j++)
+            int[,] WeightPath = new int[Row, Column];             //for shortest path
+
+            for (int i = 0; i < Row; i++)
+                for (int j = 0; j < Column; j++)
                     WeightPath[i, j] = int.MaxValue;
 
 
@@ -320,15 +319,16 @@ namespace Board_Game
 
             // To keep track of visited QItems. Marking
             // blocked cells as visited.
-            bool[][] visited = RectangularArrays.RectangularBoolArray(height, width);
+            bool[][] visited = RectangularArrays.RectangularBoolArray(Row, Column);
 
-            for (int i = 0; i < height; i++)
+            for (int i = 0; i < Row; i++)
             {
-                for (int j = 0; j < width; j++)
+                for (int j = 0; j < Column; j++)
                 {
                     if (ShapeAndColors[i][j] != -1)
                     {
                         visited[i][j] = true;
+                        WeightPath[i, j] = int.MaxValue;
                     }
                     else
                     {
@@ -340,8 +340,8 @@ namespace Board_Game
 
                     // Finding source
 
-                    source.row = SBy;
-                    source.col = SBx;
+                    source.row = SBrow;
+                    source.col = SBcol;
                 }
             }
 
@@ -377,7 +377,7 @@ namespace Board_Game
                 }
 
                 // moving down
-                if (p.row + 1 < height && visited[p.row + 1][p.col] == false)
+                if (p.row + 1 < Row && visited[p.row + 1][p.col] == false)
                 {
                     q.Enqueue(new QItem(p.row + 1, p.col, p.dist + 1));
                     visited[p.row + 1][p.col] = true;
@@ -395,7 +395,7 @@ namespace Board_Game
                 }
 
                 // moving right
-                if (p.col + 1 < width && visited[p.row][p.col + 1] == false)
+                if (p.col + 1 < Column && visited[p.row][p.col + 1] == false)
                 {
                     q.Enqueue(new QItem(p.row, p.col + 1, p.dist + 1));
                     visited[p.row][p.col + 1] = true;
@@ -404,21 +404,19 @@ namespace Board_Game
                 }
             }
         }
-    }
 
-
-
-    internal static class RectangularArrays
-    {
-        public static bool[][] RectangularBoolArray(int size1, int size2)
+        internal static class RectangularArrays
         {
-            bool[][] newArray = new bool[size1][];
-            for (int array1 = 0; array1 < size1; array1++)
+            public static bool[][] RectangularBoolArray(int size1, int size2)
             {
-                newArray[array1] = new bool[size2];
-            }
+                bool[][] newArray = new bool[size1][];
+                for (int array1 = 0; array1 < size1; array1++)
+                {
+                    newArray[array1] = new bool[size2];
+                }
 
-            return newArray;
+                return newArray;
+            }
         }
     }
 }

@@ -36,10 +36,11 @@
             this.logoutButton = new System.Windows.Forms.Button();
             this.profileButton = new System.Windows.Forms.Button();
             this.settingsButton = new System.Windows.Forms.Button();
+            this.settingsInfoabel = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.gameNameLabel = new System.Windows.Forms.Label();
             this.exitButton = new System.Windows.Forms.Button();
-            this.settingsInfoabel = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -66,6 +67,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.BackColor = System.Drawing.Color.DarkGoldenrod;
+            this.splitContainer1.Panel2.Controls.Add(this.button1);
             this.splitContainer1.Panel2.Controls.Add(this.settingsInfoabel);
             this.splitContainer1.Panel2.Controls.Add(this.textBox1);
             this.splitContainer1.Panel2.Controls.Add(this.gameNameLabel);
@@ -155,6 +157,17 @@
             this.settingsButton.UseVisualStyleBackColor = false;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
+            // settingsInfoabel
+            // 
+            this.settingsInfoabel.AutoSize = true;
+            this.settingsInfoabel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.settingsInfoabel.ForeColor = System.Drawing.Color.Yellow;
+            this.settingsInfoabel.Location = new System.Drawing.Point(270, 161);
+            this.settingsInfoabel.Name = "settingsInfoabel";
+            this.settingsInfoabel.Size = new System.Drawing.Size(146, 29);
+            this.settingsInfoabel.TabIndex = 13;
+            this.settingsInfoabel.Text = "Your Settings";
+            // 
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.DarkGoldenrod;
@@ -194,16 +207,19 @@
             this.exitButton.UseVisualStyleBackColor = true;
             this.exitButton.Click += new System.EventHandler(this.exitButton_Click);
             // 
-            // settingsInfoabel
+            // button1
             // 
-            this.settingsInfoabel.AutoSize = true;
-            this.settingsInfoabel.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.settingsInfoabel.ForeColor = System.Drawing.Color.Yellow;
-            this.settingsInfoabel.Location = new System.Drawing.Point(270, 161);
-            this.settingsInfoabel.Name = "settingsInfoabel";
-            this.settingsInfoabel.Size = new System.Drawing.Size(146, 29);
-            this.settingsInfoabel.TabIndex = 13;
-            this.settingsInfoabel.Text = "Your Settings";
+            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
+            this.button1.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(650, 369);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(70, 39);
+            this.button1.TabIndex = 14;
+            this.button1.Text = "Help";
+            this.button1.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // GameForm
             // 
@@ -239,5 +255,6 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label gameNameLabel;
         private System.Windows.Forms.Label settingsInfoabel;
+        private System.Windows.Forms.Button button1;
     }
 }

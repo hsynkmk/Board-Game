@@ -7,11 +7,10 @@
 //     the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-using System;
-using System.Collections.Generic;
+
 namespace Board_Game.Properties {
     using System;
-    
+    using System.Collections.Generic;
     
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
@@ -93,6 +92,24 @@ namespace Board_Game.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream MoveSound {
+            get {
+                return ResourceManager.GetStream("MoveSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream PointSound {
+            get {
+                return ResourceManager.GetStream("PointSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap purple_circle {
@@ -149,6 +166,15 @@ namespace Board_Game.Properties {
             get {
                 object obj = ResourceManager.GetObject("red_triangle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream WinSound {
+            get {
+                return ResourceManager.GetStream("WinSound", resourceCulture);
             }
         }
     }

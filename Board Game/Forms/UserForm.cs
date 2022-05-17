@@ -21,21 +21,21 @@ namespace Board_Game
 
         private void UserForm_Load(object sender, EventArgs e)
         {
-            usernameHeadLabel.Text = UserClass.Xelem.Element("username").Value;
+            usernameHeadLabel.Text = GlobalFunctions.Xelem.Element("username").Value;
 
-            usernameTextbox.Text = UserClass.Xelem.Element("username").Value;
-            passwordTextbox.Text = UserClass.UnHashedPassword;
-            nameSurnameTextbox.Text = UserClass.Xelem.Element("namesurname").Value;
-            phoneNumberTextbox.Text = UserClass.Xelem.Element("phonenumber").Value;
-            addressTextbox.Text = UserClass.Xelem.Element("address").Value;
-            cityTextbox.Text = UserClass.Xelem.Element("city").Value;
-            countryTextbox.Text = UserClass.Xelem.Element("country").Value;
-            emailTextbox.Text = UserClass.Xelem.Element("email").Value;
+            usernameTextbox.Text = GlobalFunctions.Xelem.Element("username").Value;
+            passwordTextbox.Text = GlobalFunctions.UnHashedPassword;
+            nameSurnameTextbox.Text = GlobalFunctions.Xelem.Element("namesurname").Value;
+            phoneNumberTextbox.Text = GlobalFunctions.Xelem.Element("phonenumber").Value;
+            addressTextbox.Text = GlobalFunctions.Xelem.Element("address").Value;
+            cityTextbox.Text = GlobalFunctions.Xelem.Element("city").Value;
+            countryTextbox.Text = GlobalFunctions.Xelem.Element("country").Value;
+            emailTextbox.Text = GlobalFunctions.Xelem.Element("email").Value;
         }
 
         private void updateButton_Click(object sender, EventArgs e)
         {
-            if(passwordTextbox.Text != UserClass.UnHashedPassword)
+            if (passwordTextbox.Text != GlobalFunctions.UnHashedPassword)
             {
                 using (SHA256 sha256Hash = SHA256.Create())
                 {
@@ -45,15 +45,15 @@ namespace Board_Game
                 }
             }
 
-            if (confirmPasswordTextbox.Text == UserClass.UnHashedPassword)
+            if (confirmPasswordTextbox.Text == GlobalFunctions.UnHashedPassword)
             {
-                UserClass.xmlsave("password", passwordTextbox.Text);
-                UserClass.xmlsave("namesurname", nameSurnameTextbox.Text);
-                UserClass.xmlsave("phonenumber", phoneNumberTextbox.Text);
-                UserClass.xmlsave("address", addressTextbox.Text);
-                UserClass.xmlsave("city", cityTextbox.Text);
-                UserClass.xmlsave("country", countryTextbox.Text);
-                UserClass.xmlsave("email", emailTextbox.Text);
+                GlobalFunctions.xmlsave("password", passwordTextbox.Text);
+                GlobalFunctions.xmlsave("namesurname", nameSurnameTextbox.Text);
+                GlobalFunctions.xmlsave("phonenumber", phoneNumberTextbox.Text);
+                GlobalFunctions.xmlsave("address", addressTextbox.Text);
+                GlobalFunctions.xmlsave("city", cityTextbox.Text);
+                GlobalFunctions.xmlsave("country", countryTextbox.Text);
+                GlobalFunctions.xmlsave("email", emailTextbox.Text);
                 MessageBox.Show("Updated");
                 this.Close();
                 new GameForm().Show();
@@ -71,16 +71,17 @@ namespace Board_Game
 
         private void deleteAccountButton_Click(object sender, EventArgs e)
         {
-            if (confirmPasswordTextbox.Text == UserClass.UnHashedPassword)
+            if (confirmPasswordTextbox.Text != GlobalFunctions.UnHashedPassword)
+                MessageBox.Show("Wrong password");
+
+            else if (MessageBox.Show("Your account will be deleted permanently.", "DELETE", MessageBoxButtons.OKCancel) == DialogResult.OK && confirmPasswordTextbox.Text == GlobalFunctions.UnHashedPassword)
             {
-                UserClass.Xelem.Remove();
-                UserClass.doc.Save(@"../../UserData.xml");
+                GlobalFunctions.Xelem.Remove();
+                GlobalFunctions.doc.Save(@"../../UserData.xml");
                 MessageBox.Show("Your account deleted");
                 this.Close();
                 new LoginForm().Show();
             }
-            else
-                MessageBox.Show("Wrong password");
         }
     }
 }
