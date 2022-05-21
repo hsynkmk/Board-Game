@@ -53,7 +53,7 @@ namespace Board_Game
         private void playButton_Click(object sender, EventArgs e)
         {
             new PlayForm().Show();
-            this.Hide();
+            this.Close();
         }
 
         private void button1_Click(object sender, EventArgs e)

@@ -12,8 +12,6 @@ using System.Threading;
 
 namespace Board_Game
 {
-
-
     public partial class PlayForm : Form
     {
 
@@ -36,13 +34,13 @@ namespace Board_Game
         {
             InitializeComponent();
             Play();
+            this.Text = "Best Score: " + GlobalFunctions.Xelem.Element("bestScore").Value;
         }
 
 
         private void PlayForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             this.Hide();
-            //Application.Exit();
             new GameForm().Show();
         }
 
@@ -138,6 +136,9 @@ namespace Board_Game
                     buttons[rand_r][rand_c].BackgroundImage = Properties.Resources.shapes[GlobalFunctions.SClist[rand_shape]];
                     buttons[rand_r][rand_c].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
                 }
+                else if (IsGameOver())
+                    return;
+
                 else
                     i--;
                 IsGetPoint(ShapeAndColors);
@@ -178,6 +179,15 @@ namespace Board_Game
                                 buttons[i][t].BackgroundImage = null;
                                 buttons[i][t].Enabled = false;
                             }
+                            pointSound.Play();
+                            if (GlobalFunctions.Xelem.Element("difficulty").Value == "1000")
+                                PointSum += 1;
+                            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0100")
+                                PointSum += 3;
+                            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0010")
+                                PointSum += 5;
+                            else
+                                PointSum += 2;
                             return true;
                         }
 
@@ -202,6 +212,15 @@ namespace Board_Game
                                 buttons[t][j].BackgroundImage = null;
                                 buttons[t][j].Enabled = false;
                             }
+                            pointSound.Play();
+                            if (GlobalFunctions.Xelem.Element("difficulty").Value == "1000")
+                                PointSum += 1;
+                            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0100")
+                                PointSum += 3;
+                            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0010")
+                                PointSum += 5;
+                            else
+                                PointSum += 2;
                             return true;
                         }
                     }
@@ -252,33 +271,30 @@ namespace Board_Game
                         buttons[i][j].Enabled = true;
                         ShapeAndColors[i][j] = Properties.Resources.shapes.IndexOf((Bitmap)SBi);
 
-                        ShortestAndAvailable(true, i, j);
+                        //ShortestAndAvailable(true, i, j);
                         DisableEmptyButtons(Row, Column);
                         moveSound.Play();
 
-                        if (IsGetPoint(ShapeAndColors))
-                        {
-                            pointSound.Play();
-                            if (GlobalFunctions.Xelem.Element("difficulty").Value == "1000")
-                                PointSum += 1;
-                            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0100")
-                                PointSum += 3;
-                            else if (GlobalFunctions.Xelem.Element("difficulty").Value == "0010")
-                                PointSum += 5;
-                            else
-                                PointSum += 2;
-                        }
+                        //if (IsGetPoint(ShapeAndColors))
+                        //{
 
-                        else
+                        //}
+
+                        if (!IsGetPoint(ShapeAndColors))
                             PointThreeShape(Row, Column);
+
                         if (IsGameOver())
                         {
-                            winSound.Play();
-                            MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString());
-                            this.Close();
-                            new GameForm().Show();
-                        }
+                            if (PointSum > int.Parse(GlobalFunctions.Xelem.Element("bestScore").Value))
+                                GlobalFunctions.Xelem.Element("bestScore").Value = PointSum.ToString();
 
+                            winSound.Play();
+                            MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString() + "\n" + "Best Score: " + GlobalFunctions.Xelem.Element("bestScore").Value);
+                            this.Close();
+                            Form a = GameForm.ActiveForm;
+                            a.Show();
+
+                        }
                     }
                     else
                         buttons[i][j].BackColor = Color.Azure;
@@ -309,9 +325,9 @@ namespace Board_Game
         {
             int[,] WeightPath = new int[Row, Column];             //for shortest path
 
-            for (int i = 0; i < Row; i++)
-                for (int j = 0; j < Column; j++)
-                    WeightPath[i, j] = int.MaxValue;
+            //for (int i = 0; i < Row; i++)
+            //    for (int j = 0; j < Column; j++)
+            //        WeightPath[i, j] = int.MaxValue;
 
 
 

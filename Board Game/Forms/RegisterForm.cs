@@ -22,6 +22,7 @@ namespace Board_Game
         public RegisterForm()
         {
             InitializeComponent();
+            
         }
 
 
@@ -75,7 +76,8 @@ namespace Board_Game
                                        new XElement("customDifficultyWidth", 0),
                                        new XElement("customDifficultyHeight", 0),
                                        new XElement("shape", "100"),
-                                       new XElement("color", "100")
+                                       new XElement("color", "100"),
+                                       new XElement("bestScore", "0")
                                        ));
                 GlobalFunctions.doc.Save(@"../../UserData.xml");
                 MessageBox.Show("Registered");
