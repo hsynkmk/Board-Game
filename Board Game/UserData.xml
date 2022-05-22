@@ -14,6 +14,7 @@
     <customDifficultyHeight>0</customDifficultyHeight>
     <shape>111</shape>
     <color>110</color>
+    <bestScore>0</bestScore>
   </Admin>
   <user>
     <username>user</username>
@@ -29,6 +30,7 @@
     <customDifficultyHeight>10</customDifficultyHeight>
     <shape>100</shape>
     <color>100</color>
+    <bestScore>0</bestScore>
   </user>
   <user>
     <username>a</username>
@@ -42,7 +44,8 @@
     <difficulty>0010</difficulty>
     <customDifficultyWidth>6</customDifficultyWidth>
     <customDifficultyHeight>12</customDifficultyHeight>
-    <shape>111</shape>
-    <color>011</color>
+    <shape>110</shape>
+    <color>110</color>
+    <bestScore>0</bestScore>
   </user>
 </Users>

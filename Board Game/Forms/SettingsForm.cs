@@ -9,26 +9,11 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 
-
 namespace Board_Game
 {
     public partial class SettingsForm : Form
     {
-
-        private void setSettings(string category, CheckedListBox clb)
-        {
-            GlobalFunctions.SClist.Clear();
-            string a = GlobalFunctions.Xelem.Element(category).Value;
-            int count = clb.Items.Count;
-            int index;
-
-            for (int i = 0; i < count; i++)
-            {
-                index = (int)Char.GetNumericValue(a[i]);
-                if (index == 1)
-                    clb.SetItemChecked(i, true);
-            }
-        } 
+        
         public SettingsForm()
         {
 
@@ -47,6 +32,23 @@ namespace Board_Game
             widthTextbox.Text = GlobalFunctions.Xelem.Element("customDifficultyWidth").Value;
             heightTextbox.Text = GlobalFunctions.Xelem.Element("customDifficultyHeight").Value;
         }
+
+        private void setSettings(string category, CheckedListBox clb)
+        {
+            GlobalFunctions.SClist.Clear();
+            string a = GlobalFunctions.Xelem.Element(category).Value;
+            int count = clb.Items.Count;
+            int index;
+
+            for (int i = 0; i < count; i++)
+            {
+                index = (int)Char.GetNumericValue(a[i]);
+                if (index == 1)
+                    clb.SetItemChecked(i, true);
+            }
+            
+        } 
+       
 
         private void difficultyCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -114,5 +116,7 @@ namespace Board_Game
 
             MessageBox.Show("Saved");
         }
+
+
     }
 }

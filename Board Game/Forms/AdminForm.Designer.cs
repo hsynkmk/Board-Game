@@ -55,13 +55,17 @@
             this.submitButton = new System.Windows.Forms.Button();
             this.actionsGroupBox = new System.Windows.Forms.GroupBox();
             this.infoGroupBox = new System.Windows.Forms.GroupBox();
+            this.invalidUsernameLabel = new System.Windows.Forms.Label();
             this.completedLabel = new System.Windows.Forms.Label();
             this.backButton = new System.Windows.Forms.Button();
-            this.invalidUsernameLabel = new System.Windows.Forms.Label();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.adminDataGridView)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.userDataGridView)).BeginInit();
             this.actionsGroupBox.SuspendLayout();
             this.infoGroupBox.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // adminDataGridView
@@ -333,6 +337,17 @@
             this.infoGroupBox.Text = "Info";
             this.infoGroupBox.Visible = false;
             // 
+            // invalidUsernameLabel
+            // 
+            this.invalidUsernameLabel.AutoSize = true;
+            this.invalidUsernameLabel.ForeColor = System.Drawing.Color.Maroon;
+            this.invalidUsernameLabel.Location = new System.Drawing.Point(384, 183);
+            this.invalidUsernameLabel.Name = "invalidUsernameLabel";
+            this.invalidUsernameLabel.Size = new System.Drawing.Size(115, 16);
+            this.invalidUsernameLabel.TabIndex = 47;
+            this.invalidUsernameLabel.Text = "User already exist";
+            this.invalidUsernameLabel.Visible = false;
+            // 
             // completedLabel
             // 
             this.completedLabel.AutoSize = true;
@@ -354,23 +369,47 @@
             this.backButton.UseVisualStyleBackColor = true;
             this.backButton.Click += new System.EventHandler(this.backButton_Click);
             // 
-            // invalidUsernameLabel
+            // dataGridView1
             // 
-            this.invalidUsernameLabel.AutoSize = true;
-            this.invalidUsernameLabel.ForeColor = System.Drawing.Color.Maroon;
-            this.invalidUsernameLabel.Location = new System.Drawing.Point(384, 183);
-            this.invalidUsernameLabel.Name = "invalidUsernameLabel";
-            this.invalidUsernameLabel.Size = new System.Drawing.Size(115, 16);
-            this.invalidUsernameLabel.TabIndex = 47;
-            this.invalidUsernameLabel.Text = "User already exist";
-            this.invalidUsernameLabel.Visible = false;
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(5, 654);
+            this.dataGridView1.MultiSelect = false;
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(990, 216);
+            this.dataGridView1.TabIndex = 48;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(469, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(33, 16);
+            this.label1.TabIndex = 49;
+            this.label1.Text = "XML";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(469, 626);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(80, 16);
+            this.label2.TabIndex = 50;
+            this.label2.Text = "DATABASE";
             // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DimGray;
-            this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.ClientSize = new System.Drawing.Size(1000, 1000);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.backButton);
             this.Controls.Add(this.infoGroupBox);
             this.Controls.Add(this.actionsGroupBox);
@@ -387,6 +426,7 @@
             this.actionsGroupBox.ResumeLayout(false);
             this.infoGroupBox.ResumeLayout(false);
             this.infoGroupBox.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -424,5 +464,8 @@
         private System.Windows.Forms.Label completedLabel;
         private System.Windows.Forms.Button backButton;
         private System.Windows.Forms.Label invalidUsernameLabel;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
     }
 }

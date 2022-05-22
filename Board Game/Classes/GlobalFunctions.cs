@@ -68,7 +68,7 @@ namespace Board_Game
 
         public static List<int> ShapeAndColorPref()
         {
-
+            SClist.Clear();
 
             string col = Xelem.Element("color").Value;
             string sha = Xelem.Element("shape").Value;
