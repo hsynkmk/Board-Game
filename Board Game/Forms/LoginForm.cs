@@ -16,8 +16,7 @@ namespace Board_Game
         public LoginForm()
         {
             InitializeComponent();
-            usernameTextbox.Focus();
-            usernameTextbox.Text = Properties.Settings.Default.username;
+            usernameTextbox.Text = Properties.Settings.Default.username;                                    //Save last succesfull entrance
         }
 
         private void loginButton_Click(object sender, EventArgs e)                                          //Login
@@ -49,7 +48,9 @@ namespace Board_Game
 
         private void registerLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)          //Register link
         {
-            new RegisterForm().Show();
+            RegisterForm register = new RegisterForm();
+            register.Owner = this;
+            register.Show();
             this.Hide();
         }
 

@@ -286,7 +286,11 @@ namespace Board_Game
                         if (IsGameOver())
                         {
                             if (PointSum > int.Parse(GlobalFunctions.Xelem.Element("bestScore").Value))
+                            {
+                                GlobalFunctions.xmlsave("bestScore", PointSum.ToString());
                                 GlobalFunctions.Xelem.Element("bestScore").Value = PointSum.ToString();
+                            }
+
 
                             winSound.Play();
                             MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString() + "\n" + "Best Score: " + GlobalFunctions.Xelem.Element("bestScore").Value);

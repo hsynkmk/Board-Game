@@ -47,7 +47,7 @@
             // 
             this.usernameTextbox.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.usernameTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.usernameTextbox.Location = new System.Drawing.Point(390, 168);
+            this.usernameTextbox.Location = new System.Drawing.Point(412, 250);
             this.usernameTextbox.Multiline = true;
             this.usernameTextbox.Name = "usernameTextbox";
             this.usernameTextbox.Size = new System.Drawing.Size(220, 30);
@@ -58,7 +58,7 @@
             // 
             this.passwordTextbox.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.passwordTextbox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.passwordTextbox.Location = new System.Drawing.Point(390, 234);
+            this.passwordTextbox.Location = new System.Drawing.Point(412, 316);
             this.passwordTextbox.Multiline = true;
             this.passwordTextbox.Name = "passwordTextbox";
             this.passwordTextbox.PasswordChar = '*';
@@ -67,7 +67,7 @@
             // 
             // loginButton
             // 
-            this.loginButton.Location = new System.Drawing.Point(530, 289);
+            this.loginButton.Location = new System.Drawing.Point(552, 371);
             this.loginButton.Name = "loginButton";
             this.loginButton.Size = new System.Drawing.Size(80, 25);
             this.loginButton.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             // exitButton
             // 
-            this.exitButton.Location = new System.Drawing.Point(862, 435);
+            this.exitButton.Location = new System.Drawing.Point(897, 554);
             this.exitButton.Name = "exitButton";
             this.exitButton.Size = new System.Drawing.Size(80, 25);
             this.exitButton.TabIndex = 3;
@@ -92,7 +92,7 @@
             this.usernameLabel.BackColor = System.Drawing.Color.Transparent;
             this.usernameLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.usernameLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.usernameLabel.Location = new System.Drawing.Point(386, 143);
+            this.usernameLabel.Location = new System.Drawing.Point(408, 225);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(89, 22);
             this.usernameLabel.TabIndex = 4;
@@ -104,7 +104,7 @@
             this.passwordLabel.BackColor = System.Drawing.Color.Transparent;
             this.passwordLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.passwordLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.passwordLabel.Location = new System.Drawing.Point(386, 209);
+            this.passwordLabel.Location = new System.Drawing.Point(408, 291);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(87, 22);
             this.passwordLabel.TabIndex = 5;
@@ -116,7 +116,7 @@
             this.showPasswordCheckBox.BackColor = System.Drawing.Color.Transparent;
             this.showPasswordCheckBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.showPasswordCheckBox.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.showPasswordCheckBox.Location = new System.Drawing.Point(616, 238);
+            this.showPasswordCheckBox.Location = new System.Drawing.Point(638, 320);
             this.showPasswordCheckBox.Name = "showPasswordCheckBox";
             this.showPasswordCheckBox.Size = new System.Drawing.Size(161, 26);
             this.showPasswordCheckBox.TabIndex = 6;
@@ -133,7 +133,7 @@
             this.registerLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.registerLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.registerLinkLabel.LinkColor = System.Drawing.Color.Yellow;
-            this.registerLinkLabel.Location = new System.Drawing.Point(456, 366);
+            this.registerLinkLabel.Location = new System.Drawing.Point(478, 448);
             this.registerLinkLabel.Name = "registerLinkLabel";
             this.registerLinkLabel.Size = new System.Drawing.Size(77, 22);
             this.registerLinkLabel.TabIndex = 8;
@@ -148,7 +148,7 @@
             this.noAccountLabel.BackColor = System.Drawing.Color.Transparent;
             this.noAccountLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.noAccountLabel.ForeColor = System.Drawing.SystemColors.ButtonShadow;
-            this.noAccountLabel.Location = new System.Drawing.Point(406, 332);
+            this.noAccountLabel.Location = new System.Drawing.Point(428, 414);
             this.noAccountLabel.Name = "noAccountLabel";
             this.noAccountLabel.Size = new System.Drawing.Size(189, 22);
             this.noAccountLabel.TabIndex = 9;
@@ -160,7 +160,7 @@
             this.gameNameLabel.BackColor = System.Drawing.Color.Transparent;
             this.gameNameLabel.Font = new System.Drawing.Font("Segoe Print", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.gameNameLabel.ForeColor = System.Drawing.Color.Yellow;
-            this.gameNameLabel.Location = new System.Drawing.Point(359, 47);
+            this.gameNameLabel.Location = new System.Drawing.Point(381, 129);
             this.gameNameLabel.Name = "gameNameLabel";
             this.gameNameLabel.Size = new System.Drawing.Size(282, 71);
             this.gameNameLabel.TabIndex = 10;
@@ -171,7 +171,7 @@
             this.incorrectLoginLabel.AutoSize = true;
             this.incorrectLoginLabel.BackColor = System.Drawing.Color.Transparent;
             this.incorrectLoginLabel.ForeColor = System.Drawing.Color.Red;
-            this.incorrectLoginLabel.Location = new System.Drawing.Point(397, 270);
+            this.incorrectLoginLabel.Location = new System.Drawing.Point(419, 352);
             this.incorrectLoginLabel.Name = "incorrectLoginLabel";
             this.incorrectLoginLabel.Size = new System.Drawing.Size(198, 16);
             this.incorrectLoginLabel.TabIndex = 11;
@@ -186,7 +186,7 @@
             this.aboutUsLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.aboutUsLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.aboutUsLinkLabel.LinkColor = System.Drawing.Color.Yellow;
-            this.aboutUsLinkLabel.Location = new System.Drawing.Point(865, 469);
+            this.aboutUsLinkLabel.Location = new System.Drawing.Point(471, 569);
             this.aboutUsLinkLabel.Name = "aboutUsLinkLabel";
             this.aboutUsLinkLabel.Size = new System.Drawing.Size(84, 22);
             this.aboutUsLinkLabel.TabIndex = 12;
@@ -200,7 +200,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1000, 500);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1000, 600);
             this.ControlBox = false;
             this.Controls.Add(this.aboutUsLinkLabel);
             this.Controls.Add(this.incorrectLoginLabel);

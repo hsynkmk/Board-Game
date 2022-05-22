@@ -89,8 +89,8 @@ namespace Board_Game
 
         private void rexitButton_Click(object sender, EventArgs e)
         {
+            this.Owner.Show();
             this.Close();
-            new LoginForm().Show();
         }
 
         private void usernameTextbox_TextChanged(object sender, EventArgs e)
