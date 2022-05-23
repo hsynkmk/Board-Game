@@ -61,6 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BGDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BGDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -155,6 +160,17 @@
     <EmbeddedResource Include="Forms\UserForm.resx">
       <DependentUpon>UserForm.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="BGDataSet.xsc">
+      <DependentUpon>BGDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="BGDataSet.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>BGDataSet.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="BGDataSet.xss">
+      <DependentUpon>BGDataSet.xsd</DependentUpon>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -181,6 +197,13 @@
     <None Include="Resources\MoveSound.wav" />
     <None Include="Resources\PointSound.wav" />
     <None Include="Resources\WinSound.wav" />
+    <Content Include="BGDatabasemdf.mdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="BGDatabasemdf_log.ldf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <DependentUpon>BGDatabasemdf.mdf</DependentUpon>
+    </Content>
     <Content Include="UserData.xml" />
   </ItemGroup>
   <ItemGroup>

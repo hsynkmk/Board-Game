@@ -17,6 +17,7 @@ namespace Board_Game
 {
     public partial class AdminForm : Form
     {
+        BGDataSetTableAdapters.TableTableAdapter user = new BGDataSetTableAdapters.TableTableAdapter();   
         public AdminForm()
         {
             InitializeComponent();
@@ -59,6 +60,8 @@ namespace Board_Game
             updateUserButton.BackColor = Color.White;
             addButton.BackColor = Color.White;
             deleteUserButton.BackColor = Color.White;
+
+            dataGridView1.DataSource = user.List2();
 
         }
 
@@ -201,7 +204,12 @@ namespace Board_Game
                                                new XElement("color", "100")
                                                ));
                         GlobalFunctions.doc.Save(@"../../UserData.xml");
+
+                        user.Insert(nameSurnameTextbox.Text, hash, 0);
+                        foreach (Control item in Controls) if (item is TextBox) item.Text = "";
+                        
                     }
+
                 }
                 if (deleteUserButton.BackColor == Color.Blue)
                 {
