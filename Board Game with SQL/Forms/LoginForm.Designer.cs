@@ -1,4 +1,4 @@
-﻿namespace Board_Game_5
+﻿namespace Board_Game
 {
     partial class LoginForm
     {
@@ -208,10 +208,12 @@
             // 
             // LoginForm
             // 
+            this.AcceptButton = this.LoginLinkLabel;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CancelButton = this.ExitLinkLabel;
             this.ClientSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.ExitLinkLabel);
             this.Controls.Add(this.LoginLinkLabel);
@@ -229,7 +231,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "LoginForm";
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,4 +1,4 @@
-﻿namespace Board_Game_5
+﻿namespace Board_Game
 {
     partial class AboutBox
     {

@@ -7,7 +7,7 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Board_Game_5
+namespace Board_Game
 {
     partial class AboutBox : Form
     {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Board_Game_5
+namespace Board_Game
 {
     internal static class Program
     {

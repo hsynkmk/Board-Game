@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Board_Game_5
+namespace Board_Game
 {
-    internal class AdminClass
+    public class AdminClass
     {
-        
+        public bool IsAdmin = true;
     }
 }

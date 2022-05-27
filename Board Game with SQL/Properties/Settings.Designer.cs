@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Board_Game_5.Properties {
+namespace Board_Game.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]

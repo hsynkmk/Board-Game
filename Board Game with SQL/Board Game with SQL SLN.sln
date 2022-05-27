@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.2.32516.85
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board Game 5", "Board Game 5.csproj", "{D58E8B6E-54E9-4DCC-AF61-7976EAE0FFAC}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Board Game with SQL", "Board Game with SQL.csproj", "{D58E8B6E-54E9-4DCC-AF61-7976EAE0FFAC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
