@@ -89,7 +89,7 @@ namespace Board_Game__SQL_
         }
 
         private void UserDataGridView_SelectionChanged(object sender, EventArgs e)
-        {
+        { 
             UsernameTextbox.Text = UserDataGridView.CurrentRow.Cells["Username"].Value.ToString();
             PasswordTextbox.Text = UserDataGridView.CurrentRow.Cells["Password"].Value.ToString();
             NameSurnameTextbox.Text = UserDataGridView.CurrentRow.Cells["NameSurname"].Value.ToString();

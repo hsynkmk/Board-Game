@@ -36,6 +36,7 @@
             this.profileButton = new System.Windows.Forms.Button();
             this.settingsButton = new System.Windows.Forms.Button();
             this.manageButton = new System.Windows.Forms.Button();
+            this.MultiplayerButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // ExitLinkLabel
@@ -73,7 +74,7 @@
             this.playButton.BackColor = System.Drawing.Color.GhostWhite;
             this.playButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.playButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.playButton.Location = new System.Drawing.Point(30, 354);
+            this.playButton.Location = new System.Drawing.Point(30, 303);
             this.playButton.Name = "playButton";
             this.playButton.Size = new System.Drawing.Size(263, 47);
             this.playButton.TabIndex = 27;
@@ -129,7 +130,7 @@
             this.manageButton.BackColor = System.Drawing.Color.GhostWhite;
             this.manageButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manageButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.manageButton.Location = new System.Drawing.Point(30, 270);
+            this.manageButton.Location = new System.Drawing.Point(30, 120);
             this.manageButton.Name = "manageButton";
             this.manageButton.Size = new System.Drawing.Size(263, 47);
             this.manageButton.TabIndex = 23;
@@ -139,6 +140,21 @@
             this.manageButton.Visible = false;
             this.manageButton.Click += new System.EventHandler(this.manageButton_Click_1);
             // 
+            // MultiplayerButton
+            // 
+            this.MultiplayerButton.BackColor = System.Drawing.Color.GhostWhite;
+            this.MultiplayerButton.Font = new System.Drawing.Font("Comic Sans MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MultiplayerButton.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.MultiplayerButton.Location = new System.Drawing.Point(30, 356);
+            this.MultiplayerButton.Name = "MultiplayerButton";
+            this.MultiplayerButton.Size = new System.Drawing.Size(263, 47);
+            this.MultiplayerButton.TabIndex = 30;
+            this.MultiplayerButton.Text = "Multiplayer";
+            this.MultiplayerButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.MultiplayerButton.UseVisualStyleBackColor = false;
+            this.MultiplayerButton.Visible = false;
+            this.MultiplayerButton.Click += new System.EventHandler(this.MultiplayerButton_Click);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -146,6 +162,7 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.Controls.Add(this.MultiplayerButton);
             this.Controls.Add(this.ExitLinkLabel);
             this.Controls.Add(this.HelpLinkLabel);
             this.Controls.Add(this.playButton);
@@ -171,5 +188,6 @@
         private System.Windows.Forms.Button profileButton;
         private System.Windows.Forms.Button settingsButton;
         private System.Windows.Forms.Button manageButton;
+        private System.Windows.Forms.Button MultiplayerButton;
     }
 }

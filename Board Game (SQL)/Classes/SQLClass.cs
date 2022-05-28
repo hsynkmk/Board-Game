@@ -18,5 +18,14 @@ namespace Board_Game__SQL_
         {
             connection.Close();
         }
+
+        public static void SetBestScore(string score)
+        {
+            SqlCommand BestScoreCommand = new SqlCommand("Update BoardGameUsers set BestScore=@bstscore where username=@usn", SQLClass.connection);
+
+            BestScoreCommand.Parameters.AddWithValue("@usn", UserClass.Username);
+            BestScoreCommand.Parameters.AddWithValue("@bstscore", score);
+            BestScoreCommand.ExecuteNonQuery();
+        }
     }
 }

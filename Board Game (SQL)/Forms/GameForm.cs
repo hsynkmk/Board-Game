@@ -63,7 +63,15 @@ namespace Board_Game__SQL_
 
         private void ExitLinkLabel_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
+            SQLClass.closeConn();
             Application.Exit();
+        }
+
+        private void MultiplayerButton_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            MultiplayerForm mlt = new MultiplayerForm { Owner = this };
+            mlt.Show();
         }
     }
 }

@@ -105,6 +105,12 @@
     <Compile Include="Forms\SettingsForm.Designer.cs">
       <DependentUpon>SettingsForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\MultiplayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\MultiplayerForm.Designer.cs">
+      <DependentUpon>MultiplayerForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
@@ -120,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\LoginForm.resx">
       <DependentUpon>LoginForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\MultiplayerForm.resx">
+      <DependentUpon>MultiplayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\PlayForm.resx">
       <DependentUpon>PlayForm.cs</DependentUpon>
@@ -182,6 +191,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\red_triangle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\BonusSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\EntranceSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\LastStepSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\StepSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\WinSound.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
