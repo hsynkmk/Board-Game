@@ -10,7 +10,7 @@
 
 namespace Board_Game__SQL_.Properties {
     using System;
-    
+    using System.Collections.Generic;
     
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
@@ -23,7 +23,8 @@ namespace Board_Game__SQL_.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
-        
+        public static List<System.Drawing.Bitmap> shapes = new List<System.Drawing.Bitmap>() { blue_square, red_square, purple_square, blue_triangle, red_triangle, purple_triangle, blue_circle, red_circle, purple_circle };
+
         private static global::System.Resources.ResourceManager resourceMan;
         
         private static global::System.Globalization.CultureInfo resourceCulture;
@@ -91,6 +92,33 @@ namespace Board_Game__SQL_.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream BonusSound {
+            get {
+                return ResourceManager.GetStream("BonusSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream EntranceSound {
+            get {
+                return ResourceManager.GetStream("EntranceSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream LastStepSound {
+            get {
+                return ResourceManager.GetStream("LastStepSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap purple_circle {
@@ -147,6 +175,24 @@ namespace Board_Game__SQL_.Properties {
             get {
                 object obj = ResourceManager.GetObject("red_triangle", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream StepSound {
+            get {
+                return ResourceManager.GetStream("StepSound", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
+        internal static System.IO.UnmanagedMemoryStream WinSound {
+            get {
+                return ResourceManager.GetStream("WinSound", resourceCulture);
             }
         }
     }

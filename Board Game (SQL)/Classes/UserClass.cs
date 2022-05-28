@@ -8,8 +8,9 @@ namespace Board_Game__SQL_
 {
     public static class UserClass
     {
+
         public static bool IsAdmin { get; set; }=false;
-        public static int BestScore { get; set; }
+        public static int BestScore { get; set; } = 0;
         public static string Username { get; set; }
         public static string UnHashedPassword { get; set; }
         public static string HashedPassword { get; set; }
@@ -43,5 +44,6 @@ namespace Board_Game__SQL_
             Shape = null;
             Color = null;
         }
+        
     }
 }

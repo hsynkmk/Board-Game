@@ -73,6 +73,10 @@ namespace Board_Game__SQL_
             SaveCommand.Parameters.AddWithValue("@shape", SettingString(shapeCheckedListBox));
             SaveCommand.Parameters.AddWithValue("@color", SettingString(colorCheckedListBox));
             SaveCommand.ExecuteNonQuery();
+            UserClass.Difficulty = SettingString(difficultyCheckedListBox);
+            UserClass.Color = SettingString(colorCheckedListBox);
+            UserClass.Shape = SettingString(shapeCheckedListBox);
+
             MessageBox.Show("Saved");
         }
 
