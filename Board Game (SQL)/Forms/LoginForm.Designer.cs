@@ -227,7 +227,6 @@
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.PasswordTextbox);
             this.Controls.Add(this.UsernameTextbox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

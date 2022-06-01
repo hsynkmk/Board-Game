@@ -47,10 +47,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\AdminClass.cs" />
+    <Compile Include="Classes\GameClass.cs" />
     <Compile Include="Classes\GlobalMethods.cs" />
     <Compile Include="Classes\Program.cs" />
+    <Compile Include="Classes\SocketClient.cs" />
+    <Compile Include="Classes\SocketServer.cs" />
     <Compile Include="Classes\SQLClass.cs" />
     <Compile Include="Classes\UserClass.cs" />
+    <Compile Include="Forms\ConnectionForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\ConnectionForm.Designer.cs">
+      <DependentUpon>ConnectionForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\AboutBox.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -112,6 +121,9 @@
       <DependentUpon>MultiplayerForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Forms\ConnectionForm.resx">
+      <DependentUpon>ConnectionForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\AboutBox.resx">
       <DependentUpon>AboutBox.cs</DependentUpon>
     </EmbeddedResource>

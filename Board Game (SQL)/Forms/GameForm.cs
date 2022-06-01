@@ -28,7 +28,7 @@ namespace Board_Game__SQL_
 
         private void HelpLinkLabel_LinkClicked_1(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            this.Hide();
+            this.Enabled = false;
             HelpForm help = new HelpForm { Owner = this };
             help.Show();
         }
@@ -69,9 +69,12 @@ namespace Board_Game__SQL_
 
         private void MultiplayerButton_Click(object sender, EventArgs e)
         {
-            this.Hide();
-            MultiplayerForm mlt = new MultiplayerForm { Owner = this };
-            mlt.Show();
+            this.Enabled = false;
+            ConnectionForm connf = new ConnectionForm { Owner = this };
+            connf.Show();
+            //this.Hide();
+            //MultiplayerForm mlt = new MultiplayerForm { Owner = this };
+            //mlt.Show();
         }
     }
 }

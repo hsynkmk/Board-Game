@@ -53,7 +53,7 @@
             // 
             // colorCheckedListBox
             // 
-            this.colorCheckedListBox.BackColor = System.Drawing.Color.IndianRed;
+            this.colorCheckedListBox.BackColor = System.Drawing.SystemColors.Control;
             this.colorCheckedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.colorCheckedListBox.CheckOnClick = true;
             this.colorCheckedListBox.FormattingEnabled = true;
@@ -105,7 +105,7 @@
             // 
             // shapeCheckedListBox
             // 
-            this.shapeCheckedListBox.BackColor = System.Drawing.Color.IndianRed;
+            this.shapeCheckedListBox.BackColor = System.Drawing.SystemColors.Control;
             this.shapeCheckedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.shapeCheckedListBox.CheckOnClick = true;
             this.shapeCheckedListBox.FormattingEnabled = true;
@@ -130,7 +130,7 @@
             // 
             // difficultyCheckedListBox
             // 
-            this.difficultyCheckedListBox.BackColor = System.Drawing.Color.IndianRed;
+            this.difficultyCheckedListBox.BackColor = System.Drawing.SystemColors.Control;
             this.difficultyCheckedListBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.difficultyCheckedListBox.CheckOnClick = true;
             this.difficultyCheckedListBox.FormattingEnabled = true;

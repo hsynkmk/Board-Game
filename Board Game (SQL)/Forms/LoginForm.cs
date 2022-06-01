@@ -57,6 +57,7 @@ namespace Board_Game__SQL_
                 if (dataTable.Rows[0]["UserType"].ToString() == "admin")
                     UserClass.IsAdmin = true;
 
+                UserClass.BestScore = (int)dataTable.Rows[0]["BestScore"];
                 UserClass.Username = dataTable.Rows[0]["Username"].ToString();
                 UserClass.UnHashedPassword = PasswordTextbox.Text;
                 UserClass.HashedPassword = dataTable.Rows[0]["Password"].ToString();
@@ -72,7 +73,7 @@ namespace Board_Game__SQL_
                 UserClass.Shape = dataTable.Rows[0]["Sahpe"].ToString();
                 UserClass.Color = dataTable.Rows[0]["Color"].ToString();
 
-
+                
                 this.Hide();
                 GameForm logedin = new GameForm();
                 logedin.Owner = this;

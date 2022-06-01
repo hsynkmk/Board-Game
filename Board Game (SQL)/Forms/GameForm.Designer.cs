@@ -152,7 +152,6 @@
             this.MultiplayerButton.Text = "Multiplayer";
             this.MultiplayerButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.MultiplayerButton.UseVisualStyleBackColor = false;
-            this.MultiplayerButton.Visible = false;
             this.MultiplayerButton.Click += new System.EventHandler(this.MultiplayerButton_Click);
             // 
             // GameForm
