@@ -19,15 +19,15 @@ namespace Board_Game__SQL_
 
         private void AboutButton_Click(object sender, EventArgs e)
         {
-            this.Owner.Enabled = true;
-            this.Close();
+            this.Enabled = false;
+            AboutBox about = new AboutBox { Owner = this };
+            about.Show();
         }
 
         private void BackButton_Click(object sender, EventArgs e)
         {
-            this.Enabled = false;
-            AboutBox about = new AboutBox{ Owner = this };
-            about.Show();
+            this.Owner.Enabled = true;
+            this.Close();
         }
     }
 }

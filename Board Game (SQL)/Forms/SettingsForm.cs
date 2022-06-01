@@ -91,7 +91,6 @@ namespace Board_Game__SQL_
                 else
                     data += "0";
             }
-
             return data;
         }
 

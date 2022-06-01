@@ -67,26 +67,14 @@ namespace Board_Game__SQL_
                 PointThreeShape(Row, Column);
             }
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            BackButton.Location = new System.Drawing.Point(Column * 50-45, 0);
+            BestScoreLabel.Text = "Best Score: " + UserClass.BestScore.ToString();
         }
 
         private void BoardMaker(int row, int col)
         {
             int colLoc = 0;
             int rowLoc = 20;
-
-            Button BackButton = new Button();
-            this.Controls.Add(BackButton);
-            BackButton.Text = "Back";
-            BackButton.Location=new System.Drawing.Point(Column * 44, 0);
-            BackButton.Size = new System.Drawing.Size(50, 20);
-            BackButton.MouseClick += new System.Windows.Forms.MouseEventHandler(this.BackButton_MouseClick);
-            
-            //Label BestScoreLBL = new Label();
-            //BestScoreLBL.Font= new System.Drawing.Font ;
-            //this.Controls.Add(BestScoreLBL);
-            //BestScoreLBL.Text = $"Best Score: {UserClass.BestScore}";
-            //BestScoreLBL.Location = new System.Drawing.Point(Column * 0, 0);
-            //BestScoreLBL.Size = new System.Drawing.Size(50, 20);
 
             for (int i = 0; i < row; i++)
             {
@@ -110,20 +98,18 @@ namespace Board_Game__SQL_
                 colLoc = 0;
                 rowLoc += 50;
             }
+            DisableEmptyButtons(row, col);
         }
 
         private void PointThreeShape(int row, int col)
         {
-            DisableEmptyButtons(row, col);
-
             Random rd = new Random();
 
             for (int i = 0; i < 3; i++)
             {
-
                 int rand_c = rd.Next(0, col);
                 int rand_r = rd.Next(0, row);
-                int rand_shape = rd.Next(0,GlobalMethods.ShapeAndColorPref().Count() - 1);
+                int rand_shape = rd.Next(0, GlobalMethods.ShapeAndColorPref().Count() - 1);
 
                 if (ShapeAndColors[rand_r][rand_c] == -1)
                 {
@@ -226,7 +212,6 @@ namespace Board_Game__SQL_
         }
         bool IsGameOver()
         {
-
             for (int i = 0; i < Row; i++)
             {
                 for (int j = 0; j < Column; j++)
@@ -237,13 +222,10 @@ namespace Board_Game__SQL_
         }
 
 
-        private void BackButton_MouseClick(object sender, MouseEventArgs e)
-        {
-            this.Owner.Show();
-            this.Close();
-        }
         private void Buttons_MouseClick(object sender, MouseEventArgs e)
         {
+            int[,] WeightPath = new int[Row, Column];
+
             for (int i = 0; i < Row; i++)
             {
                 for (int j = 0; j < Column; j++)
@@ -252,15 +234,16 @@ namespace Board_Game__SQL_
                     {
 
                         buttons[i][j].BackColor = Color.Aqua;
-                        SBcol = j;
                         SBrow = i;
+                        SBcol = j;
                         SBi = buttons[i][j].BackgroundImage;
-                        DisableEmptyButtons(Row, Column);
-                        ShortestAndAvailable(false, SBrow, SBcol);
+                        WeightPath = ShortestAndAvailable(SBrow, SBcol);
 
                     }
                     else if (sender == buttons[i][j] && ShapeAndColors[i][j] == -1)
                     {
+                       // move(WeightPath, i, j);
+
                         buttons[SBrow][SBcol].BackColor = Color.Azure;
                         buttons[SBrow][SBcol].BackgroundImage = null;
                         buttons[i][j].BackgroundImage = SBi;
@@ -272,7 +255,7 @@ namespace Board_Game__SQL_
                         ShapeAndColors[i][j] = Properties.Resources.shapes.IndexOf((Bitmap)SBi);
 
                         DisableEmptyButtons(Row, Column);
-                        stepSound.Play();
+                        lastStepSound.Play();
 
                         if (!IsGetPoint(ShapeAndColors))
                             PointThreeShape(Row, Column);
@@ -284,14 +267,12 @@ namespace Board_Game__SQL_
                                 UserClass.BestScore = PointSum;
                                 SQLClass.SetBestScore(PointSum.ToString());
                             }
-
+                            
 
                             winSound.Play();
                             MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString() + "\n" + "Best Score: " + UserClass.BestScore);
                             this.Owner.Show();
                             this.Close();
-
-
                         }
                     }
                     else
@@ -299,14 +280,112 @@ namespace Board_Game__SQL_
                 }
             }
         }
-        // QItem for current location and distance
-        // from source location
-        public class QItem
+
+        //Movement
+        /*
+        public static bool operator <(Cell a, Cell b)
+        {
+            if (a.dist == b.dist)
+            {
+                if (a.row != b.col)
+                {
+                    return (a.row < b.col);
+                }
+                else
+                {
+                    return (a.col < b.col);
+                }
+            }
+            return (a.dist < b.dist);
+        }
+
+	// Utility method to check whether a point is
+	// inside the grid or not
+	public static bool isInsideGrid(int i, int j)
+	{
+		return (i >= 0 && i < DefineConstants.ROW && j >= 0 && j < DefineConstants.COL);
+	}
+
+	// Method returns minimum cost to reach bottom
+	// right from top left
+	public static int shortest(int[][] grid, int row, int col)
+	{
+		int[][] dis = RectangularArrays.RectangularIntArray(row, col);
+
+		// initializing distance array by INT_MAX
+		for (int i = 0; i < row; i++)
+		{
+			for (int j = 0; j < col; j++)
+			{
+				dis[i][j] = int.MaxValue;
+			}
+		}
+
+		// direction arrays for simplification of getting
+		// neighbour
+		int[] dx = {-1, 0, 1, 0};
+		int[] dy = {0, 1, 0, -1};
+
+		SortedSet<cell> st = new SortedSet<cell>();
+
+		// insert (0, 0) cell with 0 distance
+		st.Add(new cell(0, 0, 0));
+
+		// initialize distance of (0, 0) with its grid value
+		dis[0][0] = grid[0][0];
+
+		// loop for standard dijkstra's algorithm
+		while (st.Count > 0)
+		{
+			// get the cell with minimum distance and delete
+			// it from the set
+			cell k = *st.GetEnumerator();
+			st.erase(st.GetEnumerator());
+
+			// looping through all neighbours
+			for (int i = 0; i < 4; i++)
+			{
+				int x = k.x + dx[i];
+				int y = k.y + dy[i];
+
+				// if not inside boundary, ignore them
+				if (!isInsideGrid(x, y))
+				{
+					continue;
+				}
+
+				// If distance from current cell is smaller, then
+				// update distance of neighbour cell
+				if (dis[x][y] > dis[k.x][k.y] + grid[x][y])
+				{
+					// If cell is already there in set, then
+					// remove its previous entry
+					if (dis[x][y] != int.MaxValue)
+					{
+						st.erase(st.find(new cell(x, y, dis[x][y])));
+					}
+
+					// update the distance and insert new updated
+					// cell in set
+					dis[x][y] = dis[k.x][k.y] + grid[x][y];
+					st.Add(new cell(x, y, dis[x][y]));
+				}
+			}
+		}
+
+		
+		return dis[row - 1][col - 1];
+	}
+        */
+
+
+
+        public class Cell
         {
             public int row;
             public int col;
             public int dist;
-            public QItem(int x, int y, int w)
+            public Cell(int x, int y, int w)
             {
                 this.row = x;
                 this.col = y;
@@ -314,19 +393,21 @@ namespace Board_Game__SQL_
             }
         }
 
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            this.Owner.Show();
+            this.Close();
+        }
 
-
-        void ShortestAndAvailable(bool move, int row, int column)
+        int[,] ShortestAndAvailable(int row, int column)
         {
             int[,] WeightPath = new int[Row, Column];             //for shortest path
 
-            //for (int i = 0; i < Row; i++)
-            //    for (int j = 0; j < Column; j++)
-            //        WeightPath[i, j] = int.MaxValue;
 
 
-
-            QItem source = new QItem(0, 0, 0);
+            Cell source = new Cell(0, 0, 0);
+            source.row = SBrow;
+            source.col = SBcol;
 
             // To keep track of visited QItems. Marking
             // blocked cells as visited.
@@ -345,43 +426,36 @@ namespace Board_Game__SQL_
                     {
                         visited[i][j] = false;
                     }
-
-                    if (move == true)
-                        visited[row][column] = false;
-
-                    // Finding source
-
-                    source.row = SBrow;
-                    source.col = SBcol;
                 }
             }
 
+
             // applying BFS on matrix cells starting from source
-            Queue<QItem> q = new Queue<QItem>();
+            Queue<Cell> q = new Queue<Cell>();
             q.Enqueue(source);
 
-            if (move == true)
-                visited[source.row][source.col] = true;
+            //if (move == true)
+            //    visited[source.row][source.col] = true;
 
             while (q.Count > 0)
             {
-                QItem p = q.Peek();
+                Cell p = q.Peek();
                 q.Dequeue();
 
 
 
                 // Destination found;
-                if (p.row == row && p.col == column && move == true)
-                {
-                    //MessageBox.Show("Step: " + p.dist.ToString());
-                    return;
-                    //return p.dist;
-                }
+                //if (p.row == row && p.col == column && move == true)/////////////////////////////
+                //{
+                //    //MessageBox.Show("Step: " + p.dist.ToString());
+                //    return;
+                //    //return p.dist;
+                //}
 
                 // moving up
                 if (p.row - 1 >= 0 && visited[p.row - 1][p.col] == false)
                 {
-                    q.Enqueue(new QItem(p.row - 1, p.col, p.dist + 1));
+                    q.Enqueue(new Cell(p.row - 1, p.col, p.dist + 1));
                     visited[p.row - 1][p.col] = true;
                     buttons[p.row - 1][p.col].Enabled = true;
                     WeightPath[p.row - 1, p.col] = p.dist + 1;
@@ -390,7 +464,7 @@ namespace Board_Game__SQL_
                 // moving down
                 if (p.row + 1 < Row && visited[p.row + 1][p.col] == false)
                 {
-                    q.Enqueue(new QItem(p.row + 1, p.col, p.dist + 1));
+                    q.Enqueue(new Cell(p.row + 1, p.col, p.dist + 1));
                     visited[p.row + 1][p.col] = true;
                     buttons[p.row + 1][p.col].Enabled = true;
                     WeightPath[p.row + 1, p.col] = p.dist + 1;
@@ -399,7 +473,7 @@ namespace Board_Game__SQL_
                 // moving left
                 if (p.col - 1 >= 0 && visited[p.row][p.col - 1] == false)
                 {
-                    q.Enqueue(new QItem(p.row, p.col - 1, p.dist + 1));
+                    q.Enqueue(new Cell(p.row, p.col - 1, p.dist + 1));
                     visited[p.row][p.col - 1] = true;
                     buttons[p.row][p.col - 1].Enabled = true;
                     WeightPath[p.row, p.col - 1] = p.dist + 1;
@@ -408,12 +482,13 @@ namespace Board_Game__SQL_
                 // moving right
                 if (p.col + 1 < Column && visited[p.row][p.col + 1] == false)
                 {
-                    q.Enqueue(new QItem(p.row, p.col + 1, p.dist + 1));
+                    q.Enqueue(new Cell(p.row, p.col + 1, p.dist + 1));
                     visited[p.row][p.col + 1] = true;
                     buttons[p.row][p.col + 1].Enabled = true;
                     WeightPath[p.row, p.col + 1] = p.dist + 1;
                 }
             }
+            return WeightPath;
         }
 
         internal static class RectangularArrays
