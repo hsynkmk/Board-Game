@@ -16,7 +16,7 @@ namespace Board_Game__SQL_
     public partial class ConnectionForm : Form
     {
         private TcpClient client;
-        TcpListener listener;
+        private TcpListener listener;
 
         public ConnectionForm()
         { 
@@ -39,17 +39,18 @@ namespace Board_Game__SQL_
             listener = new TcpListener(IPAddress.Any, int.Parse(YourPortTextBox.Text));
             listener.Start();
             client = listener.AcceptTcpClient();
-
+            
             MultiplayerForm multiplayerForm = new MultiplayerForm(listener, client);
             multiplayerForm.Show();
             this.Close();
+            
         }
         
         private void ConnectToServerButton_Click(object sender, EventArgs e)
         {
             client = new TcpClient();
             IPEndPoint IP_End = new IPEndPoint(IPAddress.Parse(IPTextBox.Text), int.Parse(PortTextBox.Text));
-
+            
             try
             {
                 client.Connect(IP_End);
@@ -57,7 +58,7 @@ namespace Board_Game__SQL_
                 {
                     MessageBox.Show("Connected to Server");
 
-                    MultiplayerForm multiplayerForm = new MultiplayerForm(listener, client);
+                    MultiplayerForm multiplayerForm = new MultiplayerForm(client);
                     multiplayerForm.Show();
                     this.Close();
                 }

@@ -9,6 +9,7 @@ using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Board_Game__SQL_
 {
@@ -16,14 +17,18 @@ namespace Board_Game__SQL_
     {
         private TcpClient client;
         private TcpListener Listener;
+        public StreamReader STR;
+        public StreamWriter STW;
+        string received;
 
         private List<List<Button>> buttons = new List<List<Button>>();
         private List<List<int>> ShapeAndColors = new List<List<int>>();
 
-        private int Column=9, Row=9;
+        private int Column = 9, Row = 9;
         private int SBcol, SBrow;
         private Image SBi;
         private int PointSum;
+        private string TRow, TCol;
 
         System.Media.SoundPlayer winSound = new System.Media.SoundPlayer(Properties.Resources.WinSound);
         System.Media.SoundPlayer pointSound = new System.Media.SoundPlayer(Properties.Resources.EntranceSound);
@@ -37,8 +42,39 @@ namespace Board_Game__SQL_
             InitializeComponent();
             this.client = client;
             this.Listener = Listener;
+
+            STR = new StreamReader(this.client.GetStream());
+            STW = new StreamWriter(this.client.GetStream());
+            STW.AutoFlush = true;
+
             backgroundWorker1.RunWorkerAsync();                     //start reciving data in backround
             backgroundWorker2.WorkerSupportsCancellation = true;    //ability to cancel this thread
+
+            //client = Listener.AcceptTcpClient();
+
+
+
+            this.ClientSize = new System.Drawing.Size(450, 470);
+            Column = Row = 9;
+            BoardMaker(9, 9);
+            PointThreeShape(9, 9);
+        }
+
+        public MultiplayerForm(TcpClient client)
+        {
+            InitializeComponent();
+            this.client = client;
+
+            STR = new StreamReader(this.client.GetStream());
+            STW = new StreamWriter(this.client.GetStream());
+            STW.AutoFlush = true;
+
+            backgroundWorker1.RunWorkerAsync();                     //start reciving data in backround
+            backgroundWorker2.WorkerSupportsCancellation = true;    //ability to cancel this thread
+
+            //client = Listener.AcceptTcpClient();
+
+
 
             this.ClientSize = new System.Drawing.Size(450, 470);
             Column = Row = 9;
@@ -51,23 +87,56 @@ namespace Board_Game__SQL_
         {
             while (client.Connected)
             {
-                try
-                {
+                //try
+                //{
+                    received = STR.ReadLine();
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message.ToString());
-                }
+                //MessageBox.Show((int)received[0]+"  "+ (int)received[1] + "  " + (int)received[2] + "  " + (int)received[3]);
+                    //(SBrow.ToString() + SBcol.ToString() + TRow + TCol);
+                    buttons[(int)(received[0] - '0')][(int)(received[1] - '0')].BackgroundImage = null;
+                    buttons[(int)(received[2] - '0')][(int)(received[3] - '0')].BackgroundImage = buttons[(int)(received[0] - '0')][(int)(received[1] - '0')].BackgroundImage;
+                    buttons[(int)(received[2] - '0')][(int)(received[3] - '0')].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+
+
+                    buttons[(int)(received[0] - '0')][(int)(received[1] - '0')].Enabled = false;
+                    ShapeAndColors[(int)(received[0] - '0')][(int)(received[1] - '0')] = -1;
+                    buttons[(int)(received[2] - '0')][(int)(received[3] - '0')].Enabled = true;
+                    ShapeAndColors[(int)(received[2] - '0')][(int)(received[3] - '0')] = Properties.Resources.shapes.IndexOf((Bitmap)buttons[(int)(received[0] - '0')][(int)(received[1] - '0')].BackgroundImage);
+
+                    DisableEmptyButtons(Row, Column);
+                    lastStepSound.Play();
+
+                    if (!IsGetPoint(ShapeAndColors))
+                        PointThreeShape(Row, Column);
+
+                    if (IsGameOver())
+                    {
+                        if (PointSum > UserClass.BestScore)
+                        {
+                            UserClass.BestScore = PointSum;
+                            SQLClass.SetBestScore(PointSum.ToString());
+                        }
+
+
+                        winSound.Play();
+                        MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString() + "\n" + "Best Score: " + UserClass.BestScore);
+                        this.Owner.Show();
+                        this.Close();
+                    }
+
+                //}
+                //catch (Exception ex)
+                //{
+                //    MessageBox.Show(ex.Message.ToString());
+                //}
             }
         }
-
+        //buttons[i][j].BackgroundImage = Properties.Resources.shapes[ShapeAndColors[i][j]];
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)         //sends
         {
             if (client.Connected)
             {
-                
-
+                STW.WriteLine(SBrow.ToString() + SBcol.ToString() + TRow + TCol);
             }
             else
             {
@@ -75,6 +144,29 @@ namespace Board_Game__SQL_
             }
             backgroundWorker2.CancelAsync();
         }
+
+
+
+
+
+
+
+
+
+        private void BoardEquilizer(List<List<int>> ShapeAndColors)
+        {
+            this.ShapeAndColors = ShapeAndColors;
+            for (int i = 0; i < 9; i++)
+            {
+                for (int j = 0; j < 9; j++)
+                {
+                    buttons[i][j].BackgroundImage = Properties.Resources.shapes[ShapeAndColors[i][j]];
+                }
+            }
+        }
+
+
+
 
         private void BoardMaker(int row, int col)
         {
@@ -121,17 +213,23 @@ namespace Board_Game__SQL_
                         SBrow = i;
                         SBcol = j;
                         SBi = buttons[i][j].BackgroundImage;
-                        //WeightPath = ShortestAndAvailable(SBrow, SBcol);
+
+                        WeightPath = ShortestAndAvailable(SBrow, SBcol);
 
                     }
                     else if (sender == buttons[i][j] && ShapeAndColors[i][j] == -1)
                     {
                         // move(WeightPath, i, j);
+                        TRow = i.ToString();
+                        TCol = j.ToString();
+                        backgroundWorker2.RunWorkerAsync();
+
 
                         buttons[SBrow][SBcol].BackColor = Color.Azure;
                         buttons[SBrow][SBcol].BackgroundImage = null;
                         buttons[i][j].BackgroundImage = SBi;
                         buttons[i][j].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+
 
                         buttons[SBrow][SBcol].Enabled = false;
                         ShapeAndColors[SBrow][SBcol] = -1;
