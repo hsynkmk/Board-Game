@@ -12,15 +12,15 @@ namespace Board_Game__SQL_
 {
     public partial class PlayForm : Form
     {
-        private List<List<Button>> buttons = new List<List<Button>>();
-        private List<List<int>> ShapeAndColors = new List<List<int>>();
+        private List<List<Button>> buttons = new List<List<Button>>();      //2 dimensional button list
+        private List<List<int>> ShapeAndColors = new List<List<int>>();     //2 dimensional shape info list
 
-        private int Column, Row;
-        private int SBcol, SBrow;
-        private Image SBi;
-        private int PointSum;
+        private int Column, Row;    //Total rows and total columns
+        private int SBcol, SBrow;   //Source row and column
+        private Image SBi;          //Source button's shape
+        private int PointSum;       //Total point
 
-        System.Media.SoundPlayer winSound = new System.Media.SoundPlayer(Properties.Resources.WinSound);
+        System.Media.SoundPlayer winSound = new System.Media.SoundPlayer(Properties.Resources.WinSound);                //Sounds
         System.Media.SoundPlayer pointSound = new System.Media.SoundPlayer(Properties.Resources.EntranceSound);
         System.Media.SoundPlayer lastStepSound = new System.Media.SoundPlayer(Properties.Resources.LastStepSound);
         System.Media.SoundPlayer stepSound = new System.Media.SoundPlayer(Properties.Resources.StepSound);
@@ -32,7 +32,7 @@ namespace Board_Game__SQL_
             Play();
         }
 
-        private void Play()
+        private void Play()                                                 //Initilizes game board with user settings
         {
             if (UserClass.Difficulty.Equals("1000"))
             {
@@ -67,11 +67,11 @@ namespace Board_Game__SQL_
                 PointThreeShape(Row, Column);
             }
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            BackButton.Location = new System.Drawing.Point(Column * 50-45, 0);
+            exitButton.Location = new System.Drawing.Point(Column * 50-45, 0);
             BestScoreLabel.Text = "Best Score: " + UserClass.BestScore.ToString();
         }
 
-        private void BoardMaker(int row, int col)
+        private void BoardMaker(int row, int col)                           //Makes board game
         {
             int colLoc = 0;
             int rowLoc = 20;
@@ -101,7 +101,7 @@ namespace Board_Game__SQL_
             DisableEmptyButtons(row, col);
         }
 
-        private void PointThreeShape(int row, int col)
+        private void PointThreeShape(int row, int col)                      //Points 3 random shape
         {
             Random rd = new Random();
 
@@ -127,7 +127,7 @@ namespace Board_Game__SQL_
                 IsGetPoint(ShapeAndColors);
             }
         }
-        private void DisableEmptyButtons(int row, int col)
+        private void DisableEmptyButtons(int row, int col)                  //Disables empty buttons
         {
             for (int i = 0; i < row; i++)
             {
@@ -140,7 +140,7 @@ namespace Board_Game__SQL_
         }
 
 
-        bool IsGetPoint(List<List<int>> ShapeAndColors)
+        bool IsGetPoint(List<List<int>> ShapeAndColors)                     //Calculates if the user get a point
         {
             int track;
 
@@ -210,7 +210,7 @@ namespace Board_Game__SQL_
             }
             return false;
         }
-        bool IsGameOver()
+        bool IsGameOver()                                                   //Checks if the game is over
         {
             for (int i = 0; i < Row; i++)
             {
@@ -222,7 +222,7 @@ namespace Board_Game__SQL_
         }
 
 
-        private void Buttons_MouseClick(object sender, MouseEventArgs e)
+        private void Buttons_MouseClick(object sender, MouseEventArgs e)    //Handles the mouse events (selection of a button)
         {
             int[,] WeightPath = new int[Row, Column];
 
@@ -380,28 +380,11 @@ namespace Board_Game__SQL_
 
 
 
-        public class Cell
-        {
-            public int row;
-            public int col;
-            public int dist;
-            public Cell(int x, int y, int w)
-            {
-                this.row = x;
-                this.col = y;
-                this.dist = w;
-            }
-        }
 
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            this.Owner.Show();
-            this.Close();
-        }
 
-        int[,] ShortestAndAvailable(int row, int column)
+        int[,] ShortestAndAvailable(int row, int column)                            //Checks if desired button is reachable
         {
-            int[,] WeightPath = new int[Row, Column];             //for shortest path
+            int[,] WeightPath = new int[Row, Column];                               //for shortest path (on progress)
 
 
 
@@ -491,7 +474,7 @@ namespace Board_Game__SQL_
             return WeightPath;
         }
 
-        internal static class RectangularArrays
+        internal static class RectangularArrays                                     //Creates 2 dimensional array
         {
             public static bool[][] RectangularBoolArray(int size1, int size2)
             {
@@ -503,6 +486,12 @@ namespace Board_Game__SQL_
 
                 return newArray;
             }
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)                   //Exit game
+        {
+            this.Owner.Show();
+            this.Close();
         }
     }
 }

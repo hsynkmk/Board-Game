@@ -18,29 +18,43 @@ namespace Board_Game__SQL_
             InitializeComponent();
         }
 
-        private void RegisterLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void RegisterLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)      //Register
         {
-            SqlCommand registerComm = new SqlCommand("Insert into BoardGameUsers (BestScore,Username,Password,UserType,NameSurname,PhoneNumber,Address,City,Country,Email,Difficulty,CustomDifWidth,CustomDifHeight,Sahpe,Color) values (@bstscre,@usn,@pass,@usrtyp,@namesrn,@phnn,@add,@city,@contr,@email,@diff,@cdiffw,@cdiffh,@shape,@color)", SQLClass.connection);
-            
-            registerComm.Parameters.AddWithValue("@bstscre", 0);
-            registerComm.Parameters.AddWithValue("@usn", usernameTextbox.Text);
-            registerComm.Parameters.AddWithValue("@pass", GlobalMethods.SHA256Converter(passwordTextbox.Text));
-            registerComm.Parameters.AddWithValue("@usrtyp", "user");
-            registerComm.Parameters.AddWithValue("@namesrn", nameSurnameTextbox.Text);
-            registerComm.Parameters.AddWithValue("@phnn", phoneNumberTextbox.Text);
-            registerComm.Parameters.AddWithValue("@add", addressTextbox.Text);
-            registerComm.Parameters.AddWithValue("@city", cityTextbox.Text);
-            registerComm.Parameters.AddWithValue("@contr", countryTextbox.Text);
-            registerComm.Parameters.AddWithValue("@email", emailTextbox.Text);
-            registerComm.Parameters.AddWithValue("@diff", "1000");
-            registerComm.Parameters.AddWithValue("@cdiffw", 0);
-            registerComm.Parameters.AddWithValue("@cdiffh", 0);
-            registerComm.Parameters.AddWithValue("@shape", "111");
-            registerComm.Parameters.AddWithValue("@color", "111");
-            registerComm.ExecuteNonQuery();
+            try
+            {
+                if (!usernameTextbox.Text.Equals("") && !passwordTextbox.Text.Equals(""))               //Empty username or password check
+                {
+                    SqlCommand registerComm = new SqlCommand("Insert into BoardGameUsers (BestScore,Username,Password,UserType,NameSurname,PhoneNumber,Address,City,Country,Email,Difficulty,CustomDifWidth,CustomDifHeight,Sahpe,Color) values (@bstscre,@usn,@pass,@usrtyp,@namesrn,@phnn,@add,@city,@contr,@email,@diff,@cdiffw,@cdiffh,@shape,@color)", SQLClass.connection);
+
+                    registerComm.Parameters.AddWithValue("@bstscre", 0);
+                    registerComm.Parameters.AddWithValue("@usn", usernameTextbox.Text);
+                    registerComm.Parameters.AddWithValue("@pass", GlobalMethods.SHA256Converter(passwordTextbox.Text));
+                    registerComm.Parameters.AddWithValue("@usrtyp", "user");
+                    registerComm.Parameters.AddWithValue("@namesrn", nameSurnameTextbox.Text);
+                    registerComm.Parameters.AddWithValue("@phnn", phoneNumberTextbox.Text);
+                    registerComm.Parameters.AddWithValue("@add", addressTextbox.Text);
+                    registerComm.Parameters.AddWithValue("@city", cityTextbox.Text);
+                    registerComm.Parameters.AddWithValue("@contr", countryTextbox.Text);
+                    registerComm.Parameters.AddWithValue("@email", emailTextbox.Text);
+                    registerComm.Parameters.AddWithValue("@diff", "1000");
+                    registerComm.Parameters.AddWithValue("@cdiffw", 0);
+                    registerComm.Parameters.AddWithValue("@cdiffh", 0);
+                    registerComm.Parameters.AddWithValue("@shape", "111");
+                    registerComm.Parameters.AddWithValue("@color", "111");
+                    registerComm.ExecuteNonQuery();
+
+                    MessageBox.Show("Succesfully Registered");
+                }
+                else
+                    MessageBox.Show("Username or password cannot be empty");
+            }
+            catch (SqlException)                                                                        //Duplicate username
+            {
+                invalidUsernameLabel.Visible = true;
+            }
         }
 
-        private void BackLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void BackLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)          //Back Link
         {
             this.Owner.Show();
             this.Close();

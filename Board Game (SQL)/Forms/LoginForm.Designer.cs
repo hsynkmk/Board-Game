@@ -51,13 +51,13 @@
             this.aboutUsLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.aboutUsLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.aboutUsLinkLabel.LinkColor = System.Drawing.Color.Yellow;
-            this.aboutUsLinkLabel.Location = new System.Drawing.Point(463, 569);
+            this.aboutUsLinkLabel.Location = new System.Drawing.Point(480, 569);
             this.aboutUsLinkLabel.Name = "aboutUsLinkLabel";
             this.aboutUsLinkLabel.Size = new System.Drawing.Size(84, 22);
             this.aboutUsLinkLabel.TabIndex = 5;
             this.aboutUsLinkLabel.TabStop = true;
             this.aboutUsLinkLabel.Text = "About Us";
-            this.aboutUsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.aboutUsLinkLabel_LinkClicked);
+            this.aboutUsLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.AboutUsLinkLabel_LinkClicked);
             // 
             // IncorrectLoginLabel
             // 
@@ -105,7 +105,7 @@
             this.RegisterLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.RegisterLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
             this.RegisterLinkLabel.LinkColor = System.Drawing.Color.Yellow;
-            this.RegisterLinkLabel.Location = new System.Drawing.Point(470, 463);
+            this.RegisterLinkLabel.Location = new System.Drawing.Point(480, 460);
             this.RegisterLinkLabel.Name = "RegisterLinkLabel";
             this.RegisterLinkLabel.Size = new System.Drawing.Size(77, 22);
             this.RegisterLinkLabel.TabIndex = 4;
@@ -227,6 +227,7 @@
             this.Controls.Add(this.UsernameLabel);
             this.Controls.Add(this.PasswordTextbox);
             this.Controls.Add(this.UsernameTextbox);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "LoginForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

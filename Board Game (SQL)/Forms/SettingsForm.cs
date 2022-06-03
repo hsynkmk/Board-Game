@@ -18,7 +18,7 @@ namespace Board_Game__SQL_
             InitializeComponent();
         }
 
-        private void SettingsForm_Load(object sender, EventArgs e)
+        private void SettingsForm_Load(object sender, EventArgs e)                                  //Load previous settings
         {
             SetSettings(UserClass.Difficulty, difficultyCheckedListBox);
             SetSettings(UserClass.Shape, shapeCheckedListBox);
@@ -28,10 +28,8 @@ namespace Board_Game__SQL_
             heightTextbox.Text = UserClass.CustomDifficultyHeight;
         }
 
-        private void SetSettings(string category, CheckedListBox clb)
+        private void SetSettings(string category, CheckedListBox clb)                               //Sets settings to listboxes
         {
-            //GlobalFunctions.SClist.Clear();
-
             int count = clb.Items.Count;
             int index;
 
@@ -43,11 +41,11 @@ namespace Board_Game__SQL_
             }
         }
 
-        private void difficultyCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)
+        private void DifficultyCheckedListBox_SelectedIndexChanged(object sender, EventArgs e)      //One selection for difficulty
         {
             int index = difficultyCheckedListBox.SelectedIndex;
-            int count = difficultyCheckedListBox.Items.Count;
-            for (int i = 0; i < count; i++)
+
+            for (int i = 0; i < difficultyCheckedListBox.Items.Count; i++)
                 if (index != i)
                     difficultyCheckedListBox.SetItemChecked(i, false);
 
@@ -63,24 +61,37 @@ namespace Board_Game__SQL_
             }
         }
 
-        private void SaveButton_Click(object sender, EventArgs e)
+        private void SaveButton_Click(object sender, EventArgs e)                                   //Save settings
         {
-            SqlCommand SaveCommand = new SqlCommand("Update BoardGameUsers set Difficulty=@diff, CustomDifWidth=@cdiffw, CustomDifHeight=@cdiffh, Sahpe=@shape,Color=@color where username=@usn", SQLClass.connection);
-            SaveCommand.Parameters.AddWithValue("@usn", UserClass.Username);
-            SaveCommand.Parameters.AddWithValue("@diff", SettingString(difficultyCheckedListBox));
-            SaveCommand.Parameters.AddWithValue("@cdiffw", widthTextbox.Text);
-            SaveCommand.Parameters.AddWithValue("@cdiffh", heightTextbox.Text);
-            SaveCommand.Parameters.AddWithValue("@shape", SettingString(shapeCheckedListBox));
-            SaveCommand.Parameters.AddWithValue("@color", SettingString(colorCheckedListBox));
-            SaveCommand.ExecuteNonQuery();
-            UserClass.Difficulty = SettingString(difficultyCheckedListBox);
-            UserClass.Color = SettingString(colorCheckedListBox);
-            UserClass.Shape = SettingString(shapeCheckedListBox);
+            try
+            {
+                if (shapeCheckedListBox.SelectedItems.Count >= 2 && colorCheckedListBox.SelectedItems.Count >= 2)
+                {
+                    SqlCommand SaveCommand = new SqlCommand("Update BoardGameUsers set Difficulty=@diff, CustomDifWidth=@cdiffw, CustomDifHeight=@cdiffh, Sahpe=@shape,Color=@color where username=@usn", SQLClass.connection);
+                    SaveCommand.Parameters.AddWithValue("@usn", UserClass.Username);
+                    SaveCommand.Parameters.AddWithValue("@diff", SettingString(difficultyCheckedListBox));
+                    SaveCommand.Parameters.AddWithValue("@cdiffw", widthTextbox.Text);
+                    SaveCommand.Parameters.AddWithValue("@cdiffh", heightTextbox.Text);
+                    SaveCommand.Parameters.AddWithValue("@shape", SettingString(shapeCheckedListBox));
+                    SaveCommand.Parameters.AddWithValue("@color", SettingString(colorCheckedListBox));
+                    SaveCommand.ExecuteNonQuery();
+                    UserClass.Difficulty = SettingString(difficultyCheckedListBox);
+                    UserClass.Color = SettingString(colorCheckedListBox);
+                    UserClass.Shape = SettingString(shapeCheckedListBox);
 
-            MessageBox.Show("Saved");
+                    MessageBox.Show("Saved");
+                }
+                else
+                    MessageBox.Show("You have to choose at least two shapes and two colors");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message.ToString());
+            }
+
         }
 
-        private string SettingString(CheckedListBox clb)
+        private string SettingString(CheckedListBox clb)                                            //Generates binary digits for settings
         {
             string data = "";
 
@@ -94,10 +105,20 @@ namespace Board_Game__SQL_
             return data;
         }
 
-        private void BackButton_Click(object sender, EventArgs e)
+        private void BackButton_Click(object sender, EventArgs e)                                   //Back button
         {
             this.Owner.Show();
             this.Close();
+        }
+
+        private void WidthTextbox_TextChanged(object sender, EventArgs e)                           //Width textbox only digits
+        {
+            widthTextbox.Text = string.Concat(widthTextbox.Text.Where(char.IsDigit));
+        }
+
+        private void HeightTextbox_TextChanged(object sender, EventArgs e)                          //Height textbox only digits
+        {
+            heightTextbox.Text = string.Concat(heightTextbox.Text.Where(char.IsDigit));
         }
     }
 }

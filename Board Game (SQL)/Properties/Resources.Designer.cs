@@ -11,7 +11,8 @@
 namespace Board_Game__SQL_.Properties {
     using System;
     using System.Collections.Generic;
-    
+
+
     /// <summary>
     ///   A strongly-typed resource class, for looking up localized strings, etc.
     /// </summary>
@@ -23,6 +24,7 @@ namespace Board_Game__SQL_.Properties {
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     internal class Resources {
+
         public static List<System.Drawing.Bitmap> shapes = new List<System.Drawing.Bitmap>() { blue_square, red_square, purple_square, blue_triangle, red_triangle, purple_triangle, blue_circle, red_circle, purple_circle };
 
         private static global::System.Resources.ResourceManager resourceMan;
@@ -58,6 +60,26 @@ namespace Board_Game__SQL_.Properties {
             }
             set {
                 resourceCulture = value;
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Background {
+            get {
+                object obj = ResourceManager.GetObject("Background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Background2 {
+            get {
+                object obj = ResourceManager.GetObject("Background2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         

@@ -18,25 +18,21 @@ namespace Board_Game__SQL_
         public LoginForm()
         {
             InitializeComponent();
-            UsernameTextbox.Text = Properties.Settings.Default.username;                                    //fill username textbox with last succesful entrance
-            SQLClass.openConn();
+            UsernameTextbox.Text = Properties.Settings.Default.username;                                    //Fill username textbox with last succesful entrance
+            try
+            {
+                SQLClass.openConn();                                                                        //SQL Connection
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while connecting to the database." + ex.Message.ToString());
+            }
+
         }
 
 
         private void LoginLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)             //login
         {
-            //try
-            //{
-                
-            //}
-            //catch (Exception)
-            //{
-            //    MessageBox.Show("Please check your internet connection!");
-            //    Application.Restart();
-            //}
-
-
-
 
             SqlCommand loginComm = new SqlCommand("Select * from BoardGameUsers where Username=@usn and Password=@pass", SQLClass.connection);
 
@@ -74,18 +70,17 @@ namespace Board_Game__SQL_
                 UserClass.Color = dataTable.Rows[0]["Color"].ToString();
 
                 
-                this.Hide();
-                GameForm logedin = new GameForm();
-                logedin.Owner = this;
+                this.Hide();                                                                                //Succesfull login
+                GameForm logedin = new GameForm{ Owner = this };
                 logedin.Show();
 
-                Properties.Settings.Default.username = UsernameTextbox.Text;                                //save last succesfull entrance
+                Properties.Settings.Default.username = UsernameTextbox.Text;                                //Save last succesfull entrance
                 Properties.Settings.Default.Save();
             }
 
             else
             {
-                IncorrectLoginLabel.Visible = true;
+                IncorrectLoginLabel.Visible = true;                                                         //Wrong username or password
                 UsernameTextbox.Clear();
                 PasswordTextbox.Clear();
                 UsernameTextbox.Focus();
@@ -93,7 +88,7 @@ namespace Board_Game__SQL_
 
         }
 
-        private void ShowPasswordCheckBox_CheckedChanged(object sender, EventArgs e)                        //show password
+        private void ShowPasswordCheckBox_CheckedChanged(object sender, EventArgs e)                        //Show password
         {
             if (ShowPasswordCheckBox.Checked)
                 PasswordTextbox.PasswordChar = '\0';
@@ -101,30 +96,28 @@ namespace Board_Game__SQL_
                 PasswordTextbox.PasswordChar = '*';
         }
 
-        private void RegisterLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)          //register link
+        private void RegisterLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)          //Register link
         {
             this.Hide();
-            RegisterForm register = new RegisterForm();
-            register.Owner = this;
+            RegisterForm register = new RegisterForm { Owner = this };
             register.Show();
         }
 
         private void UsernameTextbox_TextChanged(object sender, EventArgs e)
         {
-            UsernameTextbox.Text = string.Concat(UsernameTextbox.Text.Where(char.IsLetter));                //username only letter
+            UsernameTextbox.Text = string.Concat(UsernameTextbox.Text.Where(char.IsLetter));                //Username only letter
         }
 
-        private void ExitLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)              //exit game
+        private void ExitLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)              //Exit game
         {
             SQLClass.closeConn();
             Application.Exit();
         }
 
-        private void aboutUsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)           //about link
+        private void AboutUsLinkLabel_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)           //About link
         {
             this.Enabled = false;
-            AboutBox about = new AboutBox();
-            about.Owner = this;
+            AboutBox about = new AboutBox{ Owner = this };
             about.Show();
         }
     }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConnectionForm));
             this.IPLabel = new System.Windows.Forms.Label();
             this.PortLabel = new System.Windows.Forms.Label();
             this.IPTextBox = new System.Windows.Forms.TextBox();
@@ -40,6 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label = new System.Windows.Forms.Label();
             this.ORLabel = new System.Windows.Forms.Label();
+            this.ConnectionLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // IPLabel
@@ -92,7 +94,7 @@
             this.cancelButton.TabIndex = 5;
             this.cancelButton.Text = "Cancel";
             this.cancelButton.UseVisualStyleBackColor = true;
-            this.cancelButton.Click += new System.EventHandler(this.cancelButton_Click);
+            this.cancelButton.Click += new System.EventHandler(this.CancelButton_Click);
             // 
             // YourPortTextBox
             // 
@@ -100,6 +102,7 @@
             this.YourPortTextBox.Name = "YourPortTextBox";
             this.YourPortTextBox.Size = new System.Drawing.Size(179, 22);
             this.YourPortTextBox.TabIndex = 7;
+            this.YourPortTextBox.TextChanged += new System.EventHandler(this.YourPortTextBox_TextChanged);
             // 
             // YourIPTextBox
             // 
@@ -146,11 +149,23 @@
             this.ORLabel.TabIndex = 11;
             this.ORLabel.Text = "OR";
             // 
+            // ConnectionLabel
+            // 
+            this.ConnectionLabel.AutoSize = true;
+            this.ConnectionLabel.ForeColor = System.Drawing.Color.Red;
+            this.ConnectionLabel.Location = new System.Drawing.Point(209, 174);
+            this.ConnectionLabel.Name = "ConnectionLabel";
+            this.ConnectionLabel.Size = new System.Drawing.Size(138, 16);
+            this.ConnectionLabel.TabIndex = 12;
+            this.ConnectionLabel.Text = "Waiting for connection";
+            this.ConnectionLabel.Visible = false;
+            // 
             // ConnectionForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(571, 449);
+            this.Controls.Add(this.ConnectionLabel);
             this.Controls.Add(this.ORLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label);
@@ -163,6 +178,7 @@
             this.Controls.Add(this.IPTextBox);
             this.Controls.Add(this.PortLabel);
             this.Controls.Add(this.IPLabel);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ConnectionForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Connection";
@@ -185,5 +201,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.Label ORLabel;
+        private System.Windows.Forms.Label ConnectionLabel;
     }
 }

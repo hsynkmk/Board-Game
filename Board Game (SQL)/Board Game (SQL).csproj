@@ -50,8 +50,7 @@
     <Compile Include="Classes\GameClass.cs" />
     <Compile Include="Classes\GlobalMethods.cs" />
     <Compile Include="Classes\Program.cs" />
-    <Compile Include="Classes\SocketClient.cs" />
-    <Compile Include="Classes\SocketServer.cs" />
+    <Compile Include="Classes\Cell.cs" />
     <Compile Include="Classes\SQLClass.cs" />
     <Compile Include="Classes\UserClass.cs" />
     <Compile Include="Forms\ConnectionForm.cs">
@@ -218,6 +217,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\WinSound.wav" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Background.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Background2.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

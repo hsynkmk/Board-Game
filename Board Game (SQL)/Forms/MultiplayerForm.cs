@@ -15,6 +15,7 @@ namespace Board_Game__SQL_
 {
     public partial class MultiplayerForm : Form
     {
+
         private TcpClient client;
         private TcpListener Listener;
         public StreamReader STR;
@@ -51,11 +52,12 @@ namespace Board_Game__SQL_
             backgroundWorker1.RunWorkerAsync();                     //start reciving data in backround
             backgroundWorker2.WorkerSupportsCancellation = true;    //ability to cancel this thread
 
-            //client = Listener.AcceptTcpClient();
 
 
 
+            YourTurnButton.Location = new System.Drawing.Point(225, 0);
             this.ClientSize = new System.Drawing.Size(450, 470);
+            BackButton.Location = new System.Drawing.Point(405, 0);
             Column = Row = 9;
             BoardMaker(9, 9);
             PointThreeShape(9, 9);
@@ -74,10 +76,9 @@ namespace Board_Game__SQL_
             backgroundWorker1.RunWorkerAsync();                     //start reciving data in backround
             backgroundWorker2.WorkerSupportsCancellation = true;    //ability to cancel this thread
 
-            //client = Listener.AcceptTcpClient();
 
-
-
+            YourTurnButton.Location = new System.Drawing.Point(225, 0);
+            BackButton.Location = new System.Drawing.Point(405, 0);
             this.ClientSize = new System.Drawing.Size(450, 470);
             Column = Row = 9;
             BoardMaker(9, 9);
@@ -104,6 +105,8 @@ namespace Board_Game__SQL_
                     }
 
                     BoardEquilizer(ShapeAndColors);
+                    //YourTurnButton.BackColor = Color.Red;
+                    //DisableAllButtons(9, 9);
 
 
                 }
@@ -126,18 +129,44 @@ namespace Board_Game__SQL_
                         send += (ShapeAndColors[i][j].ToString());
                 }
                 STW.WriteLine(send);
+
+                //YourTurnButton.BackColor = Color.Green;
+                //EnableAllButtons(9, 9);
             }
             else
             {
                 MessageBox.Show("Send Failed");
             }
+
+
             backgroundWorker2.CancelAsync();
         }
 
 
+        private void DisableAllButtons(int row, int col)
+        {
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    buttons[i][j].Invoke(new MethodInvoker(delegate () { buttons[i][j].Enabled = false; }));
+                }
+            }
+        }
 
-
-
+        private void EnableAllButtons(int row, int col)
+        {
+            for (int i = 0; i < row; i++)
+            {
+                for (int j = 0; j < col; j++)
+                {
+                    if (ShapeAndColors[i][j] == 9)
+                        buttons[i][j].Invoke(new MethodInvoker(delegate () { buttons[i][j].Enabled = false; }));
+                    else
+                        buttons[i][j].Invoke(new MethodInvoker(delegate () { buttons[i][j].Enabled = true; }));
+                }
+            }
+        }
 
 
 
@@ -510,24 +539,3 @@ namespace Board_Game__SQL_
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-/*
-         private void Sendbutton_Click(object sender, EventArgs e)
-        {
-            if (MessagetextBox.Text != "")
-            {
-                TextToSend = MessagetextBox.Text;
-                backgroundWorker2.RunWorkerAsync();
-            }
-            MessagetextBox.Text = "";
-        }
- */
