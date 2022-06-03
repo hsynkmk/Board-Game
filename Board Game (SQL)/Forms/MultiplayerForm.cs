@@ -47,6 +47,7 @@ namespace Board_Game__SQL_
             STW = new StreamWriter(this.client.GetStream());
             STW.AutoFlush = true;
 
+
             backgroundWorker1.RunWorkerAsync();                     //start reciving data in backround
             backgroundWorker2.WorkerSupportsCancellation = true;    //ability to cancel this thread
 
@@ -58,6 +59,7 @@ namespace Board_Game__SQL_
             Column = Row = 9;
             BoardMaker(9, 9);
             PointThreeShape(9, 9);
+            backgroundWorker2.RunWorkerAsync();
         }
 
         public MultiplayerForm(TcpClient client)
@@ -79,7 +81,7 @@ namespace Board_Game__SQL_
             this.ClientSize = new System.Drawing.Size(450, 470);
             Column = Row = 9;
             BoardMaker(9, 9);
-            PointThreeShape(9, 9);
+            //PointThreeShape(9, 9);
         }
 
 
@@ -87,56 +89,43 @@ namespace Board_Game__SQL_
         {
             while (client.Connected)
             {
-                //try
-                //{
+                try
+                {
+                    int a = 0;
                     received = STR.ReadLine();
 
-                //MessageBox.Show((int)received[0]+"  "+ (int)received[1] + "  " + (int)received[2] + "  " + (int)received[3]);
-                    //(SBrow.ToString() + SBcol.ToString() + TRow + TCol);
-                    buttons[(int)(received[0] - '0')][(int)(received[1] - '0')].BackgroundImage = null;
-                    buttons[(int)(received[2] - '0')][(int)(received[3] - '0')].BackgroundImage = buttons[(int)(received[0] - '0')][(int)(received[1] - '0')].BackgroundImage;
-                    buttons[(int)(received[2] - '0')][(int)(received[3] - '0')].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-
-
-                    buttons[(int)(received[0] - '0')][(int)(received[1] - '0')].Enabled = false;
-                    ShapeAndColors[(int)(received[0] - '0')][(int)(received[1] - '0')] = -1;
-                    buttons[(int)(received[2] - '0')][(int)(received[3] - '0')].Enabled = true;
-                    ShapeAndColors[(int)(received[2] - '0')][(int)(received[3] - '0')] = Properties.Resources.shapes.IndexOf((Bitmap)buttons[(int)(received[0] - '0')][(int)(received[1] - '0')].BackgroundImage);
-
-                    DisableEmptyButtons(Row, Column);
-                    lastStepSound.Play();
-
-                    if (!IsGetPoint(ShapeAndColors))
-                        PointThreeShape(Row, Column);
-
-                    if (IsGameOver())
+                    for (int i = 0; i < 9; i++)
                     {
-                        if (PointSum > UserClass.BestScore)
+                        for (int j = 0; j < 9; j++)
                         {
-                            UserClass.BestScore = PointSum;
-                            SQLClass.SetBestScore(PointSum.ToString());
+                            ShapeAndColors[i][j] = (int)(received[a] - '0');
+                            a++;
                         }
-
-
-                        winSound.Play();
-                        MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString() + "\n" + "Best Score: " + UserClass.BestScore);
-                        this.Owner.Show();
-                        this.Close();
                     }
 
-                //}
-                //catch (Exception ex)
-                //{
-                //    MessageBox.Show(ex.Message.ToString());
-                //}
+                    BoardEquilizer(ShapeAndColors);
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message.ToString());
+                }
             }
         }
         //buttons[i][j].BackgroundImage = Properties.Resources.shapes[ShapeAndColors[i][j]];
         private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)         //sends
         {
+            string send = "";
             if (client.Connected)
             {
-                STW.WriteLine(SBrow.ToString() + SBcol.ToString() + TRow + TCol);
+                //STW.WriteLine(SBrow.ToString() + SBcol.ToString() + TRow + TCol);
+                for (int i = 0; i < 9; i++)
+                {
+                    for (int j = 0; j < 9; j++)
+                        send += (ShapeAndColors[i][j].ToString());
+                }
+                STW.WriteLine(send);
             }
             else
             {
@@ -155,12 +144,24 @@ namespace Board_Game__SQL_
 
         private void BoardEquilizer(List<List<int>> ShapeAndColors)
         {
-            this.ShapeAndColors = ShapeAndColors;
+            //this.ShapeAndColors = ShapeAndColors;
             for (int i = 0; i < 9; i++)
             {
                 for (int j = 0; j < 9; j++)
                 {
-                    buttons[i][j].BackgroundImage = Properties.Resources.shapes[ShapeAndColors[i][j]];
+                    if (ShapeAndColors[i][j] != 9)
+                    {
+                        buttons[i][j].BackgroundImage = Properties.Resources.shapes[ShapeAndColors[i][j]];
+                        buttons[i][j].Invoke(new MethodInvoker(delegate () { buttons[i][j].Enabled = true; }));
+                        buttons[i][j].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+                    }
+
+                    else
+                    {
+                        buttons[i][j].BackgroundImage = null;
+                        buttons[i][j].Invoke(new MethodInvoker(delegate () { buttons[i][j].Enabled = false; }));
+                        buttons[i][j].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+                    }
                 }
             }
         }
@@ -182,7 +183,7 @@ namespace Board_Game__SQL_
                 {
                     Button newButton = new Button();
                     buttons[i].Add(newButton);
-                    ShapeAndColors[i].Add(-1);
+                    ShapeAndColors[i].Add(9);
 
                     this.Controls.Add(buttons[i][j]);
                     this.buttons[i][j].MouseClick += new System.Windows.Forms.MouseEventHandler(this.Buttons_MouseClick);
@@ -206,7 +207,7 @@ namespace Board_Game__SQL_
             {
                 for (int j = 0; j < Column; j++)
                 {
-                    if (sender == buttons[i][j] && ShapeAndColors[i][j] != -1)
+                    if (sender == buttons[i][j] && ShapeAndColors[i][j] != 9)
                     {
 
                         buttons[i][j].BackColor = Color.Aqua;
@@ -217,12 +218,12 @@ namespace Board_Game__SQL_
                         WeightPath = ShortestAndAvailable(SBrow, SBcol);
 
                     }
-                    else if (sender == buttons[i][j] && ShapeAndColors[i][j] == -1)
+                    else if (sender == buttons[i][j] && ShapeAndColors[i][j] == 9)
                     {
                         // move(WeightPath, i, j);
                         TRow = i.ToString();
                         TCol = j.ToString();
-                        backgroundWorker2.RunWorkerAsync();
+
 
 
                         buttons[SBrow][SBcol].BackColor = Color.Azure;
@@ -232,7 +233,7 @@ namespace Board_Game__SQL_
 
 
                         buttons[SBrow][SBcol].Enabled = false;
-                        ShapeAndColors[SBrow][SBcol] = -1;
+                        ShapeAndColors[SBrow][SBcol] = 9;
                         buttons[i][j].Enabled = true;
                         ShapeAndColors[i][j] = Properties.Resources.shapes.IndexOf((Bitmap)SBi);
 
@@ -253,9 +254,10 @@ namespace Board_Game__SQL_
 
                             winSound.Play();
                             MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString() + "\n" + "Best Score: " + UserClass.BestScore);
-                            this.Owner.Show();
-                            this.Close();
+                            //this.Owner.Show();
+                            //this.Close();
                         }
+                        backgroundWorker2.RunWorkerAsync();
                     }
                     else
                         buttons[i][j].BackColor = Color.Azure;
@@ -272,7 +274,7 @@ namespace Board_Game__SQL_
                 int rand_r = rd.Next(0, row);
                 int rand_shape = rd.Next(0, GlobalMethods.ShapeAndColorPref().Count() - 1);
 
-                if (ShapeAndColors[rand_r][rand_c] == -1)
+                if (ShapeAndColors[rand_r][rand_c] == 9)
                 {
                     ShapeAndColors[rand_r][rand_c] = GlobalMethods.SClist[rand_shape];
 
@@ -294,7 +296,7 @@ namespace Board_Game__SQL_
             {
                 for (int j = 0; j < col; j++)
                 {
-                    if (ShapeAndColors[i][j] == -1)
+                    if (ShapeAndColors[i][j] == 9)
                         buttons[i][j].Enabled = false;
                 }
             }
@@ -316,13 +318,13 @@ namespace Board_Game__SQL_
                     track = ShapeAndColors[i][j];
                     for (int t = j + 1; t <= j + 4; t++)
                     {
-                        if (ShapeAndColors[i][t] != track || track == -1)
+                        if (ShapeAndColors[i][t] != track || track == 9)
                             break;
                         if (t == j + 4)
                         {
                             for (t = j; t <= j + 4; t++)
                             {
-                                ShapeAndColors[i][t] = -1;
+                                ShapeAndColors[i][t] = 9;
                                 buttons[i][t].BackgroundImage = null;
                                 buttons[i][t].Enabled = false;
                             }
@@ -349,13 +351,13 @@ namespace Board_Game__SQL_
                     track = ShapeAndColors[i][j];
                     for (int t = i + 1; t <= i + 4; t++)
                     {
-                        if (ShapeAndColors[t][j] != track || track == -1)
+                        if (ShapeAndColors[t][j] != track || track == 9)
                             break;
                         if (t == i + 4)
                         {
                             for (t = i; t <= i + 4; t++)
                             {
-                                ShapeAndColors[t][j] = -1;
+                                ShapeAndColors[t][j] = 9;
                                 buttons[t][j].BackgroundImage = null;
                                 buttons[t][j].Enabled = false;
                             }
@@ -380,7 +382,7 @@ namespace Board_Game__SQL_
             for (int i = 0; i < Row; i++)
             {
                 for (int j = 0; j < Column; j++)
-                    if (ShapeAndColors[i][j] == -1)
+                    if (ShapeAndColors[i][j] == 9)
                         return false;
             }
             return true;
@@ -419,7 +421,7 @@ namespace Board_Game__SQL_
             {
                 for (int j = 0; j < Column; j++)
                 {
-                    if (ShapeAndColors[i][j] != -1)
+                    if (ShapeAndColors[i][j] != 9)
                     {
                         visited[i][j] = true;
                         WeightPath[i, j] = int.MaxValue;

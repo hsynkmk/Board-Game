@@ -85,7 +85,7 @@ namespace Board_Game__SQL_
                 {
                     Button newButton = new Button();
                     buttons[i].Add(newButton);
-                    ShapeAndColors[i].Add(-1);
+                    ShapeAndColors[i].Add(9);
 
                     this.Controls.Add(buttons[i][j]);
                     this.buttons[i][j].MouseClick += new System.Windows.Forms.MouseEventHandler(this.Buttons_MouseClick);
@@ -111,7 +111,7 @@ namespace Board_Game__SQL_
                 int rand_r = rd.Next(0, row);
                 int rand_shape = rd.Next(0, GlobalMethods.ShapeAndColorPref().Count() - 1);
 
-                if (ShapeAndColors[rand_r][rand_c] == -1)
+                if (ShapeAndColors[rand_r][rand_c] == 9)
                 {
                     ShapeAndColors[rand_r][rand_c] = GlobalMethods.SClist[rand_shape];
 
@@ -133,7 +133,7 @@ namespace Board_Game__SQL_
             {
                 for (int j = 0; j < col; j++)
                 {
-                    if (ShapeAndColors[i][j] == -1)
+                    if (ShapeAndColors[i][j] == 9)
                         buttons[i][j].Enabled = false;
                 }
             }
@@ -151,13 +151,13 @@ namespace Board_Game__SQL_
                     track = ShapeAndColors[i][j];
                     for (int t = j + 1; t <= j + 4; t++)
                     {
-                        if (ShapeAndColors[i][t] != track || track == -1)
+                        if (ShapeAndColors[i][t] != track || track == 9)
                             break;
                         if (t == j + 4)
                         {
                             for (t = j; t <= j + 4; t++)
                             {
-                                ShapeAndColors[i][t] = -1;
+                                ShapeAndColors[i][t] = 9;
                                 buttons[i][t].BackgroundImage = null;
                                 buttons[i][t].Enabled = false;
                             }
@@ -184,13 +184,13 @@ namespace Board_Game__SQL_
                     track = ShapeAndColors[i][j];
                     for (int t = i + 1; t <= i + 4; t++)
                     {
-                        if (ShapeAndColors[t][j] != track || track == -1)
+                        if (ShapeAndColors[t][j] != track || track == 9)
                             break;
                         if (t == i + 4)
                         {
                             for (t = i; t <= i + 4; t++)
                             {
-                                ShapeAndColors[t][j] = -1;
+                                ShapeAndColors[t][j] = 9;
                                 buttons[t][j].BackgroundImage = null;
                                 buttons[t][j].Enabled = false;
                             }
@@ -215,7 +215,7 @@ namespace Board_Game__SQL_
             for (int i = 0; i < Row; i++)
             {
                 for (int j = 0; j < Column; j++)
-                    if (ShapeAndColors[i][j] == -1)
+                    if (ShapeAndColors[i][j] == 9)
                         return false;
             }
             return true;
@@ -230,7 +230,7 @@ namespace Board_Game__SQL_
             {
                 for (int j = 0; j < Column; j++)
                 {
-                    if (sender == buttons[i][j] && ShapeAndColors[i][j] != -1)
+                    if (sender == buttons[i][j] && ShapeAndColors[i][j] != 9)
                     {
 
                         buttons[i][j].BackColor = Color.Aqua;
@@ -240,7 +240,7 @@ namespace Board_Game__SQL_
                         WeightPath = ShortestAndAvailable(SBrow, SBcol);
 
                     }
-                    else if (sender == buttons[i][j] && ShapeAndColors[i][j] == -1)
+                    else if (sender == buttons[i][j] && ShapeAndColors[i][j] == 9)
                     {
                        // move(WeightPath, i, j);
 
@@ -250,7 +250,7 @@ namespace Board_Game__SQL_
                         buttons[i][j].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 
                         buttons[SBrow][SBcol].Enabled = false;
-                        ShapeAndColors[SBrow][SBcol] = -1;
+                        ShapeAndColors[SBrow][SBcol] = 9;
                         buttons[i][j].Enabled = true;
                         ShapeAndColors[i][j] = Properties.Resources.shapes.IndexOf((Bitmap)SBi);
 
@@ -417,7 +417,7 @@ namespace Board_Game__SQL_
             {
                 for (int j = 0; j < Column; j++)
                 {
-                    if (ShapeAndColors[i][j] != -1)
+                    if (ShapeAndColors[i][j] != 9)
                     {
                         visited[i][j] = true;
                         WeightPath[i, j] = int.MaxValue;
