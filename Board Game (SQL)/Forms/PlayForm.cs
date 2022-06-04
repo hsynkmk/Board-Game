@@ -109,7 +109,7 @@ namespace Board_Game__SQL_
             {
                 int rand_c = rd.Next(0, col);
                 int rand_r = rd.Next(0, row);
-                int rand_shape = rd.Next(0, GlobalMethods.ShapeAndColorPref().Count() - 1);
+                int rand_shape = rd.Next(0, GlobalMethods.ShapeAndColorPref().Count());
 
                 if (ShapeAndColors[rand_r][rand_c] == 9)
                 {

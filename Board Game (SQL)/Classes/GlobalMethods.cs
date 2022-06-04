@@ -59,8 +59,6 @@ namespace Board_Game__SQL_
                 if (col[2] == '1')
                     SClist.Add(8);
             }
-
-
             return SClist;
         }
     }

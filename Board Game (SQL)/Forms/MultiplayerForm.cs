@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace Board_Game__SQL_
 {
@@ -22,6 +23,7 @@ namespace Board_Game__SQL_
         public StreamWriter STW;
         string received;
 
+
         private List<List<Button>> buttons = new List<List<Button>>();
         private List<List<int>> ShapeAndColors = new List<List<int>>();
 
@@ -29,7 +31,7 @@ namespace Board_Game__SQL_
         private int SBcol, SBrow;
         private Image SBi;
         private int PointSum;
-        private string TRow, TCol;
+        //private string TRow, TCol;
 
         System.Media.SoundPlayer winSound = new System.Media.SoundPlayer(Properties.Resources.WinSound);
         System.Media.SoundPlayer pointSound = new System.Media.SoundPlayer(Properties.Resources.EntranceSound);
@@ -55,9 +57,9 @@ namespace Board_Game__SQL_
 
 
 
-            YourTurnButton.Location = new System.Drawing.Point(225, 0);
+            YourTurnButton.Location = new System.Drawing.Point(182, 0);
             this.ClientSize = new System.Drawing.Size(450, 470);
-            BackButton.Location = new System.Drawing.Point(405, 0);
+            ExitButton.Location = new System.Drawing.Point(405, 0);
             Column = Row = 9;
             BoardMaker(9, 9);
             PointThreeShape(9, 9);
@@ -77,8 +79,8 @@ namespace Board_Game__SQL_
             backgroundWorker2.WorkerSupportsCancellation = true;    //ability to cancel this thread
 
 
-            YourTurnButton.Location = new System.Drawing.Point(225, 0);
-            BackButton.Location = new System.Drawing.Point(405, 0);
+            YourTurnButton.Location = new System.Drawing.Point(182, 0);
+            ExitButton.Location = new System.Drawing.Point(405, 0);
             this.ClientSize = new System.Drawing.Size(450, 470);
             Column = Row = 9;
             BoardMaker(9, 9);
@@ -86,14 +88,26 @@ namespace Board_Game__SQL_
         }
 
 
-        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)         //recieves
+        private void BackgroundWorker1_DoWork(object sender, DoWorkEventArgs e)         //recieves
         {
+            Thread.Sleep(1000);
             while (client.Connected)
             {
                 try
                 {
+
                     int a = 0;
                     received = STR.ReadLine();
+
+                    //if (received[0] == 'g')
+                    //{
+                    //    MessageBox.Show("Your Opponent Point: " + received.Substring(1) + Environment.NewLine + "Your Point: " + PointSum.ToString());
+                        
+                    //    STW.Flush();
+                    //    STW.WriteLine("g" + PointSum.ToString());
+                    //    this.Close();
+                    //    this.Owner.Show();
+                    //}
 
                     for (int i = 0; i < 9; i++)
                     {
@@ -102,12 +116,11 @@ namespace Board_Game__SQL_
                             ShapeAndColors[i][j] = (int)(received[a] - '0');
                             a++;
                         }
+
+                        BoardEquilizer(ShapeAndColors);
+                        YourTurnButton.BackColor = Color.Green;
+                        EnableAllButtons(9, 9);
                     }
-
-                    BoardEquilizer(ShapeAndColors);
-                    //YourTurnButton.BackColor = Color.Red;
-                    //DisableAllButtons(9, 9);
-
 
                 }
                 catch (Exception ex)
@@ -117,7 +130,7 @@ namespace Board_Game__SQL_
             }
         }
         //buttons[i][j].BackgroundImage = Properties.Resources.shapes[ShapeAndColors[i][j]];
-        private void backgroundWorker2_DoWork(object sender, DoWorkEventArgs e)         //sends
+        private void BackgroundWorker2_DoWork(object sender, DoWorkEventArgs e)         //sends
         {
             string send = "";
             if (client.Connected)
@@ -130,13 +143,18 @@ namespace Board_Game__SQL_
                 }
                 STW.WriteLine(send);
 
-                //YourTurnButton.BackColor = Color.Green;
-                //EnableAllButtons(9, 9);
+                YourTurnButton.BackColor = Color.Red;
+                DisableAllButtons(9, 9);
             }
             else
             {
                 MessageBox.Show("Send Failed");
             }
+            //if (IsGameOver())
+            //{
+            //    STW.Flush();
+            //    STW.WriteLine("g" + PointSum.ToString());
+            //}
 
 
             backgroundWorker2.CancelAsync();
@@ -250,8 +268,8 @@ namespace Board_Game__SQL_
                     else if (sender == buttons[i][j] && ShapeAndColors[i][j] == 9)
                     {
                         // move(WeightPath, i, j);
-                        TRow = i.ToString();
-                        TCol = j.ToString();
+                        //TRow = i.ToString();
+                        //TCol = j.ToString();
 
 
 
@@ -301,7 +319,7 @@ namespace Board_Game__SQL_
             {
                 int rand_c = rd.Next(0, col);
                 int rand_r = rd.Next(0, row);
-                int rand_shape = rd.Next(0, GlobalMethods.ShapeAndColorPref().Count() - 1);
+                int rand_shape = rd.Next(0, GlobalMethods.ShapeAndColorPref().Count());
 
                 if (ShapeAndColors[rand_r][rand_c] == 9)
                 {
@@ -331,11 +349,6 @@ namespace Board_Game__SQL_
             }
         }
 
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
         bool IsGetPoint(List<List<int>> ShapeAndColors)
         {
             int track;
@@ -358,17 +371,10 @@ namespace Board_Game__SQL_
                                 buttons[i][t].Enabled = false;
                             }
                             pointSound.Play();
-                            if (UserClass.Difficulty.Equals("1000"))
-                                PointSum += 1;
-                            else if (UserClass.Difficulty.Equals("0100"))
-                                PointSum += 3;
-                            else if (UserClass.Difficulty.Equals("0010"))
-                                PointSum += 5;
-                            else
-                                PointSum += 2;
+                            PointSum += 3;
+
                             return true;
                         }
-
                     }
                 }
             }
@@ -391,14 +397,8 @@ namespace Board_Game__SQL_
                                 buttons[t][j].Enabled = false;
                             }
                             pointSound.Play();
-                            if (UserClass.Difficulty.Equals("1000"))
-                                PointSum += 1;
-                            else if (UserClass.Difficulty.Equals("0100"))
-                                PointSum += 3;
-                            else if (UserClass.Difficulty.Equals("0010"))
-                                PointSum += 5;
-                            else
-                                PointSum += 2;
+                            PointSum += 3;
+
                             return true;
                         }
                     }
@@ -418,18 +418,6 @@ namespace Board_Game__SQL_
         }
 
 
-        public class Cell
-        {
-            public int row;
-            public int col;
-            public int dist;
-            public Cell(int x, int y, int w)
-            {
-                this.row = x;
-                this.col = y;
-                this.dist = w;
-            }
-        }
 
 
         int[,] ShortestAndAvailable(int row, int column)
@@ -536,6 +524,11 @@ namespace Board_Game__SQL_
 
                 return newArray;
             }
+        }
+        private void BackButton_Click(object sender, EventArgs e)
+        {
+            SQLClass.connection.Close();
+            Application.Exit();
         }
     }
 }

@@ -65,7 +65,7 @@ namespace Board_Game__SQL_
         {
             try
             {
-                if (shapeCheckedListBox.SelectedItems.Count >= 2 && colorCheckedListBox.SelectedItems.Count >= 2)
+                if (shapeCheckedListBox.CheckedItems.Count >= 2 && colorCheckedListBox.CheckedItems.Count >= 2)
                 {
                     SqlCommand SaveCommand = new SqlCommand("Update BoardGameUsers set Difficulty=@diff, CustomDifWidth=@cdiffw, CustomDifHeight=@cdiffh, Sahpe=@shape,Color=@color where username=@usn", SQLClass.connection);
                     SaveCommand.Parameters.AddWithValue("@usn", UserClass.Username);

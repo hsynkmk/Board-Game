@@ -35,7 +35,7 @@ namespace Board_Game__SQL_
 
         private void StartServerButton_Click(object sender, EventArgs e)            //Start Server
         {
-            if (!PortTextBox.Text.Equals(""))
+            if (!YourPortTextBox.Text.Equals(""))
             {
                 ConnectionLabel.Visible = true;
 
@@ -46,6 +46,7 @@ namespace Board_Game__SQL_
        
                 MultiplayerForm multiplayerForm = new MultiplayerForm(listener, client) { Owner = this };
                 multiplayerForm.Show();
+                this.Owner.Hide();
                 this.Hide();
             }
         }
@@ -64,7 +65,7 @@ namespace Board_Game__SQL_
 
                     MultiplayerForm multiplayerForm = new MultiplayerForm(client) { Owner = this };
                     multiplayerForm.Show();
-
+                    this.Owner.Hide();
                     this.Hide();
                 }
             }
@@ -81,6 +82,7 @@ namespace Board_Game__SQL_
         private void CancelButton_Click(object sender, EventArgs e)                 //Cancel
         {
             this.Owner.Enabled = true;
+            this.Owner.Show();
             this.Close();
         }
     }
