@@ -35,10 +35,10 @@ namespace Board_Game__SQL_
 
         private void StartServerButton_Click(object sender, EventArgs e)            //Start Server
         {
+            ConnectionLabel.Visible = true;
+
             if (!YourPortTextBox.Text.Equals(""))
             {
-                ConnectionLabel.Visible = true;
-
                 listener = new TcpListener(IPAddress.Any, int.Parse(YourPortTextBox.Text));
                 listener.Start();
                 client = listener.AcceptTcpClient();

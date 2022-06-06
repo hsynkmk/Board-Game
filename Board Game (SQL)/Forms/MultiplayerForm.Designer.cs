@@ -33,6 +33,8 @@
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.ExitButton = new System.Windows.Forms.Button();
             this.YourTurnButton = new System.Windows.Forms.Button();
+            this.OpponentPointLabel = new System.Windows.Forms.Label();
+            this.YourPointLabel = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // backgroundWorker1
@@ -69,11 +71,31 @@
             this.YourTurnButton.Text = "Your Turn";
             this.YourTurnButton.UseVisualStyleBackColor = false;
             // 
+            // OpponentPointLabel
+            // 
+            this.OpponentPointLabel.AutoSize = true;
+            this.OpponentPointLabel.Location = new System.Drawing.Point(457, 1);
+            this.OpponentPointLabel.Name = "OpponentPointLabel";
+            this.OpponentPointLabel.Size = new System.Drawing.Size(14, 16);
+            this.OpponentPointLabel.TabIndex = 7;
+            this.OpponentPointLabel.Text = "0";
+            // 
+            // YourPointLabel
+            // 
+            this.YourPointLabel.AutoSize = true;
+            this.YourPointLabel.Location = new System.Drawing.Point(192, 1);
+            this.YourPointLabel.Name = "YourPointLabel";
+            this.YourPointLabel.Size = new System.Drawing.Size(14, 16);
+            this.YourPointLabel.TabIndex = 6;
+            this.YourPointLabel.Text = "0";
+            // 
             // MultiplayerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(692, 501);
+            this.Controls.Add(this.OpponentPointLabel);
+            this.Controls.Add(this.YourPointLabel);
             this.Controls.Add(this.YourTurnButton);
             this.Controls.Add(this.ExitButton);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -81,6 +103,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MultiplayerForm";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -90,5 +113,7 @@
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
         private System.Windows.Forms.Button ExitButton;
         private System.Windows.Forms.Button YourTurnButton;
+        private System.Windows.Forms.Label OpponentPointLabel;
+        private System.Windows.Forms.Label YourPointLabel;
     }
 }

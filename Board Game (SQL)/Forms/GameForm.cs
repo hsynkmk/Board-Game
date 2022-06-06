@@ -35,7 +35,7 @@ namespace Board_Game__SQL_
 
         private void MultiplayerButton_Click(object sender, EventArgs e)                            //Socket connection for multiplayer
         {
-            this.Enabled = false;
+            this.Hide();
             ConnectionForm connf = new ConnectionForm { Owner = this };
             connf.Show();
         }

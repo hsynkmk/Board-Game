@@ -22,6 +22,7 @@ namespace Board_Game__SQL_
         public StreamReader STR;
         public StreamWriter STW;
         string received;
+        string send;
 
 
         private List<List<Button>> buttons = new List<List<Button>>();
@@ -31,7 +32,7 @@ namespace Board_Game__SQL_
         private int SBcol, SBrow;
         private Image SBi;
         private int PointSum;
-        //private string TRow, TCol;
+
 
         System.Media.SoundPlayer winSound = new System.Media.SoundPlayer(Properties.Resources.WinSound);
         System.Media.SoundPlayer pointSound = new System.Media.SoundPlayer(Properties.Resources.EntranceSound);
@@ -52,6 +53,7 @@ namespace Board_Game__SQL_
 
 
             backgroundWorker1.RunWorkerAsync();                     //start reciving data in backround
+            backgroundWorker1.WorkerSupportsCancellation = true;
             backgroundWorker2.WorkerSupportsCancellation = true;    //ability to cancel this thread
 
 
@@ -76,6 +78,7 @@ namespace Board_Game__SQL_
             STW.AutoFlush = true;
 
             backgroundWorker1.RunWorkerAsync();                     //start reciving data in backround
+            backgroundWorker1.WorkerSupportsCancellation = true;
             backgroundWorker2.WorkerSupportsCancellation = true;    //ability to cancel this thread
 
 
@@ -84,7 +87,6 @@ namespace Board_Game__SQL_
             this.ClientSize = new System.Drawing.Size(450, 470);
             Column = Row = 9;
             BoardMaker(9, 9);
-            //PointThreeShape(9, 9);
         }
 
 
@@ -93,33 +95,48 @@ namespace Board_Game__SQL_
             Thread.Sleep(1000);
             while (client.Connected)
             {
+
+
                 try
                 {
 
                     int a = 0;
+
+
                     received = STR.ReadLine();
 
-                    //if (received[0] == 'g')
-                    //{
-                    //    MessageBox.Show("Your Opponent Point: " + received.Substring(1) + Environment.NewLine + "Your Point: " + PointSum.ToString());
-                        
-                    //    STW.Flush();
-                    //    STW.WriteLine("g" + PointSum.ToString());
-                    //    this.Close();
-                    //    this.Owner.Show();
-                    //}
 
-                    for (int i = 0; i < 9; i++)
+                    if (!(received == null))
                     {
-                        for (int j = 0; j < 9; j++)
-                        {
-                            ShapeAndColors[i][j] = (int)(received[a] - '0');
-                            a++;
-                        }
+                        OpponentPointLabel.Invoke(new MethodInvoker(delegate () { OpponentPointLabel.Text = received.Substring(81); }));
 
-                        BoardEquilizer(ShapeAndColors);
-                        YourTurnButton.BackColor = Color.Green;
-                        EnableAllButtons(9, 9);
+
+                        for (int i = 0; i < 9; i++)
+                        {
+                            for (int j = 0; j < 9; j++)
+                            {
+                                ShapeAndColors[i][j] = (int)(received[a] - '0');
+                                a++;
+                            }
+
+                            BoardEquilizer(ShapeAndColors);
+                            YourTurnButton.BackColor = Color.Green;
+                            EnableAllButtons(9, 9);
+                        }
+                    }
+
+                    if (IsGameOver())
+                    {
+                        for (int i = 0; i < 9; i++)
+                        {
+                            for (int j = 0; j < 9; j++)
+                                send += (ShapeAndColors[i][j].ToString());
+                        }
+                        send += PointSum.ToString();
+                        STW.WriteLine(send);
+
+                        winSound.Play();
+                        GameOver();
                     }
 
                 }
@@ -129,37 +146,78 @@ namespace Board_Game__SQL_
                 }
             }
         }
-        //buttons[i][j].BackgroundImage = Properties.Resources.shapes[ShapeAndColors[i][j]];
+
         private void BackgroundWorker2_DoWork(object sender, DoWorkEventArgs e)         //sends
         {
-            string send = "";
+            send = "";
             if (client.Connected)
             {
-                //STW.WriteLine(SBrow.ToString() + SBcol.ToString() + TRow + TCol);
+                if (IsGameOver())
+                {
+                    winSound.Play();
+                    GameOver();
+                }
+
                 for (int i = 0; i < 9; i++)
                 {
                     for (int j = 0; j < 9; j++)
                         send += (ShapeAndColors[i][j].ToString());
                 }
+                send += PointSum.ToString();
                 STW.WriteLine(send);
+
 
                 YourTurnButton.BackColor = Color.Red;
                 DisableAllButtons(9, 9);
+                YourPointLabel.Invoke(new MethodInvoker(delegate () { YourPointLabel.Text = PointSum.ToString(); }));
             }
             else
             {
                 MessageBox.Show("Send Failed");
             }
-            //if (IsGameOver())
-            //{
-            //    STW.Flush();
-            //    STW.WriteLine("g" + PointSum.ToString());
-            //}
-
-
             backgroundWorker2.CancelAsync();
         }
 
+
+        private void GameOver()
+        {
+            if (OpponentPointLabel.Text != "" && YourPointLabel.Text != "")
+            {
+                if (int.Parse(OpponentPointLabel.Text) < int.Parse(YourPointLabel.Text))
+                {
+                    MessageBox.Show("YOU WON\n");
+                    //client.Close();
+                    backgroundWorker1.CancelAsync();
+
+                    this.Invoke(new MethodInvoker(delegate () { this.Hide(); }));
+                    this.Invoke(new MethodInvoker(delegate () { this.Owner.Owner.Show(); }));
+                    return;
+                }
+
+                else if (int.Parse(OpponentPointLabel.Text) > int.Parse(YourPointLabel.Text))
+                {
+                    MessageBox.Show("YOU LOST\n");
+                    //client.Close();
+                    backgroundWorker1.CancelAsync();
+
+                    this.Invoke(new MethodInvoker(delegate () { this.Hide(); }));
+                    this.Invoke(new MethodInvoker(delegate () { this.Owner.Owner.Show(); }));
+
+                    return;
+                }
+
+                else if (int.Parse(OpponentPointLabel.Text) == int.Parse(YourPointLabel.Text))
+                {
+                    MessageBox.Show("SCORELESS, You are even");
+                    //client.Close();
+                    backgroundWorker1.CancelAsync();
+
+                    this.Invoke(new MethodInvoker(delegate () { this.Hide(); }));
+                    this.Invoke(new MethodInvoker(delegate () { this.Owner.Owner.Show(); }));
+                    return;
+                }
+            }
+        }
 
         private void DisableAllButtons(int row, int col)
         {
@@ -267,11 +325,6 @@ namespace Board_Game__SQL_
                     }
                     else if (sender == buttons[i][j] && ShapeAndColors[i][j] == 9)
                     {
-                        // move(WeightPath, i, j);
-                        //TRow = i.ToString();
-                        //TCol = j.ToString();
-
-
 
                         buttons[SBrow][SBcol].BackColor = Color.Azure;
                         buttons[SBrow][SBcol].BackgroundImage = null;
@@ -292,17 +345,7 @@ namespace Board_Game__SQL_
 
                         if (IsGameOver())
                         {
-                            if (PointSum > UserClass.BestScore)
-                            {
-                                UserClass.BestScore = PointSum;
-                                SQLClass.SetBestScore(PointSum.ToString());
-                            }
 
-
-                            winSound.Play();
-                            MessageBox.Show("Game Over\n" + "Point: " + PointSum.ToString() + "\n" + "Best Score: " + UserClass.BestScore);
-                            //this.Owner.Show();
-                            //this.Close();
                         }
                         backgroundWorker2.RunWorkerAsync();
                     }
@@ -406,7 +449,7 @@ namespace Board_Game__SQL_
             }
             return false;
         }
-        bool IsGameOver()
+        private bool IsGameOver()
         {
             for (int i = 0; i < Row; i++)
             {
@@ -527,6 +570,7 @@ namespace Board_Game__SQL_
         }
         private void BackButton_Click(object sender, EventArgs e)
         {
+            client.Close();
             SQLClass.connection.Close();
             Application.Exit();
         }
