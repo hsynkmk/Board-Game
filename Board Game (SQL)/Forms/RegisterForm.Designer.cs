@@ -54,8 +54,9 @@
             // invalidUsernameLabel
             // 
             this.invalidUsernameLabel.AutoSize = true;
-            this.invalidUsernameLabel.ForeColor = System.Drawing.Color.Red;
-            this.invalidUsernameLabel.Location = new System.Drawing.Point(419, 461);
+            this.invalidUsernameLabel.BackColor = System.Drawing.Color.Black;
+            this.invalidUsernameLabel.ForeColor = System.Drawing.Color.White;
+            this.invalidUsernameLabel.Location = new System.Drawing.Point(451, 460);
             this.invalidUsernameLabel.Name = "invalidUsernameLabel";
             this.invalidUsernameLabel.Size = new System.Drawing.Size(149, 16);
             this.invalidUsernameLabel.TabIndex = 40;
@@ -65,58 +66,74 @@
             // registerLabel
             // 
             this.registerLabel.AutoSize = true;
-            this.registerLabel.Font = new System.Drawing.Font("Segoe Print", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.registerLabel.Location = new System.Drawing.Point(423, 63);
+            this.registerLabel.BackColor = System.Drawing.Color.Black;
+            this.registerLabel.Font = new System.Drawing.Font("Segoe Print", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.registerLabel.ForeColor = System.Drawing.Color.White;
+            this.registerLabel.Location = new System.Drawing.Point(445, -3);
             this.registerLabel.Name = "registerLabel";
-            this.registerLabel.Size = new System.Drawing.Size(135, 50);
+            this.registerLabel.Size = new System.Drawing.Size(120, 44);
             this.registerLabel.TabIndex = 39;
             this.registerLabel.Text = "Register";
             // 
             // emailTextbox
             // 
-            this.emailTextbox.Location = new System.Drawing.Point(505, 421);
+            this.emailTextbox.BackColor = System.Drawing.Color.Black;
+            this.emailTextbox.ForeColor = System.Drawing.Color.White;
+            this.emailTextbox.Location = new System.Drawing.Point(537, 420);
             this.emailTextbox.Name = "emailTextbox";
             this.emailTextbox.Size = new System.Drawing.Size(100, 22);
             this.emailTextbox.TabIndex = 36;
             // 
             // countryTextbox
             // 
-            this.countryTextbox.Location = new System.Drawing.Point(505, 381);
+            this.countryTextbox.BackColor = System.Drawing.Color.Black;
+            this.countryTextbox.ForeColor = System.Drawing.Color.White;
+            this.countryTextbox.Location = new System.Drawing.Point(537, 380);
             this.countryTextbox.Name = "countryTextbox";
             this.countryTextbox.Size = new System.Drawing.Size(100, 22);
             this.countryTextbox.TabIndex = 35;
             // 
             // cityTextbox
             // 
-            this.cityTextbox.Location = new System.Drawing.Point(505, 341);
+            this.cityTextbox.BackColor = System.Drawing.Color.Black;
+            this.cityTextbox.ForeColor = System.Drawing.Color.White;
+            this.cityTextbox.Location = new System.Drawing.Point(537, 340);
             this.cityTextbox.Name = "cityTextbox";
             this.cityTextbox.Size = new System.Drawing.Size(100, 22);
             this.cityTextbox.TabIndex = 34;
             // 
             // addressTextbox
             // 
-            this.addressTextbox.Location = new System.Drawing.Point(505, 301);
+            this.addressTextbox.BackColor = System.Drawing.Color.Black;
+            this.addressTextbox.ForeColor = System.Drawing.Color.White;
+            this.addressTextbox.Location = new System.Drawing.Point(537, 300);
             this.addressTextbox.Name = "addressTextbox";
             this.addressTextbox.Size = new System.Drawing.Size(100, 22);
             this.addressTextbox.TabIndex = 33;
             // 
             // phoneNumberTextbox
             // 
-            this.phoneNumberTextbox.Location = new System.Drawing.Point(505, 261);
+            this.phoneNumberTextbox.BackColor = System.Drawing.Color.Black;
+            this.phoneNumberTextbox.ForeColor = System.Drawing.Color.White;
+            this.phoneNumberTextbox.Location = new System.Drawing.Point(537, 260);
             this.phoneNumberTextbox.Name = "phoneNumberTextbox";
             this.phoneNumberTextbox.Size = new System.Drawing.Size(100, 22);
             this.phoneNumberTextbox.TabIndex = 32;
             // 
             // nameSurnameTextbox
             // 
-            this.nameSurnameTextbox.Location = new System.Drawing.Point(505, 221);
+            this.nameSurnameTextbox.BackColor = System.Drawing.Color.Black;
+            this.nameSurnameTextbox.ForeColor = System.Drawing.Color.White;
+            this.nameSurnameTextbox.Location = new System.Drawing.Point(537, 220);
             this.nameSurnameTextbox.Name = "nameSurnameTextbox";
             this.nameSurnameTextbox.Size = new System.Drawing.Size(100, 22);
             this.nameSurnameTextbox.TabIndex = 31;
             // 
             // passwordTextbox
             // 
-            this.passwordTextbox.Location = new System.Drawing.Point(505, 181);
+            this.passwordTextbox.BackColor = System.Drawing.Color.Black;
+            this.passwordTextbox.ForeColor = System.Drawing.Color.White;
+            this.passwordTextbox.Location = new System.Drawing.Point(537, 180);
             this.passwordTextbox.Name = "passwordTextbox";
             this.passwordTextbox.PasswordChar = '*';
             this.passwordTextbox.Size = new System.Drawing.Size(100, 22);
@@ -124,7 +141,9 @@
             // 
             // usernameTextbox
             // 
-            this.usernameTextbox.Location = new System.Drawing.Point(505, 141);
+            this.usernameTextbox.BackColor = System.Drawing.Color.Black;
+            this.usernameTextbox.ForeColor = System.Drawing.Color.White;
+            this.usernameTextbox.Location = new System.Drawing.Point(537, 140);
             this.usernameTextbox.Name = "usernameTextbox";
             this.usernameTextbox.Size = new System.Drawing.Size(100, 22);
             this.usernameTextbox.TabIndex = 29;
@@ -132,7 +151,9 @@
             // emailLabel
             // 
             this.emailLabel.AutoSize = true;
-            this.emailLabel.Location = new System.Drawing.Point(378, 421);
+            this.emailLabel.BackColor = System.Drawing.Color.Black;
+            this.emailLabel.ForeColor = System.Drawing.Color.White;
+            this.emailLabel.Location = new System.Drawing.Point(410, 420);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Size = new System.Drawing.Size(45, 16);
             this.emailLabel.TabIndex = 28;
@@ -141,7 +162,9 @@
             // countryLabel
             // 
             this.countryLabel.AutoSize = true;
-            this.countryLabel.Location = new System.Drawing.Point(378, 381);
+            this.countryLabel.BackColor = System.Drawing.Color.Black;
+            this.countryLabel.ForeColor = System.Drawing.Color.White;
+            this.countryLabel.Location = new System.Drawing.Point(410, 380);
             this.countryLabel.Name = "countryLabel";
             this.countryLabel.Size = new System.Drawing.Size(52, 16);
             this.countryLabel.TabIndex = 27;
@@ -150,7 +173,9 @@
             // cityLabel
             // 
             this.cityLabel.AutoSize = true;
-            this.cityLabel.Location = new System.Drawing.Point(378, 341);
+            this.cityLabel.BackColor = System.Drawing.Color.Black;
+            this.cityLabel.ForeColor = System.Drawing.Color.White;
+            this.cityLabel.Location = new System.Drawing.Point(410, 340);
             this.cityLabel.Name = "cityLabel";
             this.cityLabel.Size = new System.Drawing.Size(29, 16);
             this.cityLabel.TabIndex = 26;
@@ -159,7 +184,9 @@
             // addressLabel
             // 
             this.addressLabel.AutoSize = true;
-            this.addressLabel.Location = new System.Drawing.Point(378, 301);
+            this.addressLabel.BackColor = System.Drawing.Color.Black;
+            this.addressLabel.ForeColor = System.Drawing.Color.White;
+            this.addressLabel.Location = new System.Drawing.Point(410, 300);
             this.addressLabel.Name = "addressLabel";
             this.addressLabel.Size = new System.Drawing.Size(58, 16);
             this.addressLabel.TabIndex = 25;
@@ -168,7 +195,9 @@
             // phoneNumberLabel
             // 
             this.phoneNumberLabel.AutoSize = true;
-            this.phoneNumberLabel.Location = new System.Drawing.Point(378, 261);
+            this.phoneNumberLabel.BackColor = System.Drawing.Color.Black;
+            this.phoneNumberLabel.ForeColor = System.Drawing.Color.White;
+            this.phoneNumberLabel.Location = new System.Drawing.Point(410, 260);
             this.phoneNumberLabel.Name = "phoneNumberLabel";
             this.phoneNumberLabel.Size = new System.Drawing.Size(97, 16);
             this.phoneNumberLabel.TabIndex = 24;
@@ -177,7 +206,9 @@
             // nameSurnameLabel
             // 
             this.nameSurnameLabel.AutoSize = true;
-            this.nameSurnameLabel.Location = new System.Drawing.Point(378, 221);
+            this.nameSurnameLabel.BackColor = System.Drawing.Color.Black;
+            this.nameSurnameLabel.ForeColor = System.Drawing.Color.White;
+            this.nameSurnameLabel.Location = new System.Drawing.Point(410, 220);
             this.nameSurnameLabel.Name = "nameSurnameLabel";
             this.nameSurnameLabel.Size = new System.Drawing.Size(102, 16);
             this.nameSurnameLabel.TabIndex = 23;
@@ -186,7 +217,9 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(378, 181);
+            this.passwordLabel.BackColor = System.Drawing.Color.Black;
+            this.passwordLabel.ForeColor = System.Drawing.Color.White;
+            this.passwordLabel.Location = new System.Drawing.Point(410, 180);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(72, 16);
             this.passwordLabel.TabIndex = 22;
@@ -195,7 +228,9 @@
             // usernameLabel
             // 
             this.usernameLabel.AutoSize = true;
-            this.usernameLabel.Location = new System.Drawing.Point(378, 141);
+            this.usernameLabel.BackColor = System.Drawing.Color.Black;
+            this.usernameLabel.ForeColor = System.Drawing.Color.White;
+            this.usernameLabel.Location = new System.Drawing.Point(410, 140);
             this.usernameLabel.Name = "usernameLabel";
             this.usernameLabel.Size = new System.Drawing.Size(75, 16);
             this.usernameLabel.TabIndex = 21;
@@ -204,10 +239,14 @@
             // RegisterLinkLabel
             // 
             this.RegisterLinkLabel.AutoSize = true;
+            this.RegisterLinkLabel.BackColor = System.Drawing.Color.Black;
+            this.RegisterLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.RegisterLinkLabel.ForeColor = System.Drawing.Color.White;
             this.RegisterLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.RegisterLinkLabel.Location = new System.Drawing.Point(547, 501);
+            this.RegisterLinkLabel.LinkColor = System.Drawing.Color.Green;
+            this.RegisterLinkLabel.Location = new System.Drawing.Point(579, 500);
             this.RegisterLinkLabel.Name = "RegisterLinkLabel";
-            this.RegisterLinkLabel.Size = new System.Drawing.Size(58, 16);
+            this.RegisterLinkLabel.Size = new System.Drawing.Size(66, 16);
             this.RegisterLinkLabel.TabIndex = 41;
             this.RegisterLinkLabel.TabStop = true;
             this.RegisterLinkLabel.Text = "Register";
@@ -216,10 +255,14 @@
             // BackLinkLabel
             // 
             this.BackLinkLabel.AutoSize = true;
+            this.BackLinkLabel.BackColor = System.Drawing.Color.Black;
+            this.BackLinkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
+            this.BackLinkLabel.ForeColor = System.Drawing.Color.White;
             this.BackLinkLabel.LinkBehavior = System.Windows.Forms.LinkBehavior.NeverUnderline;
-            this.BackLinkLabel.Location = new System.Drawing.Point(378, 501);
+            this.BackLinkLabel.LinkColor = System.Drawing.Color.Green;
+            this.BackLinkLabel.Location = new System.Drawing.Point(410, 500);
             this.BackLinkLabel.Name = "BackLinkLabel";
-            this.BackLinkLabel.Size = new System.Drawing.Size(38, 16);
+            this.BackLinkLabel.Size = new System.Drawing.Size(42, 16);
             this.BackLinkLabel.TabIndex = 42;
             this.BackLinkLabel.TabStop = true;
             this.BackLinkLabel.Text = "Back";
@@ -229,6 +272,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = global::Board_Game__SQL_.Properties.Resources.Background2;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1000, 600);
             this.Controls.Add(this.BackLinkLabel);
             this.Controls.Add(this.RegisterLinkLabel);

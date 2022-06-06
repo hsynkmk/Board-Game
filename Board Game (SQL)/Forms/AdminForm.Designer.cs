@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminForm));
             this.BackButton = new System.Windows.Forms.Button();
             this.infoGroupBox = new System.Windows.Forms.GroupBox();
             this.invalidUsernameLabel = new System.Windows.Forms.Label();
@@ -51,13 +52,15 @@
             this.NameSurnameTextbox = new System.Windows.Forms.TextBox();
             this.UserDataGridView = new System.Windows.Forms.DataGridView();
             this.CommandComboBox = new System.Windows.Forms.ComboBox();
+            this.MakeAdminButton = new System.Windows.Forms.Button();
+            this.MakeUserButton = new System.Windows.Forms.Button();
             this.infoGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.UserDataGridView)).BeginInit();
             this.SuspendLayout();
             // 
             // BackButton
             // 
-            this.BackButton.Location = new System.Drawing.Point(900, 540);
+            this.BackButton.Location = new System.Drawing.Point(894, 562);
             this.BackButton.Name = "BackButton";
             this.BackButton.Size = new System.Drawing.Size(94, 29);
             this.BackButton.TabIndex = 48;
@@ -266,7 +269,8 @@
             this.UserDataGridView.RowTemplate.Height = 24;
             this.UserDataGridView.Size = new System.Drawing.Size(991, 208);
             this.UserDataGridView.TabIndex = 50;
-            this.UserDataGridView.SelectionChanged += new System.EventHandler(this.UserDataGridView_SelectionChanged);
+            this.UserDataGridView.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.UserDataGridView_RowHeaderMouseClick);
+            this.UserDataGridView.RowHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.UserDataGridView_RowHeaderMouseClick);
             // 
             // CommandComboBox
             // 
@@ -282,16 +286,39 @@
             this.CommandComboBox.Text = "Select A Comand";
             this.CommandComboBox.SelectedIndexChanged += new System.EventHandler(this.CommandComboBox_SelectedIndexChanged);
             // 
+            // MakeAdminButton
+            // 
+            this.MakeAdminButton.Location = new System.Drawing.Point(894, 319);
+            this.MakeAdminButton.Name = "MakeAdminButton";
+            this.MakeAdminButton.Size = new System.Drawing.Size(94, 29);
+            this.MakeAdminButton.TabIndex = 53;
+            this.MakeAdminButton.Text = "Make Admin";
+            this.MakeAdminButton.UseVisualStyleBackColor = true;
+            this.MakeAdminButton.Click += new System.EventHandler(this.MakeAdminButton_Click);
+            // 
+            // MakeUserButton
+            // 
+            this.MakeUserButton.Location = new System.Drawing.Point(894, 354);
+            this.MakeUserButton.Name = "MakeUserButton";
+            this.MakeUserButton.Size = new System.Drawing.Size(94, 29);
+            this.MakeUserButton.TabIndex = 54;
+            this.MakeUserButton.Text = "Make User";
+            this.MakeUserButton.UseVisualStyleBackColor = true;
+            this.MakeUserButton.Click += new System.EventHandler(this.MakeUserButton_Click);
+            // 
             // AdminForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1000, 600);
+            this.Controls.Add(this.MakeUserButton);
+            this.Controls.Add(this.MakeAdminButton);
             this.Controls.Add(this.CommandComboBox);
             this.Controls.Add(this.UserDataGridView);
             this.Controls.Add(this.BackButton);
             this.Controls.Add(this.infoGroupBox);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "AdminForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AdminForm";
@@ -327,5 +354,7 @@
         private System.Windows.Forms.TextBox NameSurnameTextbox;
         private System.Windows.Forms.DataGridView UserDataGridView;
         private System.Windows.Forms.ComboBox CommandComboBox;
+        private System.Windows.Forms.Button MakeAdminButton;
+        private System.Windows.Forms.Button MakeUserButton;
     }
 }

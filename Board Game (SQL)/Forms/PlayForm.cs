@@ -12,15 +12,15 @@ namespace Board_Game__SQL_
 {
     public partial class PlayForm : Form
     {
-        private List<List<Button>> buttons = new List<List<Button>>();
-        private List<List<int>> ShapeAndColors = new List<List<int>>();
+        private List<List<Button>> buttons = new List<List<Button>>();      //2 dimensional button list
+        private List<List<int>> ShapeAndColors = new List<List<int>>();     //2 dimensional shape info list
 
-        private int Column, Row;
-        private int SBcol, SBrow;
-        private Image SBi;
-        private int PointSum;
+        private int Column, Row;    //Total rows and total columns
+        private int SBcol, SBrow;   //Source row and column
+        private Image SBi;          //Source button's shape
+        private int PointSum;       //Total point
 
-        System.Media.SoundPlayer winSound = new System.Media.SoundPlayer(Properties.Resources.WinSound);
+        System.Media.SoundPlayer winSound = new System.Media.SoundPlayer(Properties.Resources.WinSound);                //Sounds
         System.Media.SoundPlayer pointSound = new System.Media.SoundPlayer(Properties.Resources.EntranceSound);
         System.Media.SoundPlayer lastStepSound = new System.Media.SoundPlayer(Properties.Resources.LastStepSound);
         System.Media.SoundPlayer stepSound = new System.Media.SoundPlayer(Properties.Resources.StepSound);
@@ -32,7 +32,7 @@ namespace Board_Game__SQL_
             Play();
         }
 
-        private void Play()
+        private void Play()                                                 //Initilizes game board with user settings
         {
             if (UserClass.Difficulty.Equals("1000"))
             {
@@ -67,11 +67,11 @@ namespace Board_Game__SQL_
                 PointThreeShape(Row, Column);
             }
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            BackButton.Location = new System.Drawing.Point(Column * 50-45, 0);
+            exitButton.Location = new System.Drawing.Point(Column * 50-45, 0);
             BestScoreLabel.Text = "Best Score: " + UserClass.BestScore.ToString();
         }
 
-        private void BoardMaker(int row, int col)
+        private void BoardMaker(int row, int col)                           //Makes board game
         {
             int colLoc = 0;
             int rowLoc = 20;
@@ -85,7 +85,7 @@ namespace Board_Game__SQL_
                 {
                     Button newButton = new Button();
                     buttons[i].Add(newButton);
-                    ShapeAndColors[i].Add(-1);
+                    ShapeAndColors[i].Add(9);
 
                     this.Controls.Add(buttons[i][j]);
                     this.buttons[i][j].MouseClick += new System.Windows.Forms.MouseEventHandler(this.Buttons_MouseClick);
@@ -101,7 +101,7 @@ namespace Board_Game__SQL_
             DisableEmptyButtons(row, col);
         }
 
-        private void PointThreeShape(int row, int col)
+        private void PointThreeShape(int row, int col)                      //Points 3 random shape
         {
             Random rd = new Random();
 
@@ -109,9 +109,9 @@ namespace Board_Game__SQL_
             {
                 int rand_c = rd.Next(0, col);
                 int rand_r = rd.Next(0, row);
-                int rand_shape = rd.Next(0, GlobalMethods.ShapeAndColorPref().Count() - 1);
+                int rand_shape = rd.Next(0, GlobalMethods.ShapeAndColorPref().Count());
 
-                if (ShapeAndColors[rand_r][rand_c] == -1)
+                if (ShapeAndColors[rand_r][rand_c] == 9)
                 {
                     ShapeAndColors[rand_r][rand_c] = GlobalMethods.SClist[rand_shape];
 
@@ -127,20 +127,20 @@ namespace Board_Game__SQL_
                 IsGetPoint(ShapeAndColors);
             }
         }
-        private void DisableEmptyButtons(int row, int col)
+        private void DisableEmptyButtons(int row, int col)                  //Disables empty buttons
         {
             for (int i = 0; i < row; i++)
             {
                 for (int j = 0; j < col; j++)
                 {
-                    if (ShapeAndColors[i][j] == -1)
+                    if (ShapeAndColors[i][j] == 9)
                         buttons[i][j].Enabled = false;
                 }
             }
         }
 
 
-        bool IsGetPoint(List<List<int>> ShapeAndColors)
+        bool IsGetPoint(List<List<int>> ShapeAndColors)                     //Calculates if the user get a point
         {
             int track;
 
@@ -151,13 +151,13 @@ namespace Board_Game__SQL_
                     track = ShapeAndColors[i][j];
                     for (int t = j + 1; t <= j + 4; t++)
                     {
-                        if (ShapeAndColors[i][t] != track || track == -1)
+                        if (ShapeAndColors[i][t] != track || track == 9)
                             break;
                         if (t == j + 4)
                         {
                             for (t = j; t <= j + 4; t++)
                             {
-                                ShapeAndColors[i][t] = -1;
+                                ShapeAndColors[i][t] = 9;
                                 buttons[i][t].BackgroundImage = null;
                                 buttons[i][t].Enabled = false;
                             }
@@ -184,13 +184,13 @@ namespace Board_Game__SQL_
                     track = ShapeAndColors[i][j];
                     for (int t = i + 1; t <= i + 4; t++)
                     {
-                        if (ShapeAndColors[t][j] != track || track == -1)
+                        if (ShapeAndColors[t][j] != track || track == 9)
                             break;
                         if (t == i + 4)
                         {
                             for (t = i; t <= i + 4; t++)
                             {
-                                ShapeAndColors[t][j] = -1;
+                                ShapeAndColors[t][j] = 9;
                                 buttons[t][j].BackgroundImage = null;
                                 buttons[t][j].Enabled = false;
                             }
@@ -210,19 +210,19 @@ namespace Board_Game__SQL_
             }
             return false;
         }
-        bool IsGameOver()
+        bool IsGameOver()                                                   //Checks if the game is over
         {
             for (int i = 0; i < Row; i++)
             {
                 for (int j = 0; j < Column; j++)
-                    if (ShapeAndColors[i][j] == -1)
+                    if (ShapeAndColors[i][j] == 9)
                         return false;
             }
             return true;
         }
 
 
-        private void Buttons_MouseClick(object sender, MouseEventArgs e)
+        private void Buttons_MouseClick(object sender, MouseEventArgs e)    //Handles the mouse events (selection of a button)
         {
             int[,] WeightPath = new int[Row, Column];
 
@@ -230,7 +230,7 @@ namespace Board_Game__SQL_
             {
                 for (int j = 0; j < Column; j++)
                 {
-                    if (sender == buttons[i][j] && ShapeAndColors[i][j] != -1)
+                    if (sender == buttons[i][j] && ShapeAndColors[i][j] != 9)
                     {
 
                         buttons[i][j].BackColor = Color.Aqua;
@@ -240,7 +240,7 @@ namespace Board_Game__SQL_
                         WeightPath = ShortestAndAvailable(SBrow, SBcol);
 
                     }
-                    else if (sender == buttons[i][j] && ShapeAndColors[i][j] == -1)
+                    else if (sender == buttons[i][j] && ShapeAndColors[i][j] == 9)
                     {
                        // move(WeightPath, i, j);
 
@@ -250,7 +250,7 @@ namespace Board_Game__SQL_
                         buttons[i][j].BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
 
                         buttons[SBrow][SBcol].Enabled = false;
-                        ShapeAndColors[SBrow][SBcol] = -1;
+                        ShapeAndColors[SBrow][SBcol] = 9;
                         buttons[i][j].Enabled = true;
                         ShapeAndColors[i][j] = Properties.Resources.shapes.IndexOf((Bitmap)SBi);
 
@@ -380,28 +380,11 @@ namespace Board_Game__SQL_
 
 
 
-        public class Cell
-        {
-            public int row;
-            public int col;
-            public int dist;
-            public Cell(int x, int y, int w)
-            {
-                this.row = x;
-                this.col = y;
-                this.dist = w;
-            }
-        }
 
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            this.Owner.Show();
-            this.Close();
-        }
 
-        int[,] ShortestAndAvailable(int row, int column)
+        int[,] ShortestAndAvailable(int row, int column)                            //Checks if desired button is reachable
         {
-            int[,] WeightPath = new int[Row, Column];             //for shortest path
+            int[,] WeightPath = new int[Row, Column];                               //for shortest path (on progress)
 
 
 
@@ -417,7 +400,7 @@ namespace Board_Game__SQL_
             {
                 for (int j = 0; j < Column; j++)
                 {
-                    if (ShapeAndColors[i][j] != -1)
+                    if (ShapeAndColors[i][j] != 9)
                     {
                         visited[i][j] = true;
                         WeightPath[i, j] = int.MaxValue;
@@ -491,7 +474,7 @@ namespace Board_Game__SQL_
             return WeightPath;
         }
 
-        internal static class RectangularArrays
+        internal static class RectangularArrays                                     //Creates 2 dimensional array
         {
             public static bool[][] RectangularBoolArray(int size1, int size2)
             {
@@ -503,6 +486,12 @@ namespace Board_Game__SQL_
 
                 return newArray;
             }
+        }
+
+        private void ExitButton_Click(object sender, EventArgs e)                   //Exit game
+        {
+            this.Owner.Show();
+            this.Close();
         }
     }
 }

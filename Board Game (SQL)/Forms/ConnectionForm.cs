@@ -19,9 +19,9 @@ namespace Board_Game__SQL_
         private TcpListener listener;
 
         public ConnectionForm()
-        { 
+        {
             InitializeComponent();
-            IPAddress[] localIP = Dns.GetHostAddresses(Dns.GetHostName());
+            IPAddress[] localIP = Dns.GetHostAddresses(Dns.GetHostName());          //Own IP
 
             foreach (IPAddress address in localIP)
             {
@@ -33,24 +33,29 @@ namespace Board_Game__SQL_
         }
 
 
-        private void StartServerButton_Click(object sender, EventArgs e)
+        private void StartServerButton_Click(object sender, EventArgs e)            //Start Server
         {
-    
-            listener = new TcpListener(IPAddress.Any, int.Parse(YourPortTextBox.Text));
-            listener.Start();
-            client = listener.AcceptTcpClient();
-            
-            MultiplayerForm multiplayerForm = new MultiplayerForm(listener, client);
-            multiplayerForm.Show();
-            this.Close();
-            
+            ConnectionLabel.Visible = true;
+
+            if (!YourPortTextBox.Text.Equals(""))
+            {
+                listener = new TcpListener(IPAddress.Any, int.Parse(YourPortTextBox.Text));
+                listener.Start();
+                client = listener.AcceptTcpClient();
+
+       
+                MultiplayerForm multiplayerForm = new MultiplayerForm(listener, client) { Owner = this };
+                multiplayerForm.Show();
+                this.Owner.Hide();
+                this.Hide();
+            }
         }
-        
-        private void ConnectToServerButton_Click(object sender, EventArgs e)
+
+        private void ConnectToServerButton_Click(object sender, EventArgs e)        //Connect to server
         {
             client = new TcpClient();
             IPEndPoint IP_End = new IPEndPoint(IPAddress.Parse(IPTextBox.Text), int.Parse(PortTextBox.Text));
-            
+
             try
             {
                 client.Connect(IP_End);
@@ -58,9 +63,10 @@ namespace Board_Game__SQL_
                 {
                     MessageBox.Show("Connected to Server");
 
-                    MultiplayerForm multiplayerForm = new MultiplayerForm(client);
+                    MultiplayerForm multiplayerForm = new MultiplayerForm(client) { Owner = this };
                     multiplayerForm.Show();
-                    this.Close();
+                    this.Owner.Hide();
+                    this.Hide();
                 }
             }
             catch (Exception ex)
@@ -69,10 +75,14 @@ namespace Board_Game__SQL_
             }
         }
 
-        private void cancelButton_Click(object sender, EventArgs e)
+        private void YourPortTextBox_TextChanged(object sender, EventArgs e)        //Port only digits
         {
-            
+            PortTextBox.Text = string.Concat(PortTextBox.Text.Where(char.IsDigit));
+        }        
+        private void CancelButton_Click(object sender, EventArgs e)                 //Cancel
+        {
             this.Owner.Enabled = true;
+            this.Owner.Show();
             this.Close();
         }
     }

@@ -81,7 +81,7 @@
             this.playButton.Text = "Play";
             this.playButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.playButton.UseVisualStyleBackColor = false;
-            this.playButton.Click += new System.EventHandler(this.playButton_Click_1);
+            this.playButton.Click += new System.EventHandler(this.PlayButton_Click_1);
             // 
             // logoutButton
             // 
@@ -95,7 +95,7 @@
             this.logoutButton.Text = "Log out";
             this.logoutButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.logoutButton.UseVisualStyleBackColor = false;
-            this.logoutButton.Click += new System.EventHandler(this.logoutButton_Click_1);
+            this.logoutButton.Click += new System.EventHandler(this.LogoutButton_Click_1);
             // 
             // profileButton
             // 
@@ -109,7 +109,7 @@
             this.profileButton.Text = "Profile";
             this.profileButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.profileButton.UseVisualStyleBackColor = false;
-            this.profileButton.Click += new System.EventHandler(this.profileButton_Click_1);
+            this.profileButton.Click += new System.EventHandler(this.ProfileButton_Click_1);
             // 
             // settingsButton
             // 
@@ -123,7 +123,7 @@
             this.settingsButton.Text = "Settings";
             this.settingsButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.settingsButton.UseVisualStyleBackColor = false;
-            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click_1);
+            this.settingsButton.Click += new System.EventHandler(this.SettingsButton_Click_1);
             // 
             // manageButton
             // 
@@ -138,7 +138,7 @@
             this.manageButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.manageButton.UseVisualStyleBackColor = false;
             this.manageButton.Visible = false;
-            this.manageButton.Click += new System.EventHandler(this.manageButton_Click_1);
+            this.manageButton.Click += new System.EventHandler(this.ManageButton_Click_1);
             // 
             // MultiplayerButton
             // 
@@ -170,6 +170,7 @@
             this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.manageButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "GameForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GameForm";

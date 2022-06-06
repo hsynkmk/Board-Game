@@ -17,7 +17,7 @@ namespace Board_Game__SQL_
         {
             InitializeComponent();
         }
-        private void ProfileForm_Load(object sender, EventArgs e)
+        private void ProfileForm_Load(object sender, EventArgs e)                               //Load current settings
         {
             usernameHeadLabel.Text = UserClass.Username;
 
@@ -31,31 +31,7 @@ namespace Board_Game__SQL_
             emailTextbox.Text = UserClass.Email;
         }
 
-        private void DeleteAccountButton_Click(object sender, EventArgs e)
-        {
-            if (confirmPasswordTextbox.Text != UserClass.UnHashedPassword)
-                MessageBox.Show("Wrong password");
-
-            else if (MessageBox.Show("Your account will be deleted permanently.", "DELETE", MessageBoxButtons.OKCancel) == DialogResult.OK && confirmPasswordTextbox.Text == UserClass.UnHashedPassword)
-            {
-                SqlCommand DeleteCommand = new SqlCommand("Delete from BoardGameUsers where username=@usn", SQLClass.connection);
-                DeleteCommand.Parameters.AddWithValue("@usn", usernameTextbox.Text);
-                DeleteCommand.ExecuteNonQuery();
-
-                MessageBox.Show("Your account deleted");
-                this.Close();
-                this.Owner.Close();
-                new LoginForm().Show();
-            }
-        }
-
-        private void BackButton_Click(object sender, EventArgs e)
-        {
-            this.Owner.Show();
-            this.Close();
-        }
-
-        private void updateButton_Click(object sender, EventArgs e)
+        private void UpdateButton_Click(object sender, EventArgs e)                             //Update profile info
         {
             if (confirmPasswordTextbox.Text == UserClass.UnHashedPassword)
             {
@@ -78,6 +54,31 @@ namespace Board_Game__SQL_
             }
             else
                 MessageBox.Show("Wrong password");
+        }
+
+        private void DeleteAccountButton_Click(object sender, EventArgs e)                      //Delete account
+        {
+            if (confirmPasswordTextbox.Text != UserClass.UnHashedPassword)
+                MessageBox.Show("Wrong password");
+                                                                                                //Valiation
+            else if (MessageBox.Show("Your account will be deleted permanently.", "DELETE", MessageBoxButtons.OKCancel) == DialogResult.OK && confirmPasswordTextbox.Text == UserClass.UnHashedPassword)
+            {
+                SqlCommand DeleteCommand = new SqlCommand("Delete from BoardGameUsers where username=@usn", SQLClass.connection);
+                DeleteCommand.Parameters.AddWithValue("@usn", usernameTextbox.Text);
+                DeleteCommand.ExecuteNonQuery();
+
+                MessageBox.Show("Your account deleted");
+
+                this.Owner.Owner.Show();
+                this.Owner.Close();
+                this.Close();
+            }
+        }
+
+        private void CancelButton_Click(object sender, EventArgs e)                             //Cancel
+        {
+            this.Owner.Show();
+            this.Close();
         }
     }
 }
