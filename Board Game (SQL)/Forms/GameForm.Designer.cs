@@ -149,7 +149,7 @@
             this.MultiplayerButton.Name = "MultiplayerButton";
             this.MultiplayerButton.Size = new System.Drawing.Size(263, 47);
             this.MultiplayerButton.TabIndex = 30;
-            this.MultiplayerButton.Text = "Multiplayer";
+            this.MultiplayerButton.Text = "Multiplayer (Beta)";
             this.MultiplayerButton.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.MultiplayerButton.UseVisualStyleBackColor = false;
             this.MultiplayerButton.Click += new System.EventHandler(this.MultiplayerButton_Click);
